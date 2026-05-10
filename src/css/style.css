@@ -74,9 +74,18 @@ body {
 
 /* Preloader transition */
 #preloader.hide {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease, visibility .5s ease;
+  transform: translateY(-100%);
+}
+
+@keyframes loaderBar {
+  0% { width: 0%; }
+  30% { width: 40%; }
+  60% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.animate-loader-bar {
+  animation: loaderBar 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* ============================ */

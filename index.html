@@ -76,11 +76,21 @@
 <body>
 
   <!-- ===== START PRELOADER ===== -->
-  <!-- <div id="preloader" class="fixed inset-0 z-[9999] bg-third flex items-center justify-center">
-    <div class="flex flex-col items-center gap-4">
-      <img src="assets/images/logo.svg" alt="logo" width="150" height="150" class="animate-pulse">
+  <div id="preloader" class="fixed inset-0 z-[9999] bg-primary flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]">
+    <div class="flex flex-col items-center overflow-hidden px-4 w-full max-w-sm">
+      <h1 class="text-6xl md:text-8xl font-bold uppercase text-secondary tracking-tighter mb-6 relative">
+        LOUD<span class="text-freshgreen">.</span>
+      </h1>
+      <!-- Progress Bar -->
+      <div class="w-full h-1 md:h-2 bg-secondary/10 relative overflow-hidden rounded-full">
+        <div class="absolute top-0 left-0 h-full bg-freshgreen animate-loader-bar rounded-full"></div>
+      </div>
+      <div class="mt-4 text-secondary/50 uppercase tracking-widest text-xs font-bold w-full flex justify-between">
+        <span>Loading</span>
+        <span>100%</span>
+      </div>
     </div>
-  </div> -->
+  </div>
   <!-- ===== END PRELOADER ===== -->
 
 
@@ -191,8 +201,7 @@
             </p>
           </div>
           <div class="pl-4 pt-4 md:pl-8 md:pt-8" data-aos="fade-up">
-            <div
-              class="relative h-[300px] md:h-[400px] border-4 border-freshgreen w-full">
+            <div class="relative h-[300px] md:h-[400px] border-4 border-freshgreen w-full">
               <div
                 class="absolute inset-0 bg-primary flex items-center justify-center border-2 border-secondary/30 -translate-x-4 -translate-y-4 md:-translate-x-8 md:-translate-y-8 overflow-hidden group">
                 <img src="./assets/images/bakery_factory.png" alt="Our Bakery Production" loading="lazy"
