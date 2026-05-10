@@ -1,0 +1,1139 @@
+﻿[
+    {
+        "id":  1,
+        "name":  "PASTRY",
+        "slug":  "pastry",
+        "icon":  "cake",
+        "description":  "Cakes, Tarts, Muffins, Cookies \u0026 more",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "TIRAMISU GATHERING",
+                             "price":  6.65,
+                             "weight":  "1.2 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "TIRAMISU MINI",
+                             "price":  1.45,
+                             "weight":  "250 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "PECAN TART GATHERING",
+                             "price":  14.25,
+                             "weight":  "1.75 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "PECAN TART MINI",
+                             "price":  0.85,
+                             "weight":  "100 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  5,
+                             "name":  "APPLE PIE",
+                             "price":  4.25,
+                             "weight":  "1.750 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  6,
+                             "name":  "APPLE PIE MINI",
+                             "price":  0.6,
+                             "weight":  "120 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  7,
+                             "name":  "MILK CHOCOLATE COOKIES",
+                             "price":  0.45,
+                             "weight":  "80 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  8,
+                             "name":  "RED VELVET COOKIES",
+                             "price":  0.6,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  9,
+                             "name":  "MATCHA COOKIES",
+                             "price":  0.75,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  10,
+                             "name":  "DOUBLE CHOCOLATE COOKIES",
+                             "price":  0.6,
+                             "weight":  "80 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  11,
+                             "name":  "STRAWBERRY BREAKFAST MUFFIN",
+                             "price":  0.75,
+                             "weight":  "Crammed with Walnuts, dusted with Oat flakes and filled with a strawberry compote.",
+                             "image":  "",
+                             "description":  "Crammed with Walnuts, dusted with Oat flakes and filled with a strawberry compote.",
+                             "available":  true
+                         },
+                         {
+                             "id":  12,
+                             "name":  "ORANGE \u0026 COCONUT MUFFIN",
+                             "price":  0.75,
+                             "weight":  "Infused with zesty orange peel and topped with flaked coconut.",
+                             "image":  "",
+                             "description":  "Infused with zesty orange peel and topped with flaked coconut.",
+                             "available":  true
+                         },
+                         {
+                             "id":  13,
+                             "name":  "DOUBLE CHOCOLATE MUFFIN",
+                             "price":  0.75,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  14,
+                             "name":  "BLUEBERRY MUFFIN",
+                             "price":  0.75,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  15,
+                             "name":  "CHOCOLATE CAKE GATHERING",
+                             "price":  10.65,
+                             "weight":  "1.143 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  16,
+                             "name":  "SAFFRON MILK CAKE GATHERING",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  17,
+                             "name":  "RED VELVET CAKE GATHERING",
+                             "price":  6.85,
+                             "weight":  "1.2 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  18,
+                             "name":  "SAN SEBASTIAN CHEESECAKE GATHERING",
+                             "price":  6.5,
+                             "weight":  "1.145 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  19,
+                             "name":  "SAN SEBASTIAN CHEESECAKE MINI",
+                             "price":  0.85,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  20,
+                             "name":  "LOTUS BISCOFF CHEESECAKE",
+                             "price":  12.85,
+                             "weight":  "1.680 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  21,
+                             "name":  "CARROT CAKE MINI",
+                             "price":  0.28,
+                             "weight":  "85 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  22,
+                             "name":  "CARROT CAKE LOAF",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  23,
+                             "name":  "MAPLE BUTTERNUT \u0026 PECAN CAKE MINI",
+                             "price":  0.28,
+                             "weight":  "85 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  24,
+                             "name":  "MAPLE BUTTERNUT \u0026 PECAN CAKE LOAF",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  25,
+                             "name":  "ORANGE  \u0026 POLENTA MINI",
+                             "price":  0.28,
+                             "weight":  "85 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  26,
+                             "name":  "ORANGE  \u0026 POLENTA CAKE LOAF",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  27,
+                             "name":  "CINNAMON \u0026 CREAM MINI",
+                             "price":  0.28,
+                             "weight":  "85 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  28,
+                             "name":  "CINNAMON \u0026 CREAM LOAF",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  29,
+                             "name":  "MARBLE CAKE",
+                             "price":  4,
+                             "weight":  "1 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  30,
+                             "name":  "CHOCOLATE BROOKIES",
+                             "price":  9.7,
+                             "weight":  "1.395 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  31,
+                             "name":  "CINNAMON ROLL PUDDING",
+                             "price":  7.35,
+                             "weight":  "1.265 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  32,
+                             "name":  "SALTED CARAMEL BROWNIE TRAY 12 PCS",
+                             "price":  9.1,
+                             "weight":  "1.2 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    },
+    {
+        "id":  2,
+        "name":  "BAKERY",
+        "slug":  "bakery",
+        "icon":  "croissant",
+        "description":  "Croissants, Sourdough, Breads \u0026 Pastries",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "PLAIN CROISSANT",
+                             "price":  0.45,
+                             "weight":  "75 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "CHEESE CROISSANT",
+                             "price":  0.6,
+                             "weight":  "115 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "TURKEY \u0026 CHEESE CROISSANT",
+                             "price":  0.55,
+                             "weight":  "115 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "CHEESE HALLOUMI CROISSANT",
+                             "price":  1,
+                             "weight":  "200 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  5,
+                             "name":  "PISTACHIO CROISSANT",
+                             "price":  1,
+                             "weight":  "115 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  6,
+                             "name":  "ALMOND CROISSANT",
+                             "price":  0.6,
+                             "weight":  "135 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  7,
+                             "name":  "PAIN AU CHOCOLAT",
+                             "price":  0.75,
+                             "weight":  "105 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  8,
+                             "name":  "ALMOND PAIN AU CHOCOLAT",
+                             "price":  0.75,
+                             "weight":  "105 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  9,
+                             "name":  "BLACKBERRY DANISH",
+                             "price":  1.1,
+                             "weight":  "151 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  10,
+                             "name":  "APRICOT DANISH",
+                             "price":  1.1,
+                             "weight":  "151 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  11,
+                             "name":  "CINNAMON BUN",
+                             "price":  0.5,
+                             "weight":  "75 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  12,
+                             "name":  "CLASSIC BUN",
+                             "price":  0.2,
+                             "weight":  "100 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  13,
+                             "name":  "POTATO BUN",
+                             "price":  0.1,
+                             "weight":  "50 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  14,
+                             "name":  "GOLDEN BRIOCHE BUN",
+                             "price":  0.25,
+                             "weight":  "77 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  15,
+                             "name":  "NEW COUNTRY SOURDOUGH - 42OGR",
+                             "price":  0.45,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  16,
+                             "name":  "NEW COUNTRY SOURDOUGH - 850GR",
+                             "price":  0.9,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  17,
+                             "name":  "OLIVE SOURDOUGH - 480GR",
+                             "price":  0.95,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  18,
+                             "name":  "OLIVE SOFT CRUST SOURDOUGH - 540GR",
+                             "price":  1,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  19,
+                             "name":  "MULTICEARAL SOURDOUGH - 485GR",
+                             "price":  1.1,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  20,
+                             "name":  "BAGUETTE SOURDOUGH - 275GR",
+                             "price":  0.35,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  21,
+                             "name":  "MULTICEREAL BAGUETTE SOURDOUGH - 275GR",
+                             "price":  0.5,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  22,
+                             "name":  "OLIVE BAGUETTE SOURDOUGH - 275GR",
+                             "price":  0.65,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  23,
+                             "name":  "WHITE TOAST LOAF",
+                             "price":  1.75,
+                             "weight":  "1.450 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  24,
+                             "name":  "BRIOCHE TOAST LOAF",
+                             "price":  4.5,
+                             "weight":  "1.440 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  25,
+                             "name":  "CROUTONS",
+                             "price":  1.65,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  26,
+                             "name":  "BREAD CRUMBS",
+                             "price":  1.65,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  27,
+                             "name":  "BREAD BOWL",
+                             "price":  0.65,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  28,
+                             "name":  "FOCACCIA BREAD TRAY",
+                             "price":  0.75,
+                             "weight":  "1.460 KG",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  29,
+                             "name":  "PIZZA PEPPERONI",
+                             "price":  1.5,
+                             "weight":  "410 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  30,
+                             "name":  "PIZZA MARGHERITA",
+                             "price":  1.25,
+                             "weight":  "375 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  31,
+                             "name":  "ARABIC CHEESE FATAYER",
+                             "price":  0.28,
+                             "weight":  "87 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  32,
+                             "name":  "LABNAH CHEESE FATAYER",
+                             "price":  0.2,
+                             "weight":  "82 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  33,
+                             "name":  "ZAATAR FATAYER",
+                             "price":  0.3,
+                             "weight":  "103 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  34,
+                             "name":  "CHEESE \u0026 TOMATO FATAYER",
+                             "price":  0.35,
+                             "weight":  "96 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  35,
+                             "name":  "SPINACH FATAYER",
+                             "price":  0.2,
+                             "weight":  "96 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  36,
+                             "name":  "CIABATTA BREAD",
+                             "price":  0.1,
+                             "weight":  "70 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  37,
+                             "name":  "PANINI BREAD",
+                             "price":  0.1,
+                             "weight":  "45 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  38,
+                             "name":  "CHEESE BREADSTICKS",
+                             "price":  1.6,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  39,
+                             "name":  "SESAME BREADSTICKS",
+                             "price":  0.8,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  40,
+                             "name":  "ZAATAT BREADSTICKS",
+                             "price":  1.35,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  41,
+                             "name":  "PLAIN BREADSTICKS",
+                             "price":  0.45,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  42,
+                             "name":  "PLAIN BAGEL",
+                             "price":  0.1,
+                             "weight":  "65 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  43,
+                             "name":  "MULTICEARAL BAGEL",
+                             "price":  0.12,
+                             "weight":  "65 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  44,
+                             "name":  "SIMIT BREAD",
+                             "price":  0.25,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  45,
+                             "name":  "SPANISH BREAD",
+                             "price":  0.25,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  46,
+                             "name":  "SPINACH CHEESE PRETZEL",
+                             "price":  0.6,
+                             "weight":  "11G GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  47,
+                             "name":  "TURKEY CHEESE PRETZEL",
+                             "price":  0.65,
+                             "weight":  "120 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  48,
+                             "name":  "CHEESE TOMATO DANISH",
+                             "price":  0.45,
+                             "weight":  "95 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  49,
+                             "name":  "CHOCOLATE TWISTER",
+                             "price":  0.8,
+                             "weight":  "120 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    },
+    {
+        "id":  3,
+        "name":  "COLD KITCHEN",
+        "slug":  "cold-kitchen",
+        "icon":  "bowl-food",
+        "description":  "Fresh Fruits \u0026 Cold Platters",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "WATERMELON CUBES",
+                             "price":  0.65,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "SWEETMELON CUBES",
+                             "price":  1.55,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "POMEGRANATE SEEDS",
+                             "price":  3.95,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "MANGO CUBES",
+                             "price":  3.55,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    },
+    {
+        "id":  4,
+        "name":  "SALAD",
+        "slug":  "salads",
+        "icon":  "leaf",
+        "description":  "Fresh \u0026 Wholesome Salads",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "GREEK CHEESE \u0026 CAPERS SALAD",
+                             "price":  1.05,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "KALE SALAD WITH MAPLE CITRUS DRESSING",
+                             "price":  1.2,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "CHICKEN CAESAR SALAD",
+                             "price":  0.9,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "OLIVE FUSILLI PASTA SALAD",
+                             "price":  0.9,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  5,
+                             "name":  "EDAMAME LETTUCE SALAD",
+                             "price":  0.55,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  6,
+                             "name":  "VEGETABLE NOODLES SALAD",
+                             "price":  0.5,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    },
+    {
+        "id":  5,
+        "name":  "SANDWICH",
+        "slug":  "sandwiches",
+        "icon":  "sandwich",
+        "description":  "Sandwiches, Wraps \u0026 Bagels",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "CHICKEN AVOCADO SANDWICH",
+                             "price":  0.95,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  2,
+                             "name":  "CLASSIC CLUB SANDWICH",
+                             "price":  1.05,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  3,
+                             "name":  "BACON \u0026 EGGS SANDWICH",
+                             "price":  0.65,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  4,
+                             "name":  "TURKEY CLUB BRIOCHE SANDWICH",
+                             "price":  0.55,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  5,
+                             "name":  "BBQ CHICKEN CIABATTA",
+                             "price":  0.55,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  6,
+                             "name":  "TURKEY PROTEIN WRAP",
+                             "price":  0.75,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Wrap"
+                         },
+                         {
+                             "id":  7,
+                             "name":  "CHICKEN CAESAR WRAP",
+                             "price":  0.55,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Wrap"
+                         },
+                         {
+                             "id":  8,
+                             "name":  "EGG MAYO",
+                             "price":  0.8,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  9,
+                             "name":  "GRILLED HALLOUMI ZAATAR CIABATTA",
+                             "price":  0.9,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  10,
+                             "name":  "CHICKEN FILLET SANDWICH",
+                             "price":  0.55,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Sandwich"
+                         },
+                         {
+                             "id":  11,
+                             "name":  "FALAFEL WRAP",
+                             "price":  0.6,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Wrap"
+                         },
+                         {
+                             "id":  12,
+                             "name":  "CHICKEN PESTO WRAP",
+                             "price":  0.7,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  13,
+                             "name":  "TURKEY EGG BAGEL",
+                             "price":  0.65,
+                             "weight":  "",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true,
+                             "subtype":  "Bagel"
+                         }
+                     ]
+    },
+    {
+        "id":  6,
+        "name":  "SOUPS",
+        "slug":  "soups",
+        "icon":  "bowl-steam",
+        "description":  "Freshly Made Hot Soups",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "CREAMY TOMATO SOUP",
+                             "price":  0.25,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "GREEN PEAS SOUP",
+                             "price":  0.28,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "PUMPKIN SOUP",
+                             "price":  0.28,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "ZUCCHINI SOUP",
+                             "price":  0.25,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  5,
+                             "name":  "CELERY CARROT SOUP",
+                             "price":  0.2,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  6,
+                             "name":  "CAULIFLOWER SOUP",
+                             "price":  0.25,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  7,
+                             "name":  "GREEN APPLE SOUP",
+                             "price":  0.3,
+                             "weight":  "150 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    },
+    {
+        "id":  7,
+        "name":  "JUICES",
+        "slug":  "juices",
+        "icon":  "glass-water",
+        "description":  "Natural Fresh Juices",
+        "products":  [
+                         {
+                             "id":  1,
+                             "name":  "MANGO JUICE",
+                             "price":  0.6,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  2,
+                             "name":  "STRAWBERRY JUICE",
+                             "price":  0.55,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  3,
+                             "name":  "MIXBERRY JUICE",
+                             "price":  3.4,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  4,
+                             "name":  "ORANGE JUICE",
+                             "price":  0.9,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  5,
+                             "name":  "LEMON JUICE",
+                             "price":  0.55,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  6,
+                             "name":  "CARROT, ORANGE \u0026 GINGER JUICE",
+                             "price":  1.05,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         },
+                         {
+                             "id":  7,
+                             "name":  "PINEAPPLE STRAWBERRY JUICE",
+                             "price":  3.05,
+                             "weight":  "500 GR",
+                             "image":  "",
+                             "description":  "",
+                             "available":  true
+                         }
+                     ]
+    }
+]

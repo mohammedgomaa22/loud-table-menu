@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <title>Loud Table Menu</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="theme-color" content="#6b6e55" />
+  <link rel="shortcut icon" href="./assets/icons/logo-v2.svg" type="image/svg+xml" />
+  <!-- Preload Critical Assets -->
+  <link rel="preload" as="image" href="./assets/images/logo.svg" type="image/webp">
+  <link rel="preload" as="image" href="./assets/images/logo.svg" type="image/webp" fetchpriority="high">
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Font (Cairo) with font-display swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN (recommended to replace with compiled CSS for production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1a1919',
+              secondary: '#ececec',
+              freshgreen: '#17db67',
+            },
+            fontFamily: {
+              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              arabic: ['Cairo', 'sans-serif'],
+            }
+          },
+          container: {
+            center: true,
+            padding: "1rem",
+            screens: {
+              sm: "540px",
+              md: "720px",
+              lg: "960px",
+              xl: "1140px",
+              "2xl": "1320px"
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- AOS CSS -->
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  </noscript>
+  <!-- Swiper CSS - async load -->
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  </noscript>
+  <!-- Font Awesome for Icons -->
+  <link rel="preload" as="style" href="./src/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="./src/css/all.min.css">
+  </noscript>
+  <!-- Main CSS - async load -->
+  <link rel="preload" as="style" href="./src/css/style.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="./src/css/style.css">
+  </noscript>
+</head>
+
+<body>
+
+  <!-- ===== START PRELOADER ===== -->
+  <!-- <div id="preloader" class="fixed inset-0 z-[9999] bg-third flex items-center justify-center">
+    <div class="flex flex-col items-center gap-4">
+      <img src="assets/images/logo.svg" alt="logo" width="150" height="150" class="animate-pulse">
+    </div>
+  </div> -->
+  <!-- ===== END PRELOADER ===== -->
+
+
+  <!-- ===== HEADER PLACEHOLDER ===== -->
+  <div data-include="src/partials/header.html"></div>
+
+  <!-- ===== START MAIN ===== -->
+  <main role="main" class="pt-[64px]">
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary pt-16">
+      <!-- Placeholder Background Image (Simulating the bakery image from Brandbook) -->
+      <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
+          alt="Fresh Bakery" class="w-full h-full object-cover opacity-100 mix-blend-overlay" />
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+      </div>
+
+      <div class="container relative z-10 flex flex-col justify-center h-full pt-12 pb-24" data-aos="fade-up">
+        <!-- Text Block aligned to the left with a slight rotation -->
+        <div class="w-full px-4 md:px-8 lg:px-12 flex justify-start">
+          <div
+            class="inline-flex flex-col text-left relative transform -rotate-6 lg:-rotate-[4deg] origin-left mt-10 md:mt-0">
+            <h2
+              class="text-white text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider mb-0 leading-none drop-shadow-md">
+              Quality That
+            </h2>
+            <div class="relative inline-block">
+              <h1
+                class="text-white text-6xl md:text-8xl lg:text-[10rem] font-bold uppercase leading-[0.8] tracking-tighter drop-shadow-lg">
+                Echos
+              </h1>
+              <span
+                class="absolute -bottom-4 right-0 md:-right-6 text-white text-xs md:text-sm font-light lowercase tracking-wider drop-shadow-sm opacity-90">
+                (super loud)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Center Down Arrow (Heart shape indicator) -->
+      <a href="#menu"
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 text-secondary hover:text-freshgreen transition-colors flex items-center justify-center"
+        aria-label="Scroll Down">
+        <!-- Geometric heart shape from Brandbook -->
+        <img src="./assets/icons/logo-v.svg" alt="logo" width="40" height="40"
+          class="h-16 w-16 object-contain brightness-0 invert-[1]">
+      </a>
+
+      <!-- Vertical Read More (Right Side) -->
+      <div class="absolute bottom-12 right-6 hidden md:flex flex-col items-center gap-4 text-secondary opacity-80">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-white"
+          style="writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);">Read More</span>
+        <img src="./assets/icons/logo-v.svg" alt="" width="40" height="40"
+          class="w-5 h-5 object-contain brightness-0 invert-[1]">
+      </div>
+    </section>
+
+    <!-- MENU CATEGORIES SECTION -->
+    <section id="menu" class="py-24 bg-secondary">
+      <div class="w-full">
+        <div class="container text-center mb-10 md:mb-16" data-aos="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4 text-primary">Our Menu</h2>
+          <div class="w-24 h-2 bg-freshgreen mx-auto"></div>
+        </div>
+
+        <div class="relative px-4 md:px-8" data-aos="fade-up" data-aos-delay="100">
+          <!-- Swiper -->
+          <div class="swiper categoriesSwiper !pb-16 overflow-hidden">
+            <div class="swiper-wrapper" id="categoriesGrid">
+              <!-- Categories will be injected here via JS -->
+              <div class="col-span-full text-center py-10 w-full">
+                <i class="fas fa-spinner fa-spin text-4xl text-freshgreen"></i>
+                <p class="mt-4 font-bold uppercase tracking-widest text-primary">Loading Menu...</p>
+              </div>
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination !-bottom-12"></div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div
+            class="swiper-button-next !text-primary !right-0 after:!text-2xl hover:!text-freshgreen transition-colors">
+          </div>
+          <div
+            class="swiper-button-prev !text-primary !left-0 after:!text-2xl hover:!text-freshgreen transition-colors">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-primary text-secondary overflow-hidden">
+      <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div data-aos="fade-right">
+            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6">Loud By Nature.</h2>
+            <p class="text-lg opacity-80 mb-6 leading-relaxed">
+              We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors. From
+              our freshly baked croissants to our vibrant salads, every item is crafted to make a statement on your
+              table.
+            </p>
+            <p class="text-lg opacity-80 mb-8 leading-relaxed">
+              Based in Riyadh, we deliver the finest pastries and bakery items right to your door, perfectly packaged
+              and ready to be the center of attention.
+            </p>
+          </div>
+          <div class="pl-4 pt-4 md:pl-8 md:pt-8" data-aos="fade-up">
+            <div
+              class="relative h-[300px] md:h-[400px] border-4 border-freshgreen w-full">
+              <div
+                class="absolute inset-0 bg-primary flex items-center justify-center border-2 border-secondary/30 -translate-x-4 -translate-y-4 md:-translate-x-8 md:-translate-y-8 overflow-hidden group">
+                <img src="./assets/images/bakery_factory.png" alt="Our Bakery Production" loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-24 bg-freshgreen relative overflow-hidden flex flex-col items-center justify-center text-center">
+      <!-- Decorative Elements -->
+      <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-white/20 rounded-full blur-3xl"></div>
+
+      <div class="container relative z-10" data-aos="zoom-in">
+        <h2
+          class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-primary mb-6 leading-none">
+          Ready to be <span class="text-white drop-shadow-md">Loud?</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-primary/80 font-medium max-w-2xl mx-auto mb-10">
+          Elevate your next event with our bold, uncompromising pastries and catering menu.
+        </p>
+        <a href="#contact"
+          class="inline-flex items-center gap-4 bg-primary text-secondary px-8 md:px-12 py-5 font-bold uppercase tracking-widest text-lg hover:bg-white hover:text-primary transition-all duration-300 hover:-translate-y-1 shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.15)] group">
+          Place an Order
+          <span
+            class="w-8 h-8 bg-secondary text-primary rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-secondary transition-colors">
+            <i class="fas fa-arrow-right text-sm transform -rotate-45 group-hover:rotate-0 transition-transform"></i>
+          </span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- PARTNERS SECTION -->
+    <section class="py-20 bg-primary border-y border-secondary/10 overflow-hidden">
+
+      <div class="marquee-container" data-aos="fade-in">
+        <div class="marquee-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"
+            class="partner-logo">
+        </div>
+        <div class="marquee-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+            class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="partner-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"
+            class="partner-logo">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACT / FORM SECTION -->
+    <section id="contact" class="py-24 bg-secondary border-t border-primary/10">
+      <div class="container max-w-4xl">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4 text-primary">Get In Touch</h2>
+          <div class="w-24 h-2 bg-primary mx-auto mb-6"></div>
+          <p class="text-lg opacity-80">Have a question or want to place a special order? Drop us a message.</p>
+        </div>
+
+        <form id="contactForm" class="bg-white p-8 md:p-12 shadow-[8px_8px_0_0_#1a1919] border-2 border-primary"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="name" class="block font-bold uppercase tracking-widest text-sm mb-2">Name</label>
+              <input type="text" id="name" required
+                class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            </div>
+            <div>
+              <label for="email" class="block font-bold uppercase tracking-widest text-sm mb-2">Email</label>
+              <input type="email" id="email" required
+                class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            </div>
+          </div>
+          <div class="mb-8">
+            <label for="message" class="block font-bold uppercase tracking-widest text-sm mb-2">Message</label>
+            <textarea id="message" rows="4" required
+              class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors resize-none"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full bg-primary text-secondary font-bold px-10 py-4 uppercase tracking-widest hover:bg-freshgreen hover:text-primary transition-colors">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  <!-- ===== END MAIN ===== -->
+
+  <!-- ===== FOOTER PLACEHOLDER ===== -->
+  <div data-include="src/partials/footer.html"></div>
+
+  <!-- ===== START SCROLL TO TOP BUTTON ===== -->
+  <button id="scrollTopBtn" name="scroll-to-top-button" aria-label="Scroll to top"
+    class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-primary text-freshgreen border-2 border-freshgreen shadow-[6px_6px_0_0_#ececec] flex items-center justify-center transition-all duration-500 opacity-0 pointer-events-none hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_0_#ececec]">
+    <i class="fas fa-arrow-up text-xl"></i>
+  </button>
+  <!-- ===== END SCROLL TO TOP BUTTON ===== -->
+
+
+  <!-- ===== START SCRIPTS ===== -->
+  <!-- AOS JS (deferred) -->
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <noscript>
+    <style>
+      [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+  <!-- Swiper JS Initialization -->
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Main JS (vanilla, no modules) -->
+  <script defer src="./src/js/main.js"></script>
+  <!-- ===== END SCRIPTS ===== -->
+
+  <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/gh/mohammedgomaa22/core-assets@main/global-utils.v2.js?v=' + Math.floor(Date.now() / 3600000);
+        s.async = true;
+        document.body.appendChild(s);
+      })();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+/* Global styles */
+/* Use this file for global utilities and component base styles.
+   For production: it's recommended to compile only used Tailwind utilities. */
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../webfonts/Helvetica.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../webfonts/Helvetica-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --primary-color: #1a1919;
+  --secondary-color: #ececec;
+  --freshgreen: #17db67;
+  --base-font: 'Helvetica', 'Cairo', sans-serif;
+  --arabic-font: 'Cairo', sans-serif;
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  font-family: var(--base-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--primary-color);
+  background: var(--secondary-color);
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 999px;
+}
+
+/* Firefox scrollbar */
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--secondary-color);
+}
+
+/* Preloader transition */
+#preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+/* ============================ */
+/* ===== SCROLL TOP BTN ======= */
+/* ============================ */
+#scrollTopBtn {
+  transform: translateY(30px);
+}
+
+#scrollTopBtn.show {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0);
+}
+
+#scrollTopBtn.show:hover {
+  transform: translate(-4px, -4px);
+}
+
+/* ============================ */
+/* ======= SWIPER CUSTOM ======= */
+/* ============================ */
+.swiper-pagination-bullet-active {
+  background-color: var(--freshgreen) !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--primary-color);
+  opacity: 0.5;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-weight: 900 !important;
+}
+
+/* ============================ */
+/* ======= MARQUEE CUSTOM ======= */
+/* ============================ */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+  position: relative;
+}
+
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100%;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.partner-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: all 0.4s ease;
+  margin: 0 3rem;
+}
+
+.partner-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@media (min-width: 768px) {
+  .partner-logo {
+    height: 70px;
+    margin: 0 5rem;
+  }
+}

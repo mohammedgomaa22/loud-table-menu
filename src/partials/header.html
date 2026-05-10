@@ -1,0 +1,66 @@
+<header class="fixed w-full top-0 left-0 z-50 bg-secondary border-b border-primary/10 transition-all duration-300">
+  <div class="container py-4 flex items-center justify-between relative">
+    <!-- Left Icon (Heart) -->
+    <a href="#" class="text-primary hover:text-freshgreen transition-colors text-xl" aria-label="Favorites">
+      <img src="./assets/icons/logo-v1.svg" alt="logo" width="30" height="30" class="object-contain w-8 h-8">
+    </a>
+
+    <!-- Center Logo -->
+    <a href="index.html"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+      aria-label="Loud Table Menu Home">
+      <img src="assets/images/logo.svg" alt="Loud Table Menu" width="160" height="40" class="h-8 md:h-10 w-auto"
+        loading="eager" />
+    </a>
+
+    <!-- Right Icons (Search & Menu) -->
+    <div class="flex items-center gap-6 text-primary">
+      <!-- <button class="hover:text-freshgreen transition-colors text-xl" aria-label="Search">
+        <i class="fas fa-search"></i>
+      </button> -->
+      <button id="mobileMenuBtn" class="hover:text-freshgreen transition-colors text-xl focus:outline-none"
+        aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Menu Overlay -->
+  <div id="mobileNav"
+    class="fixed inset-0 bg-primary z-[60] flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none transform -translate-y-8">
+    <!-- Close Button -->
+    <button id="closeMenuBtn"
+      class="absolute top-6 right-6 text-secondary hover:text-freshgreen text-3xl focus:outline-none transition-colors"
+      aria-label="Close Menu">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <nav class="flex flex-col items-center gap-10">
+      <a href="#menu"
+        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
+        Menu
+        <span
+          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+      </a>
+      <a href="#about"
+        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
+        Our Story
+        <span
+          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+      </a>
+      <a href="#contact"
+        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
+        Contact
+        <span
+          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+      </a>
+    </nav>
+
+    <!-- Social Links inside Menu -->
+    <div class="absolute bottom-10 flex gap-8 text-secondary text-2xl">
+      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</header>
