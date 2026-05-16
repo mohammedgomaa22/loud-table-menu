@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <title>LOUD. | Admin Dashboard</title>
+  <!-- Google Font (Cairo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1a1919',
+              secondary: '#ececec',
+              freshgreen: '#17db67',
+              adminbg: '#f8f9fa',
+            },
+            fontFamily: {
+              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-adminbg text-primary font-sans antialiased overflow-x-hidden flex h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
+    <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
+      <h1 class="text-3xl font-bold uppercase tracking-tighter">
+        LOUD<span class="text-freshgreen">.</span>
+      </h1>
+    </div>
+    
+    <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-freshgreen text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
+        <i class="fas fa-home w-5 text-center"></i> Dashboard
+      </a>
+      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-layer-group w-5 text-center"></i> Categories
+      </a>
+      <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-box-open w-5 text-center"></i> Products
+      </a>
+      <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-envelope w-5 text-center"></i> Messages
+        <span class="ml-auto bg-freshgreen text-primary text-[10px] px-2 py-0.5 rounded-full">3</span>
+      </a>
+      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors mt-auto">
+        <i class="fas fa-cog w-5 text-center"></i> Settings
+      </a>
+    </nav>
+    
+    <div class="p-4 border-t border-secondary/10">
+      <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
+        <i class="fas fa-sign-out-alt w-5 text-center"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+    
+    <!-- Topbar -->
+    <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
+      <div class="flex items-center gap-4">
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-freshgreen transition-colors">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+        <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Dashboard Overview</h2>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <a href="../index.html" target="_blank" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-freshgreen transition-colors flex items-center gap-2">
+          <i class="fas fa-external-link-alt"></i> View Site
+        </a>
+        <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
+          <div class="w-10 h-10 rounded-full bg-primary text-freshgreen flex items-center justify-center font-bold text-lg">
+            A
+          </div>
+          <div class="hidden md:block">
+            <p class="text-sm font-bold uppercase tracking-wider text-primary leading-tight">Admin User</p>
+            <p class="text-xs text-primary/50">admin@loud.com</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Area -->
+    <main class="flex-1 overflow-y-auto p-6 md:p-10">
+      
+      <!-- Stats Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        
+        <!-- Stat Card 1 -->
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Total Categories</p>
+            <h3 class="text-3xl font-bold text-primary">8</h3>
+          </div>
+        </div>
+        
+        <!-- Stat Card 2 -->
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Total Products</p>
+            <h3 class="text-3xl font-bold text-primary">42</h3>
+          </div>
+        </div>
+
+        <!-- Stat Card 3 -->
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">New Messages</p>
+            <h3 class="text-3xl font-bold text-primary">3</h3>
+          </div>
+        </div>
+
+        <!-- Stat Card 4 -->
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Site Visits</p>
+            <h3 class="text-3xl font-bold text-primary">1,204</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        
+        <!-- Recent Messages (Takes up 2 cols on large) -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold uppercase tracking-widest text-primary">Recent Messages</h3>
+            <a href="messages.html" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-freshgreen transition-colors">View All</a>
+          </div>
+          
+          <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#1a1919] overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-primary text-secondary">
+                    <th class="p-4 font-bold uppercase tracking-widest text-xs whitespace-nowrap">Name</th>
+                    <th class="p-4 font-bold uppercase tracking-widest text-xs whitespace-nowrap">Email</th>
+                    <th class="p-4 font-bold uppercase tracking-widest text-xs whitespace-nowrap">Date</th>
+                    <th class="p-4 font-bold uppercase tracking-widest text-xs whitespace-nowrap">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-primary/10">
+                  <tr class="hover:bg-adminbg transition-colors bg-freshgreen/5">
+                    <td class="p-4 text-sm font-bold text-primary">Ahmed Ali</td>
+                    <td class="p-4 text-sm text-primary/70">ahmed@example.com</td>
+                    <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
+                    <td class="p-4">
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-adminbg transition-colors bg-freshgreen/5">
+                    <td class="p-4 text-sm font-bold text-primary">Sarah Smith</td>
+                    <td class="p-4 text-sm text-primary/70">sarah@example.com</td>
+                    <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
+                    <td class="p-4">
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-adminbg transition-colors">
+                    <td class="p-4 text-sm font-bold text-primary">John Doe</td>
+                    <td class="p-4 text-sm text-primary/70">john@example.com</td>
+                    <td class="p-4 text-sm text-primary/70">Oct 23, 2026</td>
+                    <td class="p-4">
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-widest text-primary mb-6">Quick Actions</h3>
+          <div class="flex flex-col gap-4">
+            <a href="categories.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+              <span class="font-bold uppercase tracking-widest text-primary text-sm">Add Category</span>
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+                <i class="fas fa-plus text-xs"></i>
+              </div>
+            </a>
+            
+            <a href="products.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+              <span class="font-bold uppercase tracking-widest text-primary text-sm">Add Product</span>
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+                <i class="fas fa-plus text-xs"></i>
+              </div>
+            </a>
+
+            <a href="settings.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+              <span class="font-bold uppercase tracking-widest text-primary text-sm">Update Logo</span>
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+                <i class="fas fa-image text-xs"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Mobile Sidebar Clone (Simplified JS behavior for template) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const sidebar = document.querySelector('aside');
+      const overlay = document.getElementById('mobileSidebarOverlay');
+      
+      let isMobileMenuOpen = false;
+
+      function toggleMobileMenu() {
+        isMobileMenuOpen = !isMobileMenuOpen;
+        if(isMobileMenuOpen) {
+          sidebar.classList.remove('hidden');
+          sidebar.classList.add('absolute', 'inset-y-0', 'left-0', 'z-50');
+          overlay.classList.remove('hidden');
+          setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        } else {
+          sidebar.classList.add('hidden');
+          sidebar.classList.remove('absolute', 'inset-y-0', 'left-0', 'z-50');
+          overlay.classList.add('opacity-0');
+          setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+      }
+
+      if(mobileBtn) mobileBtn.addEventListener('click', toggleMobileMenu);
+      if(overlay) overlay.addEventListener('click', toggleMobileMenu);
+    });
+  </script>
+</body>
+</html>

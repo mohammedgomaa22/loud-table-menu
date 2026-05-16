@@ -52,9 +52,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     category.products.forEach((product, index) => {
       const delay = (index % 10) * 100;
       
-      const card = document.createElement('div');
+      const card = document.createElement('a');
+      card.href = `product.html?category=${category.slug}&id=${product.id}`;
       // Clean, compact, Loud Identity card
-      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[8px_8px_0_0_#17db67] transition-all duration-300 transform hover:-translate-y-1 cursor-pointer";
+      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[8px_8px_0_0_#17db67] transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
