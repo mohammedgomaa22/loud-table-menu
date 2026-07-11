@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+﻿document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const categoryId = urlParams.get('id');
 
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Update Hero
     titleEl.textContent = category.name;
-    descEl.textContent = category.description || 'Discover our loud flavors';
+    descEl.textContent = category.description || 'Discover our flavors';
 
     // Hide loading
     loadingEl.classList.add('hidden');
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       const card = document.createElement('a');
       card.href = `product.html?category=${category.slug}&id=${product.id}`;
-      // Clean, compact, Loud Identity card
-      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[8px_8px_0_0_#17db67] transition-all duration-300 transform hover:-translate-y-1 block";
+      // Clean, compact, MMC Central card
+      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[8px_8px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           
           <div class="mt-auto pt-4 flex items-center justify-between">
             <span class="text-2xl font-black text-primary">${priceText}</span>
-            <span class="text-sm font-bold uppercase tracking-widest text-primary group-hover:text-freshgreen transition-colors flex items-center gap-2">
+            <span class="text-sm font-bold uppercase tracking-widest text-primary group-hover:text-accent transition-colors flex items-center gap-2">
                View <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
             </span>
           </div>
@@ -120,3 +120,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadingEl.classList.add('hidden');
   }
 });
+
+

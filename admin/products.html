@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -16,13 +16,13 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
               adminbg: '#f8f9fa',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
             }
           }
         }
@@ -36,7 +36,7 @@
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
       <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-freshgreen">.</span>
+        LOUD<span class="text-accent">.</span>
       </h1>
     </div>
     
@@ -47,7 +47,7 @@
       <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-layer-group w-5 text-center"></i> Categories
       </a>
-      <a href="products.html" class="flex items-center gap-3 px-4 py-3 bg-freshgreen text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
+      <a href="products.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
         <i class="fas fa-box-open w-5 text-center"></i> Products
       </a>
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
@@ -72,7 +72,7 @@
     <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-freshgreen transition-colors">
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-accent transition-colors">
           <i class="fas fa-bars text-2xl"></i>
         </button>
         <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Products Management</h2>
@@ -80,7 +80,7 @@
       
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
-          <div class="w-10 h-10 rounded-full bg-primary text-freshgreen flex items-center justify-center font-bold text-lg">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg">
             A
           </div>
         </div>
@@ -96,24 +96,24 @@
           <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">All Products</h3>
           <p class="text-primary/60 text-sm">Manage items in your menu</p>
         </div>
-        <button onclick="document.getElementById('addProductForm').classList.toggle('hidden')" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-freshgreen hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#17db67]">
+        <button onclick="document.getElementById('addProductForm').classList.toggle('hidden')" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#CC6B48]">
           <i class="fas fa-plus"></i> Add New Product
         </button>
       </div>
 
       <!-- Add/Edit Product Form (Hidden by default) -->
-      <div id="addProductForm" class="hidden bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#1a1919] mb-10">
+      <div id="addProductForm" class="hidden bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] mb-10">
         <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Add / Edit Product</h4>
         <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           <div>
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Product Name</label>
-            <input type="text" placeholder="e.g. Classic Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            <input type="text" placeholder="e.g. Classic Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
           </div>
           
           <div>
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Category</label>
-            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               <option value="">Select Category</option>
               <option value="1">Croissant</option>
               <option value="2">Danishes</option>
@@ -123,12 +123,12 @@
 
           <div>
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Price (SAR)</label>
-            <input type="number" step="0.01" placeholder="0.00" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            <input type="number" step="0.01" placeholder="0.00" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
           </div>
           
           <div>
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Status</label>
-            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               <option value="active">Active (Visible)</option>
               <option value="hidden">Hidden</option>
               <option value="sold_out">Sold Out</option>
@@ -137,7 +137,7 @@
 
           <div class="md:col-span-2">
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Short Description</label>
-            <textarea rows="3" placeholder="Ingredients or short detail..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors resize-none"></textarea>
+            <textarea rows="3" placeholder="Ingredients or short detail..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
           </div>
 
           <div class="md:col-span-2">
@@ -146,9 +146,9 @@
               <div class="w-16 h-16 bg-secondary border border-primary/20 flex items-center justify-center text-primary/30">
                 <i class="fas fa-image text-2xl"></i>
               </div>
-              <div class="flex-1 border-2 border-dashed border-primary/20 p-4 text-center hover:border-freshgreen transition-colors cursor-pointer relative">
+              <div class="flex-1 border-2 border-dashed border-primary/20 p-4 text-center hover:border-accent transition-colors cursor-pointer relative">
                 <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                <p class="text-xs font-bold uppercase tracking-widest text-primary/60">Drag & Drop or <span class="text-freshgreen">Browse</span></p>
+                <p class="text-xs font-bold uppercase tracking-widest text-primary/60">Drag & Drop or <span class="text-accent">Browse</span></p>
                 <p class="text-[10px] text-primary/40 mt-1">Recommended size: 800x800px (JPG, PNG)</p>
               </div>
             </div>
@@ -158,7 +158,7 @@
             <button type="button" onclick="document.getElementById('addProductForm').classList.add('hidden')" class="px-6 py-3 font-bold uppercase tracking-widest text-xs text-primary/60 hover:text-primary transition-colors">
               Cancel
             </button>
-            <button type="button" class="bg-freshgreen text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#1a1919]">
+            <button type="button" class="bg-accent text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#2E2B29]">
               Save Product
             </button>
           </div>
@@ -176,7 +176,7 @@
       </div>
 
       <!-- Products Table -->
-      <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#1a1919] overflow-hidden">
+      <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
@@ -199,7 +199,7 @@
                 <td class="p-4 text-sm text-primary/70">Croissant</td>
                 <td class="p-4 text-sm text-primary text-right font-bold">18.00</td>
                 <td class="p-4 text-center">
-                  <span class="inline-block px-2 py-1 bg-freshgreen/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
+                  <span class="inline-block px-2 py-1 bg-accent/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
                 </td>
                 <td class="p-4 text-right">
                   <div class="flex justify-end gap-2">
@@ -221,7 +221,7 @@
                 <td class="p-4 text-sm text-primary/70">Croissant</td>
                 <td class="p-4 text-sm text-primary text-right font-bold">22.00</td>
                 <td class="p-4 text-center">
-                  <span class="inline-block px-2 py-1 bg-freshgreen/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
+                  <span class="inline-block px-2 py-1 bg-accent/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
                 </td>
                 <td class="p-4 text-right">
                   <div class="flex justify-end gap-2">
@@ -297,3 +297,6 @@
   </script>
 </body>
 </html>
+
+
+

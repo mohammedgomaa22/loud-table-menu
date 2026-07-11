@@ -1,26 +1,62 @@
-<footer role="contentinfo" class="bg-primary text-secondary py-12 border-t-4 border-freshgreen">
-  <div class="container">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-6 text-xl">
-        <a href="#" class="hover:text-freshgreen transition-colors" aria-label="Instagram"><i
-            class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-freshgreen transition-colors" aria-label="Twitter"><i
-            class="fab fa-twitter"></i></a>
-        <a href="#" class="hover:text-freshgreen transition-colors" aria-label="WhatsApp"><i
-            class="fab fa-whatsapp"></i></a>
+<footer role="contentinfo" class="bg-primary text-secondary">
+  <!-- Top accent bar -->
+  <div class="w-full h-[3px] bg-accent"></div>
+
+  <div class="container py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+      <!-- Brand Column -->
+      <div class="md:col-span-1">
+        <a href="index.html" class="inline-block mb-5 opacity-90 hover:opacity-100 transition-opacity">
+          <img src="./assets/images/logo.webp" alt="MMC Central" width="140" height="40"
+            class="h-9 w-auto brightness-0 invert" />
+        </a>
+        <p class="text-secondary/50 text-sm leading-relaxed max-w-xs">
+          Premium bakery & catering. Authentic ingredients, bold flavors — crafted to make a statement.
+        </p>
+        <!-- Social -->
+        <div class="flex items-center gap-5 mt-6 text-lg text-secondary/50">
+          <a href="#" class="hover:text-accent transition-colors" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-accent transition-colors" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="hover:text-accent transition-colors" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
       </div>
 
+      <!-- Nav Column -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Navigate</h4>
+        <ul class="space-y-3">
+          <li><a href="#menu" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Our Menu</a></li>
+          <li><a href="#about" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Our Story</a></li>
+          <li><a href="#contact" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Contact</a></li>
+        </ul>
+      </div>
 
-      <a href="index.html" class="opacity-80 hover:opacity-100 transition-opacity">
-        <img src="assets/images/logo.svg" alt="Loud Table Menu" width="140" height="40" class="h-8 md:h-10 w-auto brightness-0 invert" />
-      </a>
+      <!-- Contact Column -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Order</h4>
+        <a href="#contact"
+          class="inline-flex items-center gap-2 border border-accent/40 text-accent text-sm font-bold uppercase tracking-widest px-6 py-3 hover:bg-accent hover:text-secondary transition-all duration-300 group">
+          Place an Order
+          <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
     </div>
-    <div class="mt-8 pt-8 border-t border-secondary/10 text-center text-sm opacity-60">
-      <div class="mb-2">
-        &copy; <script>document.write(new Date().getFullYear())</script> Loud Table. All rights reserved.
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-secondary/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary/40 uppercase tracking-[0.15em]">
+      <div>
+        &copy; <script>document.write(new Date().getFullYear())</script> MMC Central. All rights reserved.
       </div>
-      <div class="text-xs uppercase tracking-[0.2em]">
-        Powered by <a href="https://wa.me/201026053956" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-freshgreen transition-colors">M|G Team</a>
+      <div>
+        Powered by <a href="https://wa.me/201026053956" target="_blank" rel="noopener noreferrer"
+          class="font-bold hover:text-accent transition-colors">M|G Team</a>
       </div>
     </div>
   </div>

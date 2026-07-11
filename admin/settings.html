@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -16,13 +16,13 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
               adminbg: '#f8f9fa',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
             }
           }
         }
@@ -36,7 +36,7 @@
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
       <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-freshgreen">.</span>
+        LOUD<span class="text-accent">.</span>
       </h1>
     </div>
     
@@ -53,7 +53,7 @@
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
       </a>
-      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 bg-freshgreen text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors mt-auto">
+      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors mt-auto">
         <i class="fas fa-cog w-5 text-center"></i> Settings
       </a>
     </nav>
@@ -72,7 +72,7 @@
     <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-freshgreen transition-colors">
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-accent transition-colors">
           <i class="fas fa-bars text-2xl"></i>
         </button>
         <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Site Settings</h2>
@@ -80,7 +80,7 @@
       
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
-          <div class="w-10 h-10 rounded-full bg-primary text-freshgreen flex items-center justify-center font-bold text-lg">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg">
             A
           </div>
         </div>
@@ -101,34 +101,34 @@
         <form class="space-y-8">
           
           <!-- Basic Info Section -->
-          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#1a1919]">
+          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
             <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Basic Information</h4>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="md:col-span-2">
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Website Title</label>
-                <input type="text" value="Loud Table Menu" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="text" value="MMC Central" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Email</label>
-                <input type="email" value="contact@loud.com" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="email" value="contact@loud.com" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Phone</label>
-                <input type="tel" value="+966 50 123 4567" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="tel" value="+966 50 123 4567" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div class="md:col-span-2">
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">About Text (Footer/Hero)</label>
-                <textarea rows="3" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors resize-none">We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors.</textarea>
+                <textarea rows="3" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none">We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors.</textarea>
               </div>
             </div>
           </div>
 
           <!-- Branding Section -->
-          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#1a1919]">
+          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
             <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Branding & Images</h4>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -171,35 +171,35 @@
           </div>
 
           <!-- Social Links -->
-          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#1a1919]">
+          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
             <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Social Media Links</h4>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-instagram mr-2"></i>Instagram</label>
-                <input type="url" placeholder="https://instagram.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="url" placeholder="https://instagram.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-twitter mr-2"></i>Twitter / X</label>
-                <input type="url" placeholder="https://twitter.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="url" placeholder="https://twitter.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-tiktok mr-2"></i>TikTok</label>
-                <input type="url" placeholder="https://tiktok.com/@..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="url" placeholder="https://tiktok.com/@..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-whatsapp mr-2"></i>WhatsApp Number</label>
-                <input type="text" placeholder="+966..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+                <input type="text" placeholder="+966..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
             </div>
           </div>
 
           <!-- Save Actions -->
           <div class="flex justify-end gap-4 pb-10">
-            <button type="button" class="bg-freshgreen text-primary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-secondary transition-colors shadow-[6px_6px_0_0_#1a1919]">
+            <button type="button" class="bg-accent text-primary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-secondary transition-colors shadow-[6px_6px_0_0_#2E2B29]">
               Save All Changes
             </button>
           </div>
@@ -243,3 +243,6 @@
   </script>
 </body>
 </html>
+
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -16,13 +16,13 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
               adminbg: '#f8f9fa',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
             }
           }
         }
@@ -36,12 +36,12 @@
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
       <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-freshgreen">.</span>
+        LOUD<span class="text-accent">.</span>
       </h1>
     </div>
     
     <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
-      <a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-freshgreen text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
         <i class="fas fa-home w-5 text-center"></i> Dashboard
       </a>
       <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
@@ -52,7 +52,7 @@
       </a>
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
-        <span class="ml-auto bg-freshgreen text-primary text-[10px] px-2 py-0.5 rounded-full">3</span>
+        <span class="ml-auto bg-accent text-primary text-[10px] px-2 py-0.5 rounded-full">3</span>
       </a>
       <a href="settings.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors mt-auto">
         <i class="fas fa-cog w-5 text-center"></i> Settings
@@ -73,18 +73,18 @@
     <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-freshgreen transition-colors">
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-accent transition-colors">
           <i class="fas fa-bars text-2xl"></i>
         </button>
         <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Dashboard Overview</h2>
       </div>
       
       <div class="flex items-center gap-6">
-        <a href="../index.html" target="_blank" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-freshgreen transition-colors flex items-center gap-2">
+        <a href="../index.html" target="_blank" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-accent transition-colors flex items-center gap-2">
           <i class="fas fa-external-link-alt"></i> View Site
         </a>
         <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
-          <div class="w-10 h-10 rounded-full bg-primary text-freshgreen flex items-center justify-center font-bold text-lg">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg">
             A
           </div>
           <div class="hidden md:block">
@@ -102,8 +102,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         
         <!-- Stat Card 1 -->
-        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
-          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-accent flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-primary transition-colors">
             <i class="fas fa-layer-group"></i>
           </div>
           <div>
@@ -113,8 +113,8 @@
         </div>
         
         <!-- Stat Card 2 -->
-        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
-          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-accent flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-primary transition-colors">
             <i class="fas fa-box-open"></i>
           </div>
           <div>
@@ -124,8 +124,8 @@
         </div>
 
         <!-- Stat Card 3 -->
-        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
-          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-accent flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-primary transition-colors">
             <i class="fas fa-envelope"></i>
           </div>
           <div>
@@ -135,8 +135,8 @@
         </div>
 
         <!-- Stat Card 4 -->
-        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
-          <div class="w-14 h-14 rounded-full bg-primary text-freshgreen flex items-center justify-center text-2xl group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+        <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
+          <div class="w-14 h-14 rounded-full bg-primary text-accent flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-primary transition-colors">
             <i class="fas fa-eye"></i>
           </div>
           <div>
@@ -153,10 +153,10 @@
         <div class="lg:col-span-2">
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-bold uppercase tracking-widest text-primary">Recent Messages</h3>
-            <a href="messages.html" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-freshgreen transition-colors">View All</a>
+            <a href="messages.html" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-accent transition-colors">View All</a>
           </div>
           
-          <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#1a1919] overflow-hidden">
+          <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] overflow-hidden">
             <div class="overflow-x-auto">
               <table class="w-full text-left border-collapse">
                 <thead>
@@ -168,20 +168,20 @@
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-primary/10">
-                  <tr class="hover:bg-adminbg transition-colors bg-freshgreen/5">
+                  <tr class="hover:bg-adminbg transition-colors bg-accent/5">
                     <td class="p-4 text-sm font-bold text-primary">Ahmed Ali</td>
                     <td class="p-4 text-sm text-primary/70">ahmed@example.com</td>
                     <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
                     <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
                     </td>
                   </tr>
-                  <tr class="hover:bg-adminbg transition-colors bg-freshgreen/5">
+                  <tr class="hover:bg-adminbg transition-colors bg-accent/5">
                     <td class="p-4 text-sm font-bold text-primary">Sarah Smith</td>
                     <td class="p-4 text-sm text-primary/70">sarah@example.com</td>
                     <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
                     <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
                     </td>
                   </tr>
                   <tr class="hover:bg-adminbg transition-colors">
@@ -189,7 +189,7 @@
                     <td class="p-4 text-sm text-primary/70">john@example.com</td>
                     <td class="p-4 text-sm text-primary/70">Oct 23, 2026</td>
                     <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-freshgreen hover:text-primary transition-colors">Read</button>
+                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
                     </td>
                   </tr>
                 </tbody>
@@ -202,23 +202,23 @@
         <div>
           <h3 class="text-xl font-bold uppercase tracking-widest text-primary mb-6">Quick Actions</h3>
           <div class="flex flex-col gap-4">
-            <a href="categories.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+            <a href="categories.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
               <span class="font-bold uppercase tracking-widest text-primary text-sm">Add Category</span>
-              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-accent group-hover:text-primary transition-colors">
                 <i class="fas fa-plus text-xs"></i>
               </div>
             </a>
             
-            <a href="products.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+            <a href="products.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
               <span class="font-bold uppercase tracking-widest text-primary text-sm">Add Product</span>
-              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-accent group-hover:text-primary transition-colors">
                 <i class="fas fa-plus text-xs"></i>
               </div>
             </a>
 
-            <a href="settings.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#1a1919] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
+            <a href="settings.html" class="bg-white p-5 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center justify-between group hover:-translate-y-1 transition-transform cursor-pointer">
               <span class="font-bold uppercase tracking-widest text-primary text-sm">Update Logo</span>
-              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-freshgreen group-hover:text-primary transition-colors">
+              <div class="w-8 h-8 rounded-full bg-primary text-secondary flex items-center justify-center group-hover:bg-accent group-hover:text-primary transition-colors">
                 <i class="fas fa-image text-xs"></i>
               </div>
             </a>
@@ -263,3 +263,6 @@
   </script>
 </body>
 </html>
+
+
+

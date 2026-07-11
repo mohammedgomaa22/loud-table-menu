@@ -3,24 +3,79 @@
    For production: it's recommended to compile only used Tailwind utilities. */
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../webfonts/Helvetica.ttf') format('truetype');
+  font-family: 'NewTitle';
+  src: url('../../assets/fonts/newTitle/NewTitle-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NewTitle';
+  src: url('../../assets/fonts/newTitle/NewTitle-Regular.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../webfonts/Helvetica-Bold.ttf') format('truetype');
+  font-family: 'NewTitle';
+  src: url('../../assets/fonts/newTitle/NewTitle-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NewTitle';
+  src: url('../../assets/fonts/newTitle/NewTitle-Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
 }
 
+/* ============================= */
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../../assets/fonts/generalSans/GeneralSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../../assets/fonts/generalSans/GeneralSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../../assets/fonts/generalSans/GeneralSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../../assets/fonts/generalSans/GeneralSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+
 :root {
-  --primary-color: #1a1919;
-  --secondary-color: #ececec;
-  --freshgreen: #17db67;
-  --base-font: 'Helvetica', 'Cairo', sans-serif;
+  /* ===== Brand Color Palette ===== */
+  --color-black:    #2E2B29; /* PANTONE Black C   */
+  --color-primary:  #CC6B48; /* PANTONE 7618 C    */
+  --color-brown:    #926346; /* PANTONE 876 C     */
+  --color-silver:   #DED7D0; /* PANTONE 7604 C    */
+  --color-cream:    #F4F2ED; /* PANTONE 663 C     */
+
+  /* ===== Semantic Tokens ===== */
+  --primary-color:   var(--color-black);
+  --secondary-color: var(--color-cream);
+  --accent-color:    var(--color-primary);
+  --muted-color:     var(--color-silver);
+
+  --base-font: 'GeneralSans', 'NewTitle', sans-serif;
   --arabic-font: 'Cairo', sans-serif;
 }
 
@@ -109,7 +164,7 @@ body {
 /* ======= SWIPER CUSTOM ======= */
 /* ============================ */
 .swiper-pagination-bullet-active {
-  background-color: var(--freshgreen) !important;
+  background-color: var(--accent-color) !important;
 }
 
 .swiper-pagination-bullet {

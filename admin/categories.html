@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -16,13 +16,13 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
               adminbg: '#f8f9fa',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
             }
           }
         }
@@ -36,7 +36,7 @@
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
       <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-freshgreen">.</span>
+        LOUD<span class="text-accent">.</span>
       </h1>
     </div>
     
@@ -44,7 +44,7 @@
       <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-home w-5 text-center"></i> Dashboard
       </a>
-      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 bg-freshgreen text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
+      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
         <i class="fas fa-layer-group w-5 text-center"></i> Categories
       </a>
       <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
@@ -72,7 +72,7 @@
     <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
       <div class="flex items-center gap-4">
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-freshgreen transition-colors">
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-accent transition-colors">
           <i class="fas fa-bars text-2xl"></i>
         </button>
         <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Categories Management</h2>
@@ -80,7 +80,7 @@
       
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
-          <div class="w-10 h-10 rounded-full bg-primary text-freshgreen flex items-center justify-center font-bold text-lg">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg">
             A
           </div>
         </div>
@@ -96,22 +96,22 @@
           <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">All Categories</h3>
           <p class="text-primary/60 text-sm">Manage your menu categories</p>
         </div>
-        <button onclick="document.getElementById('addCategoryForm').classList.toggle('hidden')" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-freshgreen hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#17db67]">
+        <button onclick="document.getElementById('addCategoryForm').classList.toggle('hidden')" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#CC6B48]">
           <i class="fas fa-plus"></i> Add New Category
         </button>
       </div>
 
       <!-- Add/Edit Category Form (Hidden by default) -->
-      <div id="addCategoryForm" class="hidden bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#1a1919] mb-10">
+      <div id="addCategoryForm" class="hidden bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] mb-10">
         <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Add / Edit Category</h4>
         <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="md:col-span-2">
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Category Name</label>
-            <input type="text" placeholder="e.g. Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            <input type="text" placeholder="e.g. Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
           </div>
           <div class="md:col-span-2">
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Description</label>
-            <textarea rows="3" placeholder="Short description about this category..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors resize-none"></textarea>
+            <textarea rows="3" placeholder="Short description about this category..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
           </div>
           <div class="md:col-span-2">
             <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Category Image URL (or Upload)</label>
@@ -120,7 +120,7 @@
                 <i class="fas fa-image text-2xl"></i>
               </div>
               <div class="flex-1">
-                <input type="file" class="w-full text-sm text-primary/70 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-bold file:uppercase file:tracking-widest file:bg-primary file:text-secondary hover:file:bg-freshgreen hover:file:text-primary transition-colors cursor-pointer">
+                <input type="file" class="w-full text-sm text-primary/70 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-bold file:uppercase file:tracking-widest file:bg-primary file:text-secondary hover:file:bg-accent hover:file:text-primary transition-colors cursor-pointer">
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@
             <button type="button" onclick="document.getElementById('addCategoryForm').classList.add('hidden')" class="px-6 py-3 font-bold uppercase tracking-widest text-xs text-primary/60 hover:text-primary transition-colors">
               Cancel
             </button>
-            <button type="button" class="bg-freshgreen text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#1a1919]">
+            <button type="button" class="bg-accent text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#2E2B29]">
               Save Category
             </button>
           </div>
@@ -136,7 +136,7 @@
       </div>
 
       <!-- Categories Table -->
-      <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#1a1919] overflow-hidden">
+      <div class="bg-white border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
@@ -243,3 +243,6 @@
   </script>
 </body>
 </html>
+
+
+

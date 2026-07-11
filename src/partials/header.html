@@ -1,66 +1,112 @@
-<header class="fixed w-full top-0 left-0 z-50 bg-secondary border-b border-primary/10 transition-all duration-300">
+<!-- Thin accent bar at the very top -->
+<div class="fixed top-0 left-0 w-full h-[3px] bg-accent z-[51]"></div>
+
+<header id="siteHeader"
+  class="fixed w-full top-[3px] left-0 z-50 bg-secondary/95 backdrop-blur-sm border-b border-primary/10 transition-all duration-300">
   <div class="container py-4 flex items-center justify-between relative">
-    <!-- Left Icon (Heart) -->
-    <a href="#" class="text-primary hover:text-freshgreen transition-colors text-xl" aria-label="Favorites">
-      <img src="./assets/icons/logo-v1.svg" alt="logo" width="30" height="30" class="object-contain w-8 h-8">
-    </a>
+
+    <!-- Left: Desktop Nav Links -->
+    <nav class="hidden lg:flex items-center gap-8 text-primary">
+      <a href="#menu"
+        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
+        Menu
+        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#about"
+        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
+        Our Story
+        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#contact"
+        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
+        Contact
+        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </nav>
 
     <!-- Center Logo -->
     <a href="index.html"
       class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
-      aria-label="Loud Table Menu Home">
-      <img src="assets/images/logo.svg" alt="Loud Table Menu" width="160" height="40" class="h-8 md:h-10 w-auto"
-        loading="eager" />
+      aria-label="MMC Central Home">
+      <img src="./assets/images/logo.webp" alt="MMC Central" width="160" height="40"
+        class="h-8 md:h-10 w-auto" loading="eager" />
     </a>
 
-    <!-- Right Icons (Search & Menu) -->
-    <div class="flex items-center gap-6 text-primary">
-      <!-- <button class="hover:text-freshgreen transition-colors text-xl" aria-label="Search">
-        <i class="fas fa-search"></i>
-      </button> -->
-      <button id="mobileMenuBtn" class="hover:text-freshgreen transition-colors text-xl focus:outline-none"
+    <!-- Right Icons -->
+    <div class="flex items-center gap-5 text-primary ml-auto lg:ml-0">
+      <!-- Order CTA — desktop only -->
+      <a href="#contact"
+        class="hidden lg:inline-flex items-center gap-2 bg-accent text-secondary text-xs font-bold uppercase tracking-widest px-5 py-2.5 hover:bg-brand-brown transition-colors duration-300">
+        Order Now
+      </a>
+      <!-- Hamburger -->
+      <button id="mobileMenuBtn"
+        class="hover:text-accent transition-colors text-xl focus:outline-none"
         aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
   </div>
-
-  <!-- Fullscreen Menu Overlay -->
-  <div id="mobileNav"
-    class="fixed inset-0 bg-primary z-[60] flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none transform -translate-y-8">
-    <!-- Close Button -->
-    <button id="closeMenuBtn"
-      class="absolute top-6 right-6 text-secondary hover:text-freshgreen text-3xl focus:outline-none transition-colors"
-      aria-label="Close Menu">
-      <i class="fas fa-times"></i>
-    </button>
-
-    <nav class="flex flex-col items-center gap-10">
-      <a href="#menu"
-        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
-        Menu
-        <span
-          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-      </a>
-      <a href="#about"
-        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
-        Our Story
-        <span
-          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-      </a>
-      <a href="#contact"
-        class="mobile-link text-4xl md:text-6xl font-bold uppercase tracking-widest text-secondary hover:text-freshgreen transition-colors relative group">
-        Contact
-        <span
-          class="absolute -bottom-2 left-1/2 w-0 h-1 bg-freshgreen transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-      </a>
-    </nav>
-
-    <!-- Social Links inside Menu -->
-    <div class="absolute bottom-10 flex gap-8 text-secondary text-2xl">
-      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="hover:text-freshgreen transition-colors"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
 </header>
+
+<!-- Fullscreen Menu Overlay -->
+<div id="mobileNav"
+  class="fixed inset-0 bg-primary z-[60] flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none transform -translate-y-8">
+
+  <!-- Close Button -->
+  <button id="closeMenuBtn"
+    class="absolute top-6 right-6 text-secondary hover:text-accent text-3xl focus:outline-none transition-colors"
+    aria-label="Close Menu">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <!-- Brand mark top-left -->
+  <div class="absolute top-6 left-6">
+    <img src="./assets/images/logo.webp" alt="MMC Central"
+      class="h-7 w-auto brightness-0 invert opacity-40" loading="lazy" />
+  </div>
+
+  <nav class="flex flex-col items-start gap-8 px-8 w-full max-w-lg">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-8 h-[2px] bg-accent"></div>
+      <span class="text-accent text-[10px] font-bold uppercase tracking-[0.3em]">Navigation</span>
+    </div>
+
+    <a href="#menu"
+      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
+      Menu
+      <span class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+    </a>
+    <a href="#about"
+      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
+      Our Story
+      <span class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+    </a>
+    <a href="#contact"
+      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
+      Contact
+      <span class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+    </a>
+
+    <!-- Order CTA inside mobile menu -->
+    <a href="#contact"
+      class="mobile-link mt-4 inline-flex items-center gap-3 bg-accent text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:bg-brand-brown transition-colors duration-300">
+      Place an Order
+      <i class="fas fa-arrow-right text-sm"></i>
+    </a>
+  </nav>
+
+  <!-- Social Links -->
+  <div class="absolute bottom-10 flex gap-8 text-secondary text-xl opacity-60">
+    <a href="#" class="hover:text-accent hover:opacity-100 transition-all" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" class="hover:text-accent hover:opacity-100 transition-all" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="hover:text-accent hover:opacity-100 transition-all" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</div>

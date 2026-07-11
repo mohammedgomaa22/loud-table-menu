@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+﻿document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const categorySlug = urlParams.get('category');
   const productId = parseInt(urlParams.get('id'), 10);
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     breadcrumbCategory.textContent = category.name;
 
     // Basic Info
-    document.title = `Loud Table Menu - ${product.name}`;
+    document.title = `MMC Central - ${product.name}`;
     document.getElementById('productName').textContent = product.name;
     
     const priceText = product.price ? `BD ${Number(product.price).toFixed(2)}` : 'Price on ask';
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const delay = (index % 4) * 100;
       const card = document.createElement('a');
       card.href = `product.html?category=${category.slug}&id=${product.id}`;
-      card.className = "group relative bg-secondary border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[6px_6px_0_0_#17db67] transition-all duration-300 transform hover:-translate-y-1 block";
+      card.className = "group relative bg-secondary border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[6px_6px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <h3 class="text-lg font-black uppercase tracking-tight text-primary leading-tight line-clamp-2 mb-2">${product.name}</h3>
           <div class="mt-auto flex items-center justify-between">
             <span class="text-xl font-bold text-primary">${priceText}</span>
-            <i class="fas fa-arrow-right text-primary/30 transform group-hover:text-freshgreen group-hover:translate-x-1 transition-all"></i>
+            <i class="fas fa-arrow-right text-primary/30 transform group-hover:text-accent group-hover:translate-x-1 transition-all"></i>
           </div>
         </div>
       `;
@@ -193,3 +193,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 });
+
+

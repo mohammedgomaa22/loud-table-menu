@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -16,12 +16,12 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
               arabic: ['Cairo', 'sans-serif'],
             }
           }
@@ -33,18 +33,18 @@
 <body class="bg-primary text-secondary min-h-screen flex items-center justify-center font-sans antialiased">
   
   <!-- Decorative Elements -->
-  <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-freshgreen/10 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
   <div class="fixed bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
   <div class="w-full max-w-md px-6 relative z-10">
     <div class="text-center mb-10">
       <h1 class="text-6xl font-bold uppercase tracking-tighter text-secondary mb-2">
-        LOUD<span class="text-freshgreen">.</span>
+        LOUD<span class="text-accent">.</span>
       </h1>
       <p class="text-secondary/50 uppercase tracking-widest text-sm font-bold">Control Panel</p>
     </div>
 
-    <form action="index.html" class="bg-white p-8 md:p-10 shadow-[8px_8px_0_0_#17db67] border-2 border-primary relative">
+    <form action="index.html" class="bg-white p-8 md:p-10 shadow-[8px_8px_0_0_#CC6B48] border-2 border-primary relative">
       <h2 class="text-2xl font-bold uppercase tracking-tight text-primary mb-8 text-center">Admin Login</h2>
       
       <div class="mb-6">
@@ -52,7 +52,7 @@
         <div class="relative">
           <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-primary/40"></i>
           <input type="email" id="email" required
-            class="w-full bg-secondary border border-primary/20 p-3 pl-12 text-primary focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            class="w-full bg-secondary border border-primary/20 p-3 pl-12 text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
         </div>
       </div>
       
@@ -61,21 +61,24 @@
         <div class="relative">
           <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-primary/40"></i>
           <input type="password" id="password" required
-            class="w-full bg-secondary border border-primary/20 p-3 pl-12 text-primary focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+            class="w-full bg-secondary border border-primary/20 p-3 pl-12 text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
         </div>
       </div>
 
       <button type="button" onclick="window.location.href='index.html'"
-        class="w-full bg-primary text-secondary font-bold px-8 py-4 uppercase tracking-widest hover:bg-freshgreen hover:text-primary transition-colors flex items-center justify-center gap-3 group">
+        class="w-full bg-primary text-secondary font-bold px-8 py-4 uppercase tracking-widest hover:bg-accent hover:text-primary transition-colors flex items-center justify-center gap-3 group">
         Sign In
         <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
       </button>
       
       <div class="mt-6 text-center">
-        <a href="#" class="text-xs text-primary/60 font-bold uppercase tracking-wider hover:text-freshgreen transition-colors">Forgot Password?</a>
+        <a href="#" class="text-xs text-primary/60 font-bold uppercase tracking-wider hover:text-accent transition-colors">Forgot Password?</a>
       </div>
     </form>
   </div>
 
 </body>
 </html>
+
+
+

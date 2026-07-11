@@ -8,10 +8,10 @@
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <meta name="theme-color" content="#6b6e55" />
-  <link rel="shortcut icon" href="./assets/icons/logo-v2.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
   <!-- Preload Critical Assets -->
-  <link rel="preload" as="image" href="./assets/images/logo.svg" type="image/webp">
-  <link rel="preload" as="image" href="./assets/images/logo.svg" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/images/logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="./assets/images/favicon.webp" type="image/webp" fetchpriority="high">
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,12 +25,20 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              /* ===== Brand Palette ===== */
+              'brand-black': '#2E2B29', /* PANTONE Black C  */
+              'brand-terra': '#CC6B48', /* PANTONE 7618 C   */
+              'brand-brown': '#926346', /* PANTONE 876 C    */
+              'brand-silver': '#DED7D0', /* PANTONE 7604 C   */
+              'brand-cream': '#F4F2ED', /* PANTONE 663 C    */
+              /* ===== Semantic Aliases ===== */
+              primary: '#2E2B29',
+              secondary: '#F4F2ED',
+              accent: '#CC6B48',
+              muted: '#DED7D0',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
               arabic: ['Cairo', 'sans-serif'],
             }
           },
@@ -73,17 +81,17 @@
   </noscript>
 </head>
 
-<body>
+<body class="selection:bg-accent selection:text-secondary">
 
   <!-- ===== START PRELOADER ===== -->
-  <div id="preloader" class="fixed inset-0 z-[9999] bg-primary flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]">
+  <div id="preloader"
+    class="fixed inset-0 z-[9999] bg-primary flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]">
     <div class="flex flex-col items-center overflow-hidden px-4 w-full max-w-sm">
-      <h1 class="text-4xl md:text-6xl font-bold uppercase text-secondary tracking-tighter mb-6 relative text-center">
-        MMC Central<span class="text-freshgreen">.</span>
-      </h1>
-      <!-- Progress Bar -->
+      <div class="mb-6 relative text-center">
+        <img src="./assets/images/logo.webp" alt="MMC Central" class="h-20 md:h-24 w-auto brightness-0 invert" />
+      </div>
       <div class="w-full h-1 md:h-2 bg-secondary/10 relative overflow-hidden rounded-full">
-        <div class="absolute top-0 left-0 h-full bg-freshgreen animate-loader-bar rounded-full"></div>
+        <div class="absolute top-0 left-0 h-full bg-accent animate-loader-bar rounded-full"></div>
       </div>
       <div class="mt-4 text-secondary/50 uppercase tracking-widest text-xs font-bold w-full flex justify-between">
         <span>Loading</span>
@@ -93,106 +101,83 @@
   </div>
   <!-- ===== END PRELOADER ===== -->
 
-
-    <!-- COMING SOON SECTION -->
-    <section class="min-h-screen flex items-center justify-center bg-primary text-secondary relative overflow-hidden">
-      <!-- Decorative Background -->
-      <div class="absolute inset-0 opacity-10 pointer-events-none">
-        <div class="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-freshgreen blur-[120px]"></div>
-        <div class="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-secondary blur-[120px]"></div>
-      </div>
-      
-      <div class="container relative z-10 text-center px-4" data-aos="fade-up">
-        <div class="inline-block mb-6 relative">
-          <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-bold uppercase leading-none tracking-tighter drop-shadow-lg text-white">
-            Coming <span class="text-freshgreen">Soon</span>
-          </h1>
-          <span class="absolute -bottom-6 right-0 text-white/70 text-sm md:text-base font-light tracking-widest uppercase">
-            We're building something special
-          </span>
-        </div>
-        <p class="text-xl md:text-2xl text-secondary/80 max-w-2xl mx-auto mt-12 mb-10 font-medium">
-          Our website is currently under construction. We are working hard to bring you a bold and unforgettable experience. Stay tuned!
-        </p>
-        <div class="flex justify-center gap-4">
-          <a href="#" aria-label="Instagram" class="w-12 h-12 rounded-full border-2 border-secondary/20 flex items-center justify-center text-secondary hover:bg-freshgreen hover:text-primary hover:border-freshgreen transition-all duration-300">
-            <i class="fab fa-instagram text-xl"></i>
-          </a>
-          <a href="#" aria-label="Twitter" class="w-12 h-12 rounded-full border-2 border-secondary/20 flex items-center justify-center text-secondary hover:bg-freshgreen hover:text-primary hover:border-freshgreen transition-all duration-300">
-            <i class="fab fa-twitter text-xl"></i>
-          </a>
-          <a href="#" aria-label="TikTok" class="w-12 h-12 rounded-full border-2 border-secondary/20 flex items-center justify-center text-secondary hover:bg-freshgreen hover:text-primary hover:border-freshgreen transition-all duration-300">
-            <i class="fab fa-tiktok text-xl"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- HIDING SECTIONS TEMPORARILY -->
-    <div style="display: none;" id="under-construction-hidden">
-
   <!-- ===== HEADER PLACEHOLDER ===== -->
   <div data-include="src/partials/header.html"></div>
 
   <!-- ===== START MAIN ===== -->
-  <main role="main" class="pt-[64px]">
+  <main role="main" class="pt-[67px]">
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary pt-16">
-      <!-- Placeholder Background Image (Simulating the bakery image from Brandbook) -->
+    <section class="relative min-h-[92vh] flex items-center justify-start overflow-hidden bg-primary">
+      <!-- Background Image with proper overlay -->
       <div class="absolute inset-0">
         <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
-          alt="Fresh Bakery" class="w-full h-full object-cover opacity-100 mix-blend-overlay" />
-        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+          alt="Fresh Bakery" class="w-full h-full object-cover opacity-60" />
+        <!-- Warm gradient overlay matching brand palette -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/75 to-primary/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
       </div>
 
-      <div class="container relative z-10 flex flex-col justify-center h-full pt-12 pb-24" data-aos="fade-up">
-        <!-- Text Block aligned to the left with a slight rotation -->
-        <div class="w-full px-4 md:px-8 lg:px-12 flex justify-start">
-          <div
-            class="inline-flex flex-col text-left relative transform -rotate-6 lg:-rotate-[4deg] origin-left mt-10 md:mt-0">
-            <h2
-              class="text-white text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider mb-0 leading-none drop-shadow-md">
-              Quality That
-            </h2>
-            <div class="relative inline-block">
-              <h1
-                class="text-white text-6xl md:text-8xl lg:text-[10rem] font-bold uppercase leading-[0.8] tracking-tighter drop-shadow-lg">
-                Echos
-              </h1>
-              <span
-                class="absolute -bottom-4 right-0 md:-right-6 text-white text-xs md:text-sm font-light lowercase tracking-wider drop-shadow-sm opacity-90">
-                (super loud)
-              </span>
-            </div>
+      <!-- Hero Content -->
+      <div class="container relative z-10 py-24 md:py-32" data-aos="fade-up" data-aos-duration="1000">
+        <div class="max-w-3xl">
+
+          <!-- Eyebrow label -->
+          <div class="flex items-center gap-3 mb-6" data-aos="fade-right" data-aos-delay="100">
+            <div class="w-10 h-[2px] bg-accent"></div>
+            <span class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Premium Bakery & Catering</span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="text-secondary font-bold uppercase leading-[0.9] tracking-tight mb-6" data-aos="fade-up"
+            data-aos-delay="200">
+            <span class="block text-5xl md:text-7xl lg:text-8xl">Quality</span>
+            <span class="block text-5xl md:text-7xl lg:text-8xl">That</span>
+            <span class="block text-6xl md:text-8xl lg:text-[9rem] text-accent drop-shadow-lg">Echoes.</span>
+          </h1>
+
+          <!-- Sub headline -->
+          <p class="text-secondary/70 text-lg md:text-xl font-light max-w-lg leading-relaxed mb-10" data-aos="fade-up"
+            data-aos-delay="300">
+            Authentic ingredients. Bold flavors. Crafted to make a statement on every table.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4" data-aos="fade-up" data-aos-delay="400">
+            <a href="#menu"
+              class="inline-flex items-center gap-3 bg-accent text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:bg-brand-brown transition-colors duration-300 group">
+              Explore Menu
+              <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="#contact"
+              class="inline-flex items-center gap-3 border-2 border-secondary/40 text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:border-accent hover:text-accent transition-colors duration-300">
+              Get In Touch
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Bottom Center Down Arrow (Heart shape indicator) -->
+      <!-- Scroll Down Indicator -->
       <a href="#menu"
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 text-secondary hover:text-freshgreen transition-colors flex items-center justify-center"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-secondary/60 hover:text-accent transition-colors"
         aria-label="Scroll Down">
-        <!-- Geometric heart shape from Brandbook -->
-        <img src="./assets/icons/logo-v.svg" alt="logo" width="40" height="40"
-          class="h-16 w-16 object-contain brightness-0 invert-[1]">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
+        <i class="fas fa-chevron-down text-sm animate-bounce"></i>
       </a>
-
-      <!-- Vertical Read More (Right Side) -->
-      <div class="absolute bottom-12 right-6 hidden md:flex flex-col items-center gap-4 text-secondary opacity-80">
-        <span class="text-xs font-bold uppercase tracking-[0.3em] text-white"
-          style="writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);">Read More</span>
-        <img src="./assets/icons/logo-v.svg" alt="" width="40" height="40"
-          class="w-5 h-5 object-contain brightness-0 invert-[1]">
-      </div>
     </section>
 
     <!-- MENU CATEGORIES SECTION -->
     <section id="menu" class="py-24 bg-secondary">
       <div class="w-full">
         <div class="container text-center mb-10 md:mb-16" data-aos="fade-up">
+          <!-- Eyebrow -->
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="w-8 h-[2px] bg-accent"></div>
+            <span class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Explore</span>
+            <div class="w-8 h-[2px] bg-accent"></div>
+          </div>
           <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4 text-primary">Our Menu</h2>
-          <div class="w-24 h-2 bg-freshgreen mx-auto"></div>
+          <div class="w-16 h-[3px] bg-accent mx-auto"></div>
         </div>
 
         <div class="relative px-4 md:px-8" data-aos="fade-up" data-aos-delay="100">
@@ -201,7 +186,7 @@
             <div class="swiper-wrapper" id="categoriesGrid">
               <!-- Categories will be injected here via JS -->
               <div class="col-span-full text-center py-10 w-full">
-                <i class="fas fa-spinner fa-spin text-4xl text-freshgreen"></i>
+                <i class="fas fa-spinner fa-spin text-4xl text-accent"></i>
                 <p class="mt-4 font-bold uppercase tracking-widest text-primary">Loading Menu...</p>
               </div>
             </div>
@@ -211,11 +196,9 @@
           </div>
 
           <!-- Navigation Buttons -->
-          <div
-            class="swiper-button-next !text-primary !right-0 after:!text-2xl hover:!text-freshgreen transition-colors">
+          <div class="swiper-button-next !text-primary !right-0 after:!text-2xl hover:!text-accent transition-colors">
           </div>
-          <div
-            class="swiper-button-prev !text-primary !left-0 after:!text-2xl hover:!text-freshgreen transition-colors">
+          <div class="swiper-button-prev !text-primary !left-0 after:!text-2xl hover:!text-accent transition-colors">
           </div>
         </div>
       </div>
@@ -226,24 +209,35 @@
       <div class="container">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div data-aos="fade-right">
-            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6">Loud By Nature.</h2>
-            <p class="text-lg opacity-80 mb-6 leading-relaxed">
-              We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors. From
-              our freshly baked croissants to our vibrant salads, every item is crafted to make a statement on your
-              table.
+            <!-- Eyebrow -->
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-8 h-[2px] bg-accent"></div>
+              <span class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Our Story</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6">Crafted with <span
+                class="text-accent">Purpose.</span></h2>
+            <p class="text-secondary/70 text-lg mb-6 leading-relaxed">
+              We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors.
+              From our freshly baked croissants to our vibrant pastries, every item is crafted to make a statement.
             </p>
-            <p class="text-lg opacity-80 mb-8 leading-relaxed">
-              Based in Riyadh, we deliver the finest pastries and bakery items right to your door, perfectly packaged
+            <p class="text-secondary/70 text-lg mb-10 leading-relaxed">
+              Based in Riyadh, we deliver the finest bakery items right to your door — perfectly packaged
               and ready to be the center of attention.
             </p>
+            <a href="#contact"
+              class="inline-flex items-center gap-3 border-2 border-accent text-accent font-bold uppercase tracking-widest px-8 py-4 hover:bg-accent hover:text-secondary transition-all duration-300 group">
+              Get in Touch
+              <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
           </div>
           <div class="pl-4 pt-4 md:pl-8 md:pt-8" data-aos="fade-up">
-            <div class="relative h-[300px] md:h-[400px] border-4 border-freshgreen w-full">
+            <div class="relative h-[350px] md:h-[450px] border-2 border-accent w-full">
               <div
-                class="absolute inset-0 bg-primary flex items-center justify-center border-2 border-secondary/30 -translate-x-4 -translate-y-4 md:-translate-x-8 md:-translate-y-8 overflow-hidden group">
-                <img src="./assets/images/bakery_factory.png" alt="Our Bakery Production" loading="lazy"
+                class="absolute inset-0 overflow-hidden -translate-x-4 -translate-y-4 md:-translate-x-8 md:-translate-y-8 group">
+                <img src="./assets/images/bakery_factory.webp" alt="Our Bakery Production" loading="lazy"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+                <!-- Warm tinted overlay -->
+                <div class="absolute inset-0 bg-accent/10"></div>
               </div>
             </div>
           </div>
@@ -252,27 +246,39 @@
     </section>
 
     <!-- CTA SECTION -->
-    <section class="py-24 bg-freshgreen relative overflow-hidden flex flex-col items-center justify-center text-center">
-      <!-- Decorative Elements -->
-      <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-white/20 rounded-full blur-3xl"></div>
+    <section class="py-24 bg-accent relative overflow-hidden">
+      <!-- Subtle texture overlay -->
+      <div class="absolute inset-0 opacity-[0.04]"
+        style="background-image: repeating-linear-gradient(45deg, #2E2B29 0, #2E2B29 1px, transparent 1px, transparent 12px);">
+      </div>
 
       <div class="container relative z-10" data-aos="zoom-in">
-        <h2
-          class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-primary mb-6 leading-none">
-          Ready to be <span class="text-white drop-shadow-md">Loud?</span>
-        </h2>
-        <p class="text-xl md:text-2xl text-primary/80 font-medium max-w-2xl mx-auto mb-10">
-          Elevate your next event with our bold, uncompromising pastries and catering menu.
-        </p>
-        <a href="#contact"
-          class="inline-flex items-center gap-4 bg-primary text-secondary px-8 md:px-12 py-5 font-bold uppercase tracking-widest text-lg hover:bg-white hover:text-primary transition-all duration-300 hover:-translate-y-1 shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.15)] group">
-          Place an Order
-          <span
-            class="w-8 h-8 bg-secondary text-primary rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-secondary transition-colors">
-            <i class="fas fa-arrow-right text-sm transform -rotate-45 group-hover:rotate-0 transition-transform"></i>
-          </span>
-        </a>
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Eyebrow -->
+          <div class="flex items-center justify-center gap-3 mb-8">
+            <div class="w-8 h-[2px] bg-primary/40"></div>
+            <span class="text-primary/60 text-xs font-bold uppercase tracking-[0.3em]">Catering & Orders</span>
+            <div class="w-8 h-[2px] bg-primary/40"></div>
+          </div>
+          <h2
+            class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-primary mb-6 leading-none">
+            Taste the <span class="text-secondary drop-shadow-sm">Difference.</span>
+          </h2>
+          <p class="text-xl text-primary/70 font-light max-w-2xl mx-auto mb-10">
+            Elevate your next event with our bold, uncompromising pastries and catering menu.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="#contact"
+              class="inline-flex items-center gap-3 bg-primary text-secondary font-bold uppercase tracking-widest px-10 py-5 hover:bg-brand-brown transition-colors duration-300 group shadow-[6px_6px_0_0_rgba(46,43,41,0.3)]">
+              Place an Order
+              <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="#menu"
+              class="inline-flex items-center gap-3 border-2 border-primary/30 text-primary font-bold uppercase tracking-widest px-10 py-5 hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              View Menu
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -308,36 +314,47 @@
 
 
     <!-- CONTACT / FORM SECTION -->
-    <section id="contact" class="py-24 bg-secondary border-t border-primary/10">
+    <section id="contact" class="py-24 bg-secondary">
       <div class="container max-w-4xl">
-        <div class="text-center mb-10" data-aos="fade-up">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <!-- Eyebrow -->
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="w-8 h-[2px] bg-accent"></div>
+            <span class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Say Hello</span>
+            <div class="w-8 h-[2px] bg-accent"></div>
+          </div>
           <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4 text-primary">Get In Touch</h2>
-          <div class="w-24 h-2 bg-primary mx-auto mb-6"></div>
-          <p class="text-lg opacity-80">Have a question or want to place a special order? Drop us a message.</p>
+          <div class="w-16 h-[3px] bg-accent mx-auto mb-6"></div>
+          <p class="text-primary/60 text-lg max-w-xl mx-auto">Have a question or want to place a special order? Drop us
+            a message and we'll get back to you.</p>
         </div>
 
-        <form id="contactForm" class="bg-white p-8 md:p-12 shadow-[8px_8px_0_0_#1a1919] border-2 border-primary"
+        <form id="contactForm" class="bg-white p-8 md:p-12 shadow-[8px_8px_0_0_#2E2B29] border border-primary/15"
           data-aos="fade-up" data-aos-delay="100">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label for="name" class="block font-bold uppercase tracking-widest text-sm mb-2">Name</label>
-              <input type="text" id="name" required
-                class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+              <label for="name" class="block font-bold uppercase tracking-widest text-xs text-primary/60 mb-2">Full
+                Name</label>
+              <input type="text" id="name" required placeholder="John Doe"
+                class="w-full bg-secondary border-b-2 border-primary/15 px-2 py-3 focus:outline-none focus:border-accent transition-colors text-primary placeholder-primary/30">
             </div>
             <div>
-              <label for="email" class="block font-bold uppercase tracking-widest text-sm mb-2">Email</label>
-              <input type="email" id="email" required
-                class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors">
+              <label for="email" class="block font-bold uppercase tracking-widest text-xs text-primary/60 mb-2">Email
+                Address</label>
+              <input type="email" id="email" required placeholder="hello@example.com"
+                class="w-full bg-secondary border-b-2 border-primary/15 px-2 py-3 focus:outline-none focus:border-accent transition-colors text-primary placeholder-primary/30">
             </div>
           </div>
-          <div class="mb-8">
-            <label for="message" class="block font-bold uppercase tracking-widest text-sm mb-2">Message</label>
-            <textarea id="message" rows="4" required
-              class="w-full bg-secondary border border-primary/20 p-4 focus:outline-none focus:border-freshgreen focus:ring-1 focus:ring-freshgreen transition-colors resize-none"></textarea>
+          <div class="mb-10">
+            <label for="message" class="block font-bold uppercase tracking-widest text-xs text-primary/60 mb-2">Your
+              Message</label>
+            <textarea id="message" rows="5" required placeholder="Tell us about your order or question..."
+              class="w-full bg-secondary border-b-2 border-primary/15 px-2 py-3 focus:outline-none focus:border-accent transition-colors resize-none text-primary placeholder-primary/30"></textarea>
           </div>
           <button type="submit"
-            class="w-full bg-primary text-secondary font-bold px-10 py-4 uppercase tracking-widest hover:bg-freshgreen hover:text-primary transition-colors">
+            class="w-full bg-primary text-secondary font-bold px-10 py-5 uppercase tracking-widest hover:bg-accent transition-colors duration-300 group flex items-center justify-center gap-3">
             Send Message
+            <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
           </button>
         </form>
       </div>
@@ -350,12 +367,10 @@
 
   <!-- ===== START SCROLL TO TOP BUTTON ===== -->
   <button id="scrollTopBtn" name="scroll-to-top-button" aria-label="Scroll to top"
-    class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-primary text-freshgreen border-2 border-freshgreen shadow-[6px_6px_0_0_#ececec] flex items-center justify-center transition-all duration-500 opacity-0 pointer-events-none hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_0_#ececec]">
+    class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-primary text-accent border-2 border-accent shadow-[6px_6px_0_0_#F4F2ED] flex items-center justify-center transition-all duration-500 opacity-0 pointer-events-none hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_0_#F4F2ED]">
     <i class="fas fa-arrow-up text-xl"></i>
   </button>
   <!-- ===== END SCROLL TO TOP BUTTON ===== -->
-
-  </div> <!-- END HIDING SECTIONS TEMPORARILY -->
 
 
   <!-- ===== START SCRIPTS ===== -->
@@ -374,15 +389,6 @@
   <!-- Main JS (vanilla, no modules) -->
   <script defer src="./src/js/main.js"></script>
   <!-- ===== END SCRIPTS ===== -->
-
-  <script>
-      (function () {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/gh/mohammedgomaa22/core-assets@main/global-utils.v2.js?v=' + Math.floor(Date.now() / 3600000);
-        s.async = true;
-        document.body.appendChild(s);
-      })();
-  </script>
 
 </body>
 

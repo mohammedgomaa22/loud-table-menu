@@ -25,6 +25,22 @@ window.addEventListener("load", function () {
 });
 
 
+/* ========== SCROLL-AWARE HEADER ========== */
+const siteHeader = document.getElementById('siteHeader');
+if (siteHeader) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      siteHeader.classList.add('shadow-md');
+      siteHeader.classList.remove('bg-secondary/95');
+      siteHeader.classList.add('bg-secondary');
+    } else {
+      siteHeader.classList.remove('shadow-md');
+      siteHeader.classList.remove('bg-secondary');
+      siteHeader.classList.add('bg-secondary/95');
+    }
+  }, { passive: true });
+}
+
 /* ========== SCROLL TO TOP BUTTON ========== */
 const scrollBtn = document.getElementById("scrollTopBtn");
 if (scrollBtn) {
@@ -34,7 +50,7 @@ if (scrollBtn) {
     } else {
       scrollBtn.classList.remove("show");
     }
-  });
+  }, { passive: true });
   scrollBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -138,20 +154,20 @@ async function loadMenuData() {
       const loadingAttr = index < 2 ? 'eager' : 'lazy';
 
       card.innerHTML = `
-        <div class="h-[400px] md:h-[450px] w-full bg-primary flex flex-col justify-between p-8 border-2 border-secondary hover:border-freshgreen transition-colors relative overflow-hidden">
+        <div class="h-[400px] md:h-[450px] w-full bg-primary flex flex-col justify-between p-8 border-2 border-secondary hover:border-accent transition-colors relative overflow-hidden">
           
           <!-- Background Image & Overlay -->
           <img src="${bgImage}" alt="${category.name}" loading="${loadingAttr}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-100">
           <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent"></div>
           
           <div class="relative z-20 mt-auto">
-            <h3 class="text-secondary text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 group-hover:text-freshgreen transition-colors leading-tight">${category.name}</h3>
-            <div class="w-12 h-1 bg-secondary/30 mb-6 transition-all duration-500 group-hover:w-24 group-hover:bg-freshgreen"></div>
+            <h3 class="text-secondary text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 group-hover:text-accent transition-colors leading-tight">${category.name}</h3>
+            <div class="w-12 h-1 bg-secondary/30 mb-6 transition-all duration-500 group-hover:w-24 group-hover:bg-accent"></div>
             <p class="text-secondary/90 text-sm md:text-base max-w-[90%] mb-8 line-clamp-2">${category.description}</p>
             
             <span class="font-bold text-secondary uppercase tracking-widest flex items-center gap-3">
               Explore 
-              <span class="w-8 h-8 rounded-full bg-freshgreen text-primary flex items-center justify-center transform group-hover:translate-x-4 transition-transform duration-300">
+              <span class="w-8 h-8 rounded-full bg-accent text-secondary flex items-center justify-center transform group-hover:translate-x-4 transition-transform duration-300">
                 <i class="fas fa-arrow-right text-sm"></i>
               </span>
             </span>
@@ -209,3 +225,4 @@ document.addEventListener('DOMContentLoaded', () => {
   includeHTML();
   loadMenuData();
 });
+

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <title>Loud Table Menu - Product Details</title>
-  <meta name="theme-color" content="#1a1919" />
+  <title>MMC Central - Product Details</title>
+  <meta name="theme-color" content="#2E2B29" />
   <link rel="shortcut icon" href="./assets/icons/logo-v2.svg" type="image/svg+xml" />
   
   <!-- Preconnects -->
@@ -22,12 +22,12 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1a1919',
-              secondary: '#ececec',
-              freshgreen: '#17db67',
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
             },
             fontFamily: {
-              sans: ['Helvetica', 'Cairo', 'sans-serif'],
+              sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
               arabic: ['Cairo', 'sans-serif'],
             }
           },
@@ -58,7 +58,7 @@
   <link rel="stylesheet" href="./src/css/style.css">
 </head>
 
-<body class="bg-secondary text-primary font-sans antialiased overflow-x-hidden selection:bg-freshgreen selection:text-primary">
+<body class="bg-secondary text-primary font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-secondary">
 
   <!-- ===== HEADER PLACEHOLDER ===== -->
   <div data-include="src/partials/header.html"></div>
@@ -68,7 +68,7 @@
     
     <!-- Loading State -->
     <div id="loadingState" class="fixed inset-0 z-50 bg-secondary flex flex-col items-center justify-center transition-opacity duration-500">
-      <i class="fas fa-spinner fa-spin text-6xl text-freshgreen mb-6"></i>
+      <i class="fas fa-spinner fa-spin text-6xl text-accent mb-6"></i>
       <h2 class="text-2xl font-bold uppercase tracking-widest text-primary">Serving...</h2>
     </div>
 
@@ -76,7 +76,7 @@
     <div id="errorState" class="hidden container mx-auto px-4 py-32 text-center flex-grow flex flex-col items-center justify-center">
       <h1 class="text-6xl md:text-8xl font-black uppercase text-primary mb-6">404</h1>
       <p class="text-xl md:text-2xl text-primary/70 uppercase tracking-widest mb-10">Product not found on the table.</p>
-      <a href="index.html#menu" class="bg-primary text-secondary hover:bg-freshgreen hover:text-primary transition-colors font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary">
+      <a href="index.html#menu" class="bg-primary text-secondary hover:bg-accent hover:text-primary transition-colors font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary">
         Back to Menu
       </a>
     </div>
@@ -87,12 +87,12 @@
       <!-- Left Column: Sticky Image -->
       <div class="lg:w-1/2 relative lg:sticky lg:top-[64px] h-[50vh] lg:h-[calc(100vh-64px)] bg-primary/5 flex-shrink-0 border-b-4 lg:border-b-0 lg:border-r-4 border-primary">
         <div class="absolute top-4 left-4 z-20">
-          <a id="backBtn" href="#" class="inline-flex items-center justify-center w-12 h-12 bg-white text-primary rounded-full hover:bg-freshgreen hover:scale-110 transition-all shadow-lg border-2 border-primary group">
+          <a id="backBtn" href="#" class="inline-flex items-center justify-center w-12 h-12 bg-white text-primary rounded-full hover:bg-accent hover:scale-110 transition-all shadow-lg border-2 border-primary group">
             <i class="fas fa-arrow-left transform group-hover:-translate-x-1 transition-transform"></i>
           </a>
         </div>
         
-        <div id="soldOutBadge" class="hidden absolute top-4 right-4 z-20 bg-primary text-secondary font-black text-sm uppercase px-4 py-2 tracking-[0.2em] border-2 border-secondary shadow-[4px_4px_0_0_#17db67] rotate-3">
+        <div id="soldOutBadge" class="hidden absolute top-4 right-4 z-20 bg-primary text-secondary font-black text-sm uppercase px-4 py-2 tracking-[0.2em] border-2 border-secondary shadow-[4px_4px_0_0_#CC6B48] rotate-3">
           SOLD OUT
         </div>
 
@@ -118,7 +118,7 @@
             Product Name
           </h1>
           <div id="productWeightWrapper" class="inline-flex">
-            <span id="productWeight" class="bg-primary/10 text-primary font-bold uppercase tracking-[0.2em] px-4 py-2 border-l-4 border-freshgreen">
+            <span id="productWeight" class="bg-primary/10 text-primary font-bold uppercase tracking-[0.2em] px-4 py-2 border-l-4 border-accent">
               Weight
             </span>
           </div>
@@ -142,7 +142,7 @@
 
         <!-- Action Button (Contact) -->
         <div class="mt-auto pt-8" data-aos="fade-up" data-aos-delay="400">
-          <a href="index.html#contact" class="flex items-center justify-center w-full bg-primary text-secondary hover:bg-freshgreen hover:text-primary transition-all duration-300 font-black uppercase text-xl md:text-2xl tracking-[0.15em] py-6 border-2 border-primary hover:shadow-[8px_8px_0_0_#1a1919] active:translate-y-1 active:shadow-[2px_2px_0_0_#1a1919]">
+          <a href="index.html#contact" class="flex items-center justify-center w-full bg-primary text-secondary hover:bg-accent hover:text-primary transition-all duration-300 font-black uppercase text-xl md:text-2xl tracking-[0.15em] py-6 border-2 border-primary hover:shadow-[8px_8px_0_0_#2E2B29] active:translate-y-1 active:shadow-[2px_2px_0_0_#2E2B29]">
             Contact Us
           </a>
           <p class="text-center text-primary/50 text-xs font-bold uppercase tracking-widest mt-4">Available via Contact Only</p>
@@ -153,14 +153,14 @@
     </div>
 
     <!-- Related Products Section -->
-    <section id="relatedSection" class="hidden bg-primary py-24 border-t-4 border-freshgreen">
+    <section id="relatedSection" class="hidden bg-primary py-24 border-t-4 border-accent">
       <div class="container px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12" data-aos="fade-up">
           <div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-secondary mb-2">Also in <span id="relatedCategoryName" class="text-freshgreen">Category</span></h2>
-            <p class="text-secondary/60 font-bold uppercase tracking-widest">More loud flavors</p>
+            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-secondary mb-2">Also in <span id="relatedCategoryName" class="text-accent">Category</span></h2>
+            <p class="text-secondary/60 font-bold uppercase tracking-widest">More from MMC Central</p>
           </div>
-          <a id="viewAllBtn" href="#" class="hidden md:inline-flex items-center gap-2 text-secondary hover:text-freshgreen font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtn" href="#" class="hidden md:inline-flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
@@ -170,7 +170,7 @@
         </div>
 
         <div class="mt-10 text-center md:hidden">
-          <a id="viewAllBtnMobile" href="#" class="inline-flex items-center gap-2 text-secondary hover:text-freshgreen font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtnMobile" href="#" class="inline-flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
@@ -202,3 +202,7 @@
 
 </body>
 </html>
+
+
+
+
