@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
+  <base href="/admin/">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <title>LOUD. | Products</title>
+  <title>MMC Central | Products</title>
   <!-- Google Font (Cairo) -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -35,9 +36,7 @@
   <!-- Sidebar -->
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
-      <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-accent">.</span>
-      </h1>
+      <img src="../assets/images/logo.webp" alt="MMC Central" class="h-8 w-auto brightness-0 invert" />
     </div>
     
     <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
@@ -53,13 +52,16 @@
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
       </a>
+      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-handshake w-5 text-center"></i> Partners
+      </a>
       <a href="settings.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors mt-auto">
         <i class="fas fa-cog w-5 text-center"></i> Settings
       </a>
     </nav>
     
     <div class="p-4 border-t border-secondary/10">
-      <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
+      <a href="#" data-admin-logout class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
         <i class="fas fa-sign-out-alt w-5 text-center"></i> Logout
       </a>
     </div>
@@ -96,69 +98,150 @@
           <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">All Products</h3>
           <p class="text-primary/60 text-sm">Manage items in your menu</p>
         </div>
-        <button onclick="document.getElementById('addProductForm').classList.toggle('hidden')" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#CC6B48]">
+        <button type="button" id="toggleProductFormBtn" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#CC6B48]">
           <i class="fas fa-plus"></i> Add New Product
         </button>
       </div>
 
       <!-- Add/Edit Product Form (Hidden by default) -->
       <div id="addProductForm" class="hidden bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29] mb-10">
-        <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Add / Edit Product</h4>
-        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
+        <h4 id="productFormTitle" class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Add Product</h4>
+        <form id="productForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="hidden" id="productLegacyId">
+
+          <!-- Basic Info -->
           <div>
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Product Name</label>
-            <input type="text" placeholder="e.g. Classic Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+            <label for="productName" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Product Name *</label>
+            <input type="text" id="productName" required placeholder="e.g. Classic Croissant" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
           </div>
-          
           <div>
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Category</label>
-            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+            <label for="productCategory" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Category *</label>
+            <select id="productCategory" required class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               <option value="">Select Category</option>
-              <option value="1">Croissant</option>
-              <option value="2">Danishes</option>
-              <option value="3">Sourdough</option>
             </select>
           </div>
-
           <div>
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Price (SAR)</label>
-            <input type="number" step="0.01" placeholder="0.00" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+            <label for="productPrice" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Final Selling Price (BD)</label>
+            <input type="number" step="0.001" id="productPrice" placeholder="0.000" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
           </div>
-          
           <div>
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Status</label>
-            <select class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+            <label for="productWeight" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Portion Weight</label>
+            <input type="text" id="productWeight" placeholder="500 GR" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+          </div>
+          <div>
+            <label for="productStatus" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Status</label>
+            <select id="productStatus" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               <option value="active">Active (Visible)</option>
-              <option value="hidden">Hidden</option>
               <option value="sold_out">Sold Out</option>
             </select>
           </div>
-
           <div class="md:col-span-2">
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Short Description</label>
-            <textarea rows="3" placeholder="Ingredients or short detail..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+            <label for="productDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Short Description</label>
+            <textarea id="productDescription" rows="3" placeholder="Ingredients or short detail..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
           </div>
 
+          <!-- Product Images -->
           <div class="md:col-span-2">
-            <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Product Image (Upload)</label>
-            <div class="flex items-center gap-4">
-              <div class="w-16 h-16 bg-secondary border border-primary/20 flex items-center justify-center text-primary/30">
-                <i class="fas fa-image text-2xl"></i>
+            <p class="font-bold uppercase tracking-widest text-xs mb-4 text-primary border-t border-primary/10 pt-6">Product Images</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <!-- Main Image -->
+              <div class="bg-secondary/50 border border-primary/10 p-4">
+                <p class="font-bold uppercase tracking-widest text-[10px] text-primary mb-3">
+                  <i class="fas fa-image mr-1 text-accent"></i> Main Image
+                </p>
+                <div class="flex gap-4 items-start">
+                  <div class="w-24 h-24 flex-shrink-0 border-2 border-dashed border-primary/20 overflow-hidden bg-white flex items-center justify-center">
+                    <img id="productImagePreview" src="" alt="" class="hidden w-full h-full object-cover">
+                    <div id="productImagePlaceholder" class="flex flex-col items-center justify-center text-primary/20 text-center p-1">
+                      <i class="fas fa-image text-xl mb-1"></i>
+                      <span class="text-[9px] font-bold uppercase tracking-wider">No Image</span>
+                    </div>
+                  </div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div>
+                      <label class="block font-bold uppercase tracking-widest text-[10px] mb-1 text-primary/50">Upload from Device</label>
+                      <input type="file" id="productImageFile" accept="image/*" class="block w-full text-xs text-primary/70 file:mr-2 file:py-1.5 file:px-3 file:border-0 file:bg-primary file:text-secondary file:font-bold file:uppercase file:tracking-widest file:text-[10px] hover:file:bg-accent cursor-pointer">
+                    </div>
+                    <div>
+                      <label for="productImageUrl" class="block font-bold uppercase tracking-widest text-[10px] mb-1 text-primary/50">Or paste URL</label>
+                      <input type="url" id="productImageUrl" placeholder="https://..." class="w-full bg-white border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
+                    </div>
+                    <button type="button" id="productImageClearBtn" class="hidden self-start text-[10px] font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors">
+                      <i class="fas fa-times mr-1"></i> Clear
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="flex-1 border-2 border-dashed border-primary/20 p-4 text-center hover:border-accent transition-colors cursor-pointer relative">
-                <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                <p class="text-xs font-bold uppercase tracking-widest text-primary/60">Drag & Drop or <span class="text-accent">Browse</span></p>
-                <p class="text-[10px] text-primary/40 mt-1">Recommended size: 800x800px (JPG, PNG)</p>
+
+              <!-- Hover Image -->
+              <div class="bg-secondary/50 border border-primary/10 p-4">
+                <p class="font-bold uppercase tracking-widest text-[10px] text-primary mb-3">
+                  <i class="fas fa-hand-pointer mr-1 text-accent"></i> Hover Image <span class="text-primary/40 normal-case font-normal">(shown on mouse-over)</span>
+                </p>
+                <div class="flex gap-4 items-start">
+                  <div class="w-24 h-24 flex-shrink-0 border-2 border-dashed border-primary/20 overflow-hidden bg-white flex items-center justify-center">
+                    <img id="productHoverImagePreview" src="" alt="" class="hidden w-full h-full object-cover">
+                    <div id="productHoverImagePlaceholder" class="flex flex-col items-center justify-center text-primary/20 text-center p-1">
+                      <i class="fas fa-hand-pointer text-xl mb-1"></i>
+                      <span class="text-[9px] font-bold uppercase tracking-wider">No Image</span>
+                    </div>
+                  </div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <div>
+                      <label class="block font-bold uppercase tracking-widest text-[10px] mb-1 text-primary/50">Upload from Device</label>
+                      <input type="file" id="productHoverImageFile" accept="image/*" class="block w-full text-xs text-primary/70 file:mr-2 file:py-1.5 file:px-3 file:border-0 file:bg-primary file:text-secondary file:font-bold file:uppercase file:tracking-widest file:text-[10px] hover:file:bg-accent cursor-pointer">
+                    </div>
+                    <div>
+                      <label for="productHoverImageUrl" class="block font-bold uppercase tracking-widest text-[10px] mb-1 text-primary/50">Or paste URL</label>
+                      <input type="url" id="productHoverImageUrl" placeholder="https://..." class="w-full bg-white border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
+                    </div>
+                    <button type="button" id="productHoverImageClearBtn" class="hidden self-start text-[10px] font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors">
+                      <i class="fas fa-times mr-1"></i> Clear
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Cost & Financial Details -->
+          <div class="md:col-span-2">
+            <p class="font-bold uppercase tracking-widest text-xs mb-4 text-primary border-t border-primary/10 pt-6">Cost & Financial Details</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div>
+                <label for="productFoodCost" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">Food Cost (BD)</label>
+                <input type="number" step="0.001" id="productFoodCost" placeholder="0.000" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
+              </div>
+              <div>
+                <label for="productPackagingCost" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">Packaging Cost (BD)</label>
+                <input type="number" step="0.001" id="productPackagingCost" placeholder="0.000" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
+              </div>
+              <div>
+                <label for="productPriceWithoutPacking" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">Price Without Packing (BD)</label>
+                <input type="number" step="0.001" id="productPriceWithoutPacking" placeholder="0.000" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
+              </div>
+              <div>
+                <label for="productCogsPercent" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">COGS %</label>
+                <input type="number" step="0.1" id="productCogsPercent" placeholder="0.0" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
+              </div>
+              <div>
+                <label for="productMarginPercent" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">Margin %</label>
+                <input type="number" step="0.1" id="productMarginPercent" placeholder="0.0" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
+              </div>
+              <div>
+                <label for="productComments" class="block font-bold uppercase tracking-widest text-[10px] mb-2 text-primary/60">Comments / Notes</label>
+                <input type="text" id="productComments" placeholder="Any notes..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors text-sm">
               </div>
             </div>
           </div>
 
-          <div class="md:col-span-2 flex justify-end gap-4 mt-4">
-            <button type="button" onclick="document.getElementById('addProductForm').classList.add('hidden')" class="px-6 py-3 font-bold uppercase tracking-widest text-xs text-primary/60 hover:text-primary transition-colors">
+          <div class="md:col-span-2 flex justify-end gap-4 mt-4 border-t border-primary/10 pt-6">
+            <button type="button" id="cancelProductFormBtn" class="px-6 py-3 font-bold uppercase tracking-widest text-xs text-primary/60 hover:text-primary transition-colors">
               Cancel
             </button>
-            <button type="button" class="bg-accent text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#2E2B29]">
+            <button type="submit" id="saveProductBtn" class="bg-accent text-primary px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-secondary transition-colors shadow-[4px_4px_0_0_#2E2B29]">
               Save Product
             </button>
           </div>
@@ -167,12 +250,10 @@
 
       <!-- Filters (Optional, keeping it simple) -->
       <div class="flex gap-4 mb-6">
-        <select class="bg-white border border-primary/20 p-2 text-xs font-bold uppercase tracking-widest text-primary focus:outline-none">
+        <select id="productCategoryFilter" class="bg-white border border-primary/20 p-2 text-xs font-bold uppercase tracking-widest text-primary focus:outline-none">
           <option value="">All Categories</option>
-          <option value="1">Croissant</option>
-          <option value="2">Danishes</option>
         </select>
-        <input type="text" placeholder="Search products..." class="bg-white border border-primary/20 p-2 text-xs text-primary focus:outline-none flex-1 max-w-xs">
+        <input type="text" id="productSearchInput" placeholder="Search products..." class="bg-white border border-primary/20 p-2 text-xs text-primary focus:outline-none flex-1 max-w-xs">
       </div>
 
       <!-- Products Table -->
@@ -189,72 +270,9 @@
                 <th class="p-4 font-bold uppercase tracking-widest text-xs w-24 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-primary/10">
-              <!-- Product 1 -->
-              <tr class="hover:bg-adminbg transition-colors">
-                <td class="p-4">
-                  <img src="https://images.unsplash.com/photo-1555507036-ab1f40ce88f4?q=80&w=150&auto=format&fit=crop" alt="Product" class="w-10 h-10 object-cover border border-primary/20">
-                </td>
-                <td class="p-4 font-bold text-primary text-sm">Classic Butter Croissant</td>
-                <td class="p-4 text-sm text-primary/70">Croissant</td>
-                <td class="p-4 text-sm text-primary text-right font-bold">18.00</td>
-                <td class="p-4 text-center">
-                  <span class="inline-block px-2 py-1 bg-accent/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
-                </td>
-                <td class="p-4 text-right">
-                  <div class="flex justify-end gap-2">
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-primary hover:bg-primary hover:text-secondary transition-colors" title="Edit">
-                      <i class="fas fa-pen text-xs"></i>
-                    </button>
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-red-500 hover:bg-red-500 hover:text-white transition-colors" title="Delete">
-                      <i class="fas fa-trash text-xs"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <!-- Product 2 -->
-              <tr class="hover:bg-adminbg transition-colors">
-                <td class="p-4">
-                  <img src="https://images.unsplash.com/photo-1621236378699-8597faf6a176?q=80&w=150&auto=format&fit=crop" alt="Product" class="w-10 h-10 object-cover border border-primary/20">
-                </td>
-                <td class="p-4 font-bold text-primary text-sm">Almond Croissant</td>
-                <td class="p-4 text-sm text-primary/70">Croissant</td>
-                <td class="p-4 text-sm text-primary text-right font-bold">22.00</td>
-                <td class="p-4 text-center">
-                  <span class="inline-block px-2 py-1 bg-accent/20 text-green-700 text-[10px] font-bold uppercase tracking-widest">Active</span>
-                </td>
-                <td class="p-4 text-right">
-                  <div class="flex justify-end gap-2">
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-primary hover:bg-primary hover:text-secondary transition-colors" title="Edit">
-                      <i class="fas fa-pen text-xs"></i>
-                    </button>
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-red-500 hover:bg-red-500 hover:text-white transition-colors" title="Delete">
-                      <i class="fas fa-trash text-xs"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <!-- Product 3 -->
-              <tr class="hover:bg-adminbg transition-colors opacity-60">
-                <td class="p-4">
-                  <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=150&auto=format&fit=crop" alt="Product" class="w-10 h-10 object-cover border border-primary/20">
-                </td>
-                <td class="p-4 font-bold text-primary text-sm">Chocolate Danish</td>
-                <td class="p-4 text-sm text-primary/70">Danishes</td>
-                <td class="p-4 text-sm text-primary text-right font-bold">20.00</td>
-                <td class="p-4 text-center">
-                  <span class="inline-block px-2 py-1 bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-widest">Sold Out</span>
-                </td>
-                <td class="p-4 text-right">
-                  <div class="flex justify-end gap-2">
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-primary hover:bg-primary hover:text-secondary transition-colors" title="Edit">
-                      <i class="fas fa-pen text-xs"></i>
-                    </button>
-                    <button class="w-8 h-8 flex items-center justify-center bg-secondary text-red-500 hover:bg-red-500 hover:text-white transition-colors" title="Delete">
-                      <i class="fas fa-trash text-xs"></i>
-                    </button>
-                  </div>
-                </td>
+            <tbody id="productsTableBody" class="divide-y divide-primary/10">
+              <tr>
+                <td colspan="6" class="p-6 text-center text-sm text-primary/60">Loading products...</td>
               </tr>
             </tbody>
           </table>
@@ -267,34 +285,11 @@
   <!-- Mobile Sidebar Overlay -->
   <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
 
-  <!-- Mobile Sidebar Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const sidebar = document.querySelector('aside');
-      const overlay = document.getElementById('mobileSidebarOverlay');
-      
-      let isMobileMenuOpen = false;
-
-      function toggleMobileMenu() {
-        isMobileMenuOpen = !isMobileMenuOpen;
-        if(isMobileMenuOpen) {
-          sidebar.classList.remove('hidden');
-          sidebar.classList.add('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.remove('hidden');
-          setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-        } else {
-          sidebar.classList.add('hidden');
-          sidebar.classList.remove('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.add('opacity-0');
-          setTimeout(() => overlay.classList.add('hidden'), 300);
-        }
-      }
-
-      if(mobileBtn) mobileBtn.addEventListener('click', toggleMobileMenu);
-      if(overlay) overlay.addEventListener('click', toggleMobileMenu);
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../src/js/supabase-config.js"></script>
+  <script src="../src/js/supabase-client.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-products.js"></script>
 </body>
 </html>
 

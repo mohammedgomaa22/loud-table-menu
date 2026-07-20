@@ -1,8 +1,113 @@
-/* Main JS - vanilla (no modules)
-    Responsibilities:
-    - Initialize AOS safely
-    - Small helpers: set year, simple form handling (no network)
-*/
+/* ========== GLOBAL CONFIGURATIONS ========== */
+const MMC_CONFIG = {
+  whatsappNumber: "966500000000", // Replace with client's Riyadh phone number (with country code, e.g., 9665XXXXXXXX)
+  whatsappMessage: "Hello MMC Central, I would like to inquire about your catering/menu services."
+};
+
+/* ========== THEMED IMAGE FALLBACK POOL ========== */
+function getProductImage(product, categorySlug) {
+  if (product.image && product.image.trim() !== "") {
+    return product.image;
+  }
+  
+  const categoryImages = {
+    'pastry': [
+      'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop', // Tiramisu/dessert
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop', // Chocolate cake
+      'https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop', // Tart
+      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=800&auto=format&fit=crop', // Cookies
+      'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800&auto=format&fit=crop'  // Cheesecake
+    ],
+    'bakery': [
+      'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop', // Plain Croissant
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop', // Fresh Breads
+      'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=800&auto=format&fit=crop', // Danish Pastry
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop'  // Sourdough
+    ],
+    'cold-kitchen': [
+      'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?q=80&w=800&auto=format&fit=crop', // Gourmet Appetizers
+      'https://images.unsplash.com/photo-1577906096429-f73bc2c31243?q=80&w=800&auto=format&fit=crop', // Hummus/Dips
+      'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop'  // Gourmet Cold Platters
+    ],
+    'salads': [
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop', // Fresh green salad
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop', // Healthy Greek Salad
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop'  // Salad bowl
+    ],
+    'sandwiches': [
+      'https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=800&auto=format&fit=crop', // Gourmet sandwich
+      'https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=800&auto=format&fit=crop', // Toast/Club sandwich
+      'https://images.unsplash.com/photo-1567137222464-9d3e8ed58f75?q=80&w=800&auto=format&fit=crop'  // Artisan Panini
+    ],
+    'soups': [
+      'https://images.unsplash.com/photo-1547592165-e1d17f97a15a?q=80&w=800&auto=format&fit=crop', // Pumpkin/Tomato Soup
+      'https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=800&auto=format&fit=crop', // Soup bowl
+      'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?q=80&w=800&auto=format&fit=crop'  // Creamy Soup
+    ],
+    'juices': [
+      'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=800&auto=format&fit=crop', // Orange juice
+      'https://images.unsplash.com/photo-1610970881699-44a5587caaec?q=80&w=800&auto=format&fit=crop', // Green smoothie
+      'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=800&auto=format&fit=crop'  // Fresh cold juices
+    ]
+  };
+
+  const pool = categoryImages[categorySlug] || categoryImages['pastry'];
+  const index = Math.abs(product.id) % pool.length;
+  return pool[index];
+}
+
+function getProductHoverImage(product, categorySlug) {
+  if (product.hoverImage && product.hoverImage.trim() !== "") {
+    return product.hoverImage;
+  }
+  
+  const categoryImages = {
+    'pastry': [
+      'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800&auto=format&fit=crop'
+    ],
+    'bakery': [
+      'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop'
+    ],
+    'cold-kitchen': [
+      'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1577906096429-f73bc2c31243?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop'
+    ],
+    'salads': [
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop'
+    ],
+    'sandwiches': [
+      'https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1567137222464-9d3e8ed58f75?q=80&w=800&auto=format&fit=crop'
+    ],
+    'soups': [
+      'https://images.unsplash.com/photo-1547592165-e1d17f97a15a?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?q=80&w=800&auto=format&fit=crop'
+    ],
+    'juices': [
+      'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1610970881699-44a5587caaec?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=800&auto=format&fit=crop'
+    ]
+  };
+
+  const pool = categoryImages[categorySlug] || categoryImages['pastry'];
+  const index = Math.abs(product.id + 1) % pool.length; // Use next image in pool for hover
+  return pool[index];
+}
+
+/* ========== INITIALIZATION ========== */
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize AOS if available
   if (typeof AOS !== 'undefined') {
@@ -116,8 +221,52 @@ async function includeHTML() {
       }
     }
   }
-  // Initialize header scripts after includes are done
+  // Initialize header/navigation behaviors after includes are done
   initMobileMenu();
+  adjustDynamicLinks();
+  injectWhatsAppFloatingButton();
+}
+
+/* ========== ADJUST DYNAMIC LINKS FOR SUBPAGES ========== */
+function adjustDynamicLinks() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  // Only treat real homepage paths as homepage — clean URLs like /category must NOT match
+  const isHomepage = path === '/' || path === '/index' || path.endsWith('/index.html');
+  
+  // 1. Rewrite internal anchor links (like #menu) if on a subpage
+  if (!isHomepage) {
+    const anchors = document.querySelectorAll('a[href^="#"]');
+    anchors.forEach(a => {
+      const href = a.getAttribute('href');
+      if (href && href !== '#' && href.startsWith('#')) {
+        // Use clean path (index#menu) so npx serve won't strip the hash on redirect
+        a.setAttribute('href', 'index' + href);
+      }
+    });
+  }
+
+  // 2. Set WhatsApp links dynamically based on MMC_CONFIG
+  const whatsappLinks = document.querySelectorAll('a[aria-label="WhatsApp"]');
+  whatsappLinks.forEach(link => {
+    link.setAttribute('href', `https://wa.me/${MMC_CONFIG.whatsappNumber}?text=${encodeURIComponent(MMC_CONFIG.whatsappMessage)}`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+}
+
+/* ========== INJECT FLOATING WHATSAPP BUTTON ========== */
+function injectWhatsAppFloatingButton() {
+  if (document.getElementById('whatsappFloatingBtn')) return;
+
+  const btn = document.createElement('a');
+  btn.id = 'whatsappFloatingBtn';
+  btn.href = `https://wa.me/${MMC_CONFIG.whatsappNumber}?text=${encodeURIComponent(MMC_CONFIG.whatsappMessage)}`;
+  btn.target = '_blank';
+  btn.rel = 'noopener noreferrer';
+  btn.className = 'whatsapp-float';
+  btn.setAttribute('aria-label', 'Chat on WhatsApp');
+  btn.innerHTML = `<i class="fab fa-whatsapp"></i>`;
+  document.body.appendChild(btn);
 }
 
 /* ========== LOAD MENU DATA ========== */
@@ -126,31 +275,38 @@ async function loadMenuData() {
   if (!grid) return;
 
   try {
-    const response = await fetch('./src/data/menu.json');
-    if (!response.ok) throw new Error('Failed to load menu data');
+    const data = await fetchMenuData();
+    grid.innerHTML = '';
 
-    const data = await response.json();
-    grid.innerHTML = ''; // Clear loading state
+    if (!data || data.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full w-full flex items-center justify-center py-24 px-6 text-center mx-auto">
+          <div class="flex flex-col items-center justify-center">
+            <i class="fas fa-utensils text-5xl text-primary/20 mb-6 block text-center"></i>
+            <p class="text-primary/50 font-bold uppercase tracking-widest text-sm text-center">No menu categories available yet.</p>
+            <p class="text-primary/30 text-xs mt-2 tracking-wider text-center">Check back soon.</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
 
     data.forEach((category, index) => {
       const card = document.createElement('a');
-      card.href = `category.html?id=${category.slug}`;
+      card.href = `category?id=${category.slug}`;
       // Use swiper-slide class and remove AOS for slider items to prevent conflicts
       card.className = "swiper-slide block group";
 
-      const num = String(index + 1).padStart(2, '0');
-
-      const cardImages = [
+      const fallbackImages = [
         'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=800&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=800&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=800&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=800&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop'
       ];
 
-      const bgImage = cardImages[index % cardImages.length];
+      const bgImage = category.image || fallbackImages[index % fallbackImages.length];
       const loadingAttr = index < 2 ? 'eager' : 'lazy';
 
       card.innerHTML = `
@@ -161,7 +317,7 @@ async function loadMenuData() {
           <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent"></div>
           
           <div class="relative z-20 mt-auto">
-            <h3 class="text-secondary text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 group-hover:text-accent transition-colors leading-tight">${category.name}</h3>
+            <h3 class="text-secondary text-3xl md:text-4xl font-bold uppercase tracking-normal mb-4 group-hover:text-accent transition-colors leading-tight line-clamp-2 break-words">${category.name}</h3>
             <div class="w-12 h-1 bg-secondary/30 mb-6 transition-all duration-500 group-hover:w-24 group-hover:bg-accent"></div>
             <p class="text-secondary/90 text-sm md:text-base max-w-[90%] mb-8 line-clamp-2">${category.description}</p>
             
@@ -211,18 +367,111 @@ async function loadMenuData() {
 
   } catch (error) {
     console.error('Error loading menu:', error);
+    const isUnavailable = error?.message === 'SUPABASE_UNAVAILABLE';
     grid.innerHTML = `
-      <div class="col-span-full text-center py-10">
-        <i class="fas fa-exclamation-triangle text-4xl text-red-500"></i>
-        <p class="mt-4 font-bold uppercase tracking-widest">Failed to load menu. Please try again later.</p>
+      <div class="col-span-full w-full flex items-center justify-center py-24 px-6 text-center mx-auto">
+        <div class="flex flex-col items-center justify-center max-w-md">
+          <i class="fas ${isUnavailable ? 'fa-cloud' : 'fa-exclamation-triangle'} text-5xl text-primary/20 mb-6 block"></i>
+          <p class="text-primary/60 font-bold uppercase tracking-widest text-sm">
+            ${isUnavailable ? 'Menu temporarily unavailable.' : 'Failed to load menu. Please try again later.'}
+          </p>
+          <p class="text-primary/40 text-xs mt-3 tracking-wider leading-relaxed">
+            ${isUnavailable
+              ? 'The database service is currently paused or unreachable. Please check back shortly.'
+              : 'Something went wrong while loading categories.'}
+          </p>
+        </div>
       </div>
     `;
   }
 }
 
 // Call on load
-document.addEventListener('DOMContentLoaded', () => {
-  includeHTML();
+document.addEventListener('DOMContentLoaded', async () => {
+  await includeHTML();             // load header/footer partials first
+  await applySiteSettingsToConfig(); // then apply DB settings to DOM
   loadMenuData();
+  loadPartners();
+  initContactForm();
 });
+
+async function loadPartners() {
+  const section = document.getElementById('partnersSection');
+  const trackA = document.getElementById('partnersMarqueeA');
+  const trackB = document.getElementById('partnersMarqueeB');
+  if (!section || !trackA || !trackB) return;
+
+  try {
+    const partners = await fetchPartners();
+    if (!partners.length) {
+      section.classList.add('hidden');
+      return;
+    }
+
+    const logosHtml = partners.map((partner) => {
+      const name = String(partner.name || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      const src = String(partner.logo_url || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      return `<img src="${src}" alt="${name}" class="partner-logo" loading="lazy">`;
+    }).join('');
+
+    trackA.innerHTML = logosHtml;
+    trackB.innerHTML = logosHtml;
+    section.classList.remove('hidden');
+  } catch (error) {
+    console.warn('Failed to load partners:', error.message);
+    section.classList.add('hidden');
+  }
+}
+
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const feedbackId = 'contactFormFeedback';
+  let feedback = document.getElementById(feedbackId);
+  if (!feedback) {
+    feedback = document.createElement('p');
+    feedback.id = feedbackId;
+    feedback.className = 'mt-4 text-center text-sm font-bold uppercase tracking-widest hidden';
+    form.appendChild(feedback);
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name')?.value.trim();
+    const email = document.getElementById('email')?.value.trim();
+    const message = document.getElementById('message')?.value.trim();
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    if (!name || !email || !message) {
+      return;
+    }
+
+    submitBtn.disabled = true;
+    feedback.classList.remove('hidden', 'text-green-600', 'text-red-500');
+    feedback.textContent = 'Sending...';
+
+    try {
+      await submitContactMessage({ name, email, message });
+      form.reset();
+      feedback.classList.add('text-green-600');
+      feedback.textContent = 'Message sent successfully. We will get back to you soon.';
+    } catch (error) {
+      console.error('Contact form error:', error);
+      feedback.classList.add('text-red-500');
+      feedback.textContent = 'Could not send your message. Please try again or contact us on WhatsApp.';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}
 

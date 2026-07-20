@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
 
 <head>
@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <title>MMC Central - Category</title>
   <meta name="theme-color" content="#2E2B29" />
-  <link rel="shortcut icon" href="./assets/icons/logo-v2.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
+  <!-- Preload Critical Assets -->
+  <link rel="preload" as="image" href="./assets/images/logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="./assets/images/favicon.webp" type="image/webp" fetchpriority="high">
   
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +25,17 @@
         theme: {
           extend: {
             colors: {
-              primary:   '#2E2B29',
+              /* ===== Brand Palette ===== */
+              'brand-black': '#2E2B29', /* PANTONE Black C  */
+              'brand-terra': '#CC6B48', /* PANTONE 7618 C   */
+              'brand-brown': '#926346', /* PANTONE 876 C    */
+              'brand-silver': '#DED7D0', /* PANTONE 7604 C   */
+              'brand-cream': '#F4F2ED', /* PANTONE 663 C    */
+              /* ===== Semantic Aliases ===== */
+              primary: '#2E2B29',
               secondary: '#F4F2ED',
-              accent:    '#CC6B48',
+              accent: '#CC6B48',
+              muted: '#DED7D0',
             },
             fontFamily: {
               sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
@@ -48,7 +59,8 @@
   </script>
   
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preload" as="style" href="./src/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./src/css/all.min.css"></noscript>
   
   <!-- AOS CSS -->
   <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -64,13 +76,15 @@
   <div data-include="src/partials/header.html"></div>
 
   <!-- ===== START MAIN ===== -->
-  <main role="main" class="pt-[64px] min-h-screen flex flex-col">
+  <main role="main" class="pt-[67px] min-h-screen flex flex-col">
 
     <!-- CATEGORY HERO SECTION -->
     <section class="relative bg-primary py-24 md:py-32 flex items-center justify-center overflow-hidden border-b-4 border-accent">
-      <!-- Background pattern/image placeholder -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="w-full h-full" style="background-image: repeating-linear-gradient(45deg, var(--accent-color) 0, var(--accent-color) 2px, transparent 2px, transparent 10px);"></div>
+      <!-- Dynamic Background Image with proper overlay -->
+      <div class="absolute inset-0">
+        <img id="categoryHeroBg" src="" alt="" class="w-full h-full object-cover opacity-35 transition-opacity duration-700" />
+        <!-- Warm gradient overlay matching brand palette -->
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/70 to-primary/45"></div>
       </div>
       
       <div class="container relative z-10 text-center px-4" data-aos="fade-up">
@@ -129,6 +143,11 @@
     </style>
   </noscript>
   
+  <!-- Supabase -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="./src/js/supabase-config.js"></script>
+  <script defer src="./src/js/supabase-client.js"></script>
+  <script defer src="./src/js/menu-api.js"></script>
   <!-- Main JS (Includes HTML loader and mobile menu) -->
   <script defer src="./src/js/main.js"></script>
   <!-- Category Specific JS -->

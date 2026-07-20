@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const categorySlug = urlParams.get('category');
   const productId = parseInt(urlParams.get('id'), 10);
@@ -14,10 +14,7 @@
   }
 
   try {
-    const response = await fetch('./src/data/menu.json');
-    if (!response.ok) throw new Error('Failed to load menu data');
-    
-    const data = await response.json();
+    const data = await fetchMenuData();
     
     // Find the category
     const category = data.find(c => c.slug === categorySlug);
@@ -40,6 +37,7 @@
     loadingState.classList.add('opacity-0', 'pointer-events-none');
     setTimeout(() => loadingState.classList.add('hidden'), 500);
     productContainer.classList.remove('hidden');
+    productContainer.classList.add('flex', 'flex-col', 'lg:flex-row');
 
     // Populate Related Products
     populateRelatedProducts(category, product.id);
@@ -52,13 +50,14 @@
   function showError() {
     loadingState.classList.add('hidden');
     errorState.classList.remove('hidden');
+    errorState.classList.add('flex', 'flex-col');
   }
 
   function populateProductDetails(product, category) {
     // Breadcrumbs & Navigation
     const backBtn = document.getElementById('backBtn');
     const breadcrumbCategory = document.getElementById('breadcrumbCategory');
-    const categoryUrl = `category.html?id=${category.slug}`;
+    const categoryUrl = `category?id=${category.slug}`;
     
     backBtn.href = categoryUrl;
     breadcrumbCategory.href = categoryUrl;
@@ -67,8 +66,8 @@
     // Basic Info
     document.title = `MMC Central - ${product.name}`;
     document.getElementById('productName').textContent = product.name;
-    
-    const priceText = product.price ? `BD ${Number(product.price).toFixed(2)}` : 'Price on ask';
+
+    const priceText = product.price != null ? `BD ${Number(product.price).toFixed(3)}` : 'Price on ask';
     document.getElementById('productPrice').textContent = priceText;
 
     // Weight
@@ -98,32 +97,98 @@
     }
 
     // Image Setup
-    const imageEl = document.getElementById('productImage');
-    const imageWrapper = document.getElementById('productImageWrapper');
-    
-    let imgSrc = product.image;
-    // Fallback demo images for testing if empty
-    if (!imgSrc) {
-      const demoImages = [
-        'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop'
-      ];
-      imgSrc = demoImages[product.id % demoImages.length];
-    }
-    
+    const imageEl      = document.getElementById('productImage');
+    const hoverImageEl = document.getElementById('productHoverImage');
+    const imgSrc       = getProductImage(product, category.slug);
+    const hoverSrc     = getProductHoverImage(product, category.slug);
+
     if (imgSrc) {
       imageEl.src = imgSrc;
       imageEl.alt = product.name;
+    }
+
+    // Hover image: show second image layer + thumbnail bar
+    const thumbBar      = document.getElementById('imageThumbnailBar');
+    const thumbMainImg  = document.getElementById('thumbMainImg');
+    const thumbHoverImg = document.getElementById('thumbHoverImg');
+    const thumbMain     = document.getElementById('thumbMain');
+    const thumbHoverBtn = document.getElementById('thumbHover');
+
+    if (hoverSrc && hoverImageEl) {
+      hoverImageEl.src = hoverSrc;
+      hoverImageEl.alt = product.name;
+      hoverImageEl.classList.remove('hidden');
+
+      // Thumbnail bar
+      if (thumbBar && thumbMainImg && thumbHoverImg) {
+        thumbMainImg.src  = imgSrc;
+        thumbHoverImg.src = hoverSrc;
+        thumbBar.classList.remove('hidden');
+        thumbBar.classList.add('flex');
+
+        // Click to pin a specific image
+        thumbMain?.addEventListener('click', () => {
+          imageEl.style.opacity      = '1';
+          hoverImageEl.style.opacity = '0';
+          thumbMain.classList.replace('border-secondary/50', 'border-secondary');
+          thumbMain.classList.replace('opacity-60', 'opacity-100');
+          thumbHoverBtn.classList.replace('border-secondary', 'border-secondary/50');
+          thumbHoverBtn.classList.replace('opacity-100', 'opacity-60');
+        });
+        thumbHoverBtn?.addEventListener('click', () => {
+          imageEl.style.opacity      = '0';
+          hoverImageEl.style.opacity = '1';
+          thumbHoverBtn.classList.replace('border-secondary/50', 'border-secondary');
+          thumbHoverBtn.classList.replace('opacity-60', 'opacity-100');
+          thumbMain.classList.replace('border-secondary', 'border-secondary/50');
+          thumbMain.classList.replace('opacity-100', 'opacity-60');
+        });
+      }
+    }
+
+    // Cost & Product Details section
+    _populateDetail('detailPriceWithoutPackRow', 'detailPriceWithoutPack',
+      product.priceWithoutPackaging != null ? `BD ${Number(product.priceWithoutPackaging).toFixed(3)}` : null);
+    _populateDetail('detailFoodCostRow', 'detailFoodCost',
+      product.foodCost != null ? `BD ${Number(product.foodCost).toFixed(3)}` : null);
+    _populateDetail('detailPackagingCostRow', 'detailPackagingCost',
+      product.packagingCost != null ? `BD ${Number(product.packagingCost).toFixed(3)}` : null);
+    _populateDetail('detailCogsRow', 'detailCogs',
+      product.cogsPercent != null ? `${Number(product.cogsPercent).toFixed(1)}%` : null);
+    _populateDetail('detailMarginRow', 'detailMargin',
+      product.marginPercent != null ? `${Number(product.marginPercent).toFixed(1)}%` : null);
+
+    const anyDetail = [product.priceWithoutPackaging, product.foodCost, product.packagingCost,
+                       product.cogsPercent, product.marginPercent].some(v => v != null);
+    const detailsWrapper = document.getElementById('productDetailsWrapper');
+    if (detailsWrapper && anyDetail) detailsWrapper.classList.remove('hidden');
+
+    // Comments / Notes
+    const commentsWrapper = document.getElementById('productCommentsWrapper');
+    if (commentsWrapper && product.comments) {
+      document.getElementById('productComments').textContent = product.comments;
+      commentsWrapper.classList.remove('hidden');
+    }
+
+    // Set up WhatsApp Order button link
+    const whatsappCtaBtn = document.getElementById('whatsappCtaBtn');
+    if (whatsappCtaBtn) {
+      const orderMessage = `Hello MMC Central, I would like to order the product: "${product.name}"${product.weight ? ` (${product.weight})` : ''} - Price: ${priceText}`;
+      whatsappCtaBtn.href = `https://wa.me/${MMC_CONFIG.whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
+    }
+  }
+
+  function _populateDetail(rowId, valueId, text) {
+    const row = document.getElementById(rowId);
+    const val = document.getElementById(valueId);
+    if (!row || !val) return;
+    if (text != null) {
+      val.textContent = text;
+      row.classList.remove('hidden');
+      row.classList.add('flex');
     } else {
-      // If still no image, show a placeholder box
-      imageWrapper.innerHTML = `
-        <div class="w-full h-full flex flex-col items-center justify-center bg-primary/10 text-primary/30">
-          <i class="fas fa-camera text-6xl mb-4"></i>
-          <span class="font-bold uppercase tracking-widest">No Image</span>
-        </div>
-      `;
+      row.classList.remove('flex');
+      row.classList.add('hidden');
     }
   }
 
@@ -140,7 +205,7 @@
     relatedSection.classList.remove('hidden');
     document.getElementById('relatedCategoryName').textContent = category.name;
     
-    const categoryUrl = `category.html?id=${category.slug}`;
+    const categoryUrl = `category?id=${category.slug}`;
     document.getElementById('viewAllBtn').href = categoryUrl;
     document.getElementById('viewAllBtnMobile').href = categoryUrl;
 
@@ -148,39 +213,30 @@
     relatedItems.forEach((product, index) => {
       const delay = (index % 4) * 100;
       const card = document.createElement('a');
-      card.href = `product.html?category=${category.slug}&id=${product.id}`;
-      card.className = "group relative bg-secondary border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[6px_6px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
+      card.href = `product?category=${category.slug}&id=${product.id}`;
+      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[6px_6px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
       const isAvailable = product.available !== false;
       const soldOutBadge = !isAvailable ? 
-        `<div class="absolute top-2 right-2 bg-primary text-secondary font-bold text-[10px] uppercase px-2 py-1 tracking-widest z-20">SOLD OUT</div>` : '';
+        `<div class="absolute top-2 right-2 bg-primary text-secondary font-black text-[10px] uppercase px-2.5 py-1 tracking-[0.1em] border border-secondary shadow-[2px_2px_0_0_#CC6B48] z-20">SOLD OUT</div>` : '';
 
-      const priceText = product.price ? `BD ${Number(product.price).toFixed(2)}` : 'Price on ask';
+      const priceText = product.price != null ? `BD ${Number(product.price).toFixed(3)}` : 'Price on ask';
 
-      let img1 = product.image;
-      if (!img1) {
-        const demoImages = [
-          'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=600&auto=format&fit=crop'
-        ];
-        img1 = demoImages[product.id % 2];
-      }
+      // Themed image (using shared fallback engine)
+      const img1 = getProductImage(product, category.slug);
 
       card.innerHTML = `
         ${soldOutBadge}
         <div class="w-full aspect-square bg-primary/5 relative overflow-hidden border-b-2 border-primary/10">
-          ${img1 ? 
-            `<img src="${img1}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">` : 
-            `<div class="w-full h-full flex items-center justify-center text-primary/20"><i class="fas fa-camera text-3xl"></i></div>`
-          }
+          <img src="${img1}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
         </div>
-        <div class="p-4 flex flex-col flex-grow">
-          <h3 class="text-lg font-black uppercase tracking-tight text-primary leading-tight line-clamp-2 mb-2">${product.name}</h3>
-          <div class="mt-auto flex items-center justify-between">
-            <span class="text-xl font-bold text-primary">${priceText}</span>
-            <i class="fas fa-arrow-right text-primary/30 transform group-hover:text-accent group-hover:translate-x-1 transition-all"></i>
+        <div class="p-4 flex flex-col flex-grow bg-white">
+          <h3 class="text-lg font-bold uppercase tracking-tight text-primary leading-tight line-clamp-2 mb-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
+          <div class="mt-auto pt-2 flex items-center justify-between">
+            <span class="text-xl font-black text-primary">${priceText}</span>
+            <i class="fas fa-arrow-right text-primary/40 transform group-hover:text-accent group-hover:translate-x-1.5 transition-all duration-300"></i>
           </div>
         </div>
       `;

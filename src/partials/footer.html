@@ -8,21 +8,27 @@
       <!-- Brand Column -->
       <div class="md:col-span-1">
         <a href="index.html" class="inline-block mb-5 opacity-90 hover:opacity-100 transition-opacity">
-          <img src="./assets/images/logo.webp" alt="MMC Central" width="140" height="40"
+          <img id="footerLogo" src="./assets/images/logo.webp" alt="MMC Central" width="140" height="40"
             class="h-9 w-auto brightness-0 invert" />
         </a>
-        <p class="text-secondary/50 text-sm leading-relaxed max-w-xs">
+        <p id="footerAboutText" class="text-secondary/50 text-sm leading-relaxed max-w-xs">
           Premium bakery & catering. Authentic ingredients, bold flavors — crafted to make a statement.
         </p>
         <!-- Social -->
         <div class="flex items-center gap-5 mt-6 text-lg text-secondary/50">
-          <a href="#" class="hover:text-accent transition-colors" aria-label="Instagram">
+          <a id="footerInstagramLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="hover:text-accent transition-colors" aria-label="Twitter">
+          <a id="footerFacebookLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a id="footerTwitterLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="hover:text-accent transition-colors" aria-label="WhatsApp">
+          <a id="footerTiktokLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a id="footerWhatsappLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
         </div>
@@ -40,7 +46,27 @@
 
       <!-- Contact Column -->
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Order</h4>
+        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Contact</h4>
+        <ul class="space-y-3 mb-6">
+          <li id="footerEmailItem" class="hidden">
+            <a id="footerContactEmail" href="#" class="flex items-center gap-2 text-secondary/60 hover:text-accent transition-colors text-sm">
+              <i class="fas fa-envelope text-accent/60 w-4 text-center"></i>
+              <span>—</span>
+            </a>
+          </li>
+          <li id="footerPhoneItem" class="hidden">
+            <a id="footerContactPhone" href="#" class="flex items-center gap-2 text-secondary/60 hover:text-accent transition-colors text-sm">
+              <i class="fas fa-phone text-accent/60 w-4 text-center"></i>
+              <span>—</span>
+            </a>
+          </li>
+          <li id="footerAddressItem" class="hidden">
+            <p id="footerAddress" class="flex items-start gap-2 text-secondary/50 text-sm">
+              <i class="fas fa-location-dot text-accent/60 w-4 text-center mt-0.5"></i>
+              <span>—</span>
+            </p>
+          </li>
+        </ul>
         <a href="#contact"
           class="inline-flex items-center gap-2 border border-accent/40 text-accent text-sm font-bold uppercase tracking-widest px-6 py-3 hover:bg-accent hover:text-secondary transition-all duration-300 group">
           Place an Order
@@ -52,10 +78,10 @@
     <!-- Bottom Bar -->
     <div class="border-t border-secondary/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary/40 uppercase tracking-[0.15em]">
       <div>
-        &copy; <script>document.write(new Date().getFullYear())</script> MMC Central. All rights reserved.
+        &copy; <script>document.write(new Date().getFullYear())</script> <span id="footerSiteName">MMC Central</span>. All rights reserved.
       </div>
       <div>
-        Powered by <a href="https://wa.me/201026053956" target="_blank" rel="noopener noreferrer"
+        Powered by <a href="https://mohammedgomaa.dev" target="_blank" rel="noopener noreferrer"
           class="font-bold hover:text-accent transition-colors">M|G Team</a>
       </div>
     </div>

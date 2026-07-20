@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
+  <base href="/admin/">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <title>LOUD. | Admin Dashboard</title>
+  <title>MMC Central | Admin Dashboard</title>
   <!-- Google Font (Cairo) -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -35,9 +36,7 @@
   <!-- Sidebar -->
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
-      <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-accent">.</span>
-      </h1>
+      <img src="../assets/images/logo.webp" alt="MMC Central" class="h-8 w-auto brightness-0 invert" />
     </div>
     
     <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
@@ -52,7 +51,10 @@
       </a>
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
-        <span class="ml-auto bg-accent text-primary text-[10px] px-2 py-0.5 rounded-full">3</span>
+        <span data-unread-messages class="ml-auto bg-accent text-primary text-[10px] px-2 py-0.5 rounded-full hidden">0</span>
+      </a>
+      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-handshake w-5 text-center"></i> Partners
       </a>
       <a href="settings.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors mt-auto">
         <i class="fas fa-cog w-5 text-center"></i> Settings
@@ -60,7 +62,7 @@
     </nav>
     
     <div class="p-4 border-t border-secondary/10">
-      <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
+      <a href="#" data-admin-logout class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
         <i class="fas fa-sign-out-alt w-5 text-center"></i> Logout
       </a>
     </div>
@@ -84,12 +86,12 @@
           <i class="fas fa-external-link-alt"></i> View Site
         </a>
         <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
-          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg" data-admin-avatar>
             A
           </div>
           <div class="hidden md:block">
-            <p class="text-sm font-bold uppercase tracking-wider text-primary leading-tight">Admin User</p>
-            <p class="text-xs text-primary/50">admin@loud.com</p>
+            <p class="text-sm font-bold uppercase tracking-wider text-primary leading-tight" data-admin-name>Admin User</p>
+            <p class="text-xs text-primary/50" data-admin-email>admin@mmccentral.com</p>
           </div>
         </div>
       </div>
@@ -108,7 +110,7 @@
           </div>
           <div>
             <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Total Categories</p>
-            <h3 class="text-3xl font-bold text-primary">8</h3>
+            <h3 id="statCategories" class="text-3xl font-bold text-primary">—</h3>
           </div>
         </div>
         
@@ -119,7 +121,7 @@
           </div>
           <div>
             <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Total Products</p>
-            <h3 class="text-3xl font-bold text-primary">42</h3>
+            <h3 id="statProducts" class="text-3xl font-bold text-primary">—</h3>
           </div>
         </div>
 
@@ -130,18 +132,18 @@
           </div>
           <div>
             <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">New Messages</p>
-            <h3 class="text-3xl font-bold text-primary">3</h3>
+            <h3 id="statMessages" class="text-3xl font-bold text-primary">—</h3>
           </div>
         </div>
 
         <!-- Stat Card 4 -->
         <div class="bg-white p-6 border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-6 group hover:-translate-y-1 transition-transform">
           <div class="w-14 h-14 rounded-full bg-primary text-accent flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-primary transition-colors">
-            <i class="fas fa-eye"></i>
+            <i class="fas fa-globe"></i>
           </div>
           <div>
-            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Site Visits</p>
-            <h3 class="text-3xl font-bold text-primary">1,204</h3>
+            <p class="text-xs font-bold uppercase tracking-widest text-primary/50 mb-1">Live Site</p>
+            <a href="../index.html" target="_blank" class="text-sm font-bold uppercase tracking-widest text-accent hover:text-primary transition-colors">Open Website</a>
           </div>
         </div>
       </div>
@@ -167,30 +169,9 @@
                     <th class="p-4 font-bold uppercase tracking-widest text-xs whitespace-nowrap">Action</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-primary/10">
-                  <tr class="hover:bg-adminbg transition-colors bg-accent/5">
-                    <td class="p-4 text-sm font-bold text-primary">Ahmed Ali</td>
-                    <td class="p-4 text-sm text-primary/70">ahmed@example.com</td>
-                    <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
-                    <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-adminbg transition-colors bg-accent/5">
-                    <td class="p-4 text-sm font-bold text-primary">Sarah Smith</td>
-                    <td class="p-4 text-sm text-primary/70">sarah@example.com</td>
-                    <td class="p-4 text-sm text-primary/70">Oct 24, 2026</td>
-                    <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-adminbg transition-colors">
-                    <td class="p-4 text-sm font-bold text-primary">John Doe</td>
-                    <td class="p-4 text-sm text-primary/70">john@example.com</td>
-                    <td class="p-4 text-sm text-primary/70">Oct 23, 2026</td>
-                    <td class="p-4">
-                      <button class="text-xs font-bold uppercase tracking-widest bg-primary text-secondary px-3 py-1 hover:bg-accent hover:text-primary transition-colors">Read</button>
-                    </td>
+                <tbody id="recentMessagesBody" class="divide-y divide-primary/10">
+                  <tr>
+                    <td colspan="4" class="p-6 text-center text-sm text-primary/60">Loading messages...</td>
                   </tr>
                 </tbody>
               </table>
@@ -233,34 +214,12 @@
   <!-- Mobile Sidebar Overlay -->
   <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
 
-  <!-- Mobile Sidebar Clone (Simplified JS behavior for template) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const sidebar = document.querySelector('aside');
-      const overlay = document.getElementById('mobileSidebarOverlay');
-      
-      let isMobileMenuOpen = false;
-
-      function toggleMobileMenu() {
-        isMobileMenuOpen = !isMobileMenuOpen;
-        if(isMobileMenuOpen) {
-          sidebar.classList.remove('hidden');
-          sidebar.classList.add('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.remove('hidden');
-          setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-        } else {
-          sidebar.classList.add('hidden');
-          sidebar.classList.remove('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.add('opacity-0');
-          setTimeout(() => overlay.classList.add('hidden'), 300);
-        }
-      }
-
-      if(mobileBtn) mobileBtn.addEventListener('click', toggleMobileMenu);
-      if(overlay) overlay.addEventListener('click', toggleMobileMenu);
-    });
-  </script>
+  <!-- Mobile Sidebar Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../src/js/supabase-config.js"></script>
+  <script src="../src/js/supabase-client.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-dashboard.js"></script>
 </body>
 </html>
 

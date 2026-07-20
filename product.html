@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
 
 <head>
@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <title>MMC Central - Product Details</title>
   <meta name="theme-color" content="#2E2B29" />
-  <link rel="shortcut icon" href="./assets/icons/logo-v2.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
+  <!-- Preload Critical Assets -->
+  <link rel="preload" as="image" href="./assets/images/logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="./assets/images/favicon.webp" type="image/webp" fetchpriority="high">
   
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +25,17 @@
         theme: {
           extend: {
             colors: {
-              primary:   '#2E2B29',
+              /* ===== Brand Palette ===== */
+              'brand-black': '#2E2B29', /* PANTONE Black C  */
+              'brand-terra': '#CC6B48', /* PANTONE 7618 C   */
+              'brand-brown': '#926346', /* PANTONE 876 C    */
+              'brand-silver': '#DED7D0', /* PANTONE 7604 C   */
+              'brand-cream': '#F4F2ED', /* PANTONE 663 C    */
+              /* ===== Semantic Aliases ===== */
+              primary: '#2E2B29',
               secondary: '#F4F2ED',
-              accent:    '#CC6B48',
+              accent: '#CC6B48',
+              muted: '#DED7D0',
             },
             fontFamily: {
               sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
@@ -48,7 +59,8 @@
   </script>
   
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preload" as="style" href="./src/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./src/css/all.min.css"></noscript>
   
   <!-- AOS CSS -->
   <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -64,7 +76,7 @@
   <div data-include="src/partials/header.html"></div>
 
   <!-- ===== START MAIN ===== -->
-  <main role="main" class="pt-[64px] min-h-screen flex flex-col bg-secondary relative">
+  <main role="main" class="pt-[67px] min-h-screen flex flex-col bg-secondary relative">
     
     <!-- Loading State -->
     <div id="loadingState" class="fixed inset-0 z-50 bg-secondary flex flex-col items-center justify-center transition-opacity duration-500">
@@ -73,21 +85,21 @@
     </div>
 
     <!-- Error State -->
-    <div id="errorState" class="hidden container mx-auto px-4 py-32 text-center flex-grow flex flex-col items-center justify-center">
+    <div id="errorState" class="hidden container mx-auto px-4 py-32 text-center flex-grow items-center justify-center">
       <h1 class="text-6xl md:text-8xl font-black uppercase text-primary mb-6">404</h1>
       <p class="text-xl md:text-2xl text-primary/70 uppercase tracking-widest mb-10">Product not found on the table.</p>
-      <a href="index.html#menu" class="bg-primary text-secondary hover:bg-accent hover:text-primary transition-colors font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary">
+      <a href="index#menu" class="bg-primary text-secondary hover:bg-accent hover:text-primary transition-colors font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary">
         Back to Menu
       </a>
     </div>
 
     <!-- Main Content Container -->
-    <div id="productContainer" class="hidden flex-grow flex flex-col lg:flex-row w-full min-h-[calc(100vh-64px)]">
+    <div id="productContainer" class="hidden flex-grow w-full min-h-[calc(100vh-67px)]">
       
       <!-- Left Column: Sticky Image -->
-      <div class="lg:w-1/2 relative lg:sticky lg:top-[64px] h-[50vh] lg:h-[calc(100vh-64px)] bg-primary/5 flex-shrink-0 border-b-4 lg:border-b-0 lg:border-r-4 border-primary">
+      <div class="lg:w-1/2 relative lg:sticky lg:top-[67px] h-[50vh] lg:h-[calc(100vh-67px)] bg-primary/5 flex-shrink-0 border-b-4 lg:border-b-0 lg:border-r-4 border-primary">
         <div class="absolute top-4 left-4 z-20">
-          <a id="backBtn" href="#" class="inline-flex items-center justify-center w-12 h-12 bg-white text-primary rounded-full hover:bg-accent hover:scale-110 transition-all shadow-lg border-2 border-primary group">
+          <a id="backBtn" href="#" class="inline-flex items-center justify-center w-12 h-12 bg-secondary text-primary border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_#CC6B48] hover:text-accent transition-all duration-300 group">
             <i class="fas fa-arrow-left transform group-hover:-translate-x-1 transition-transform"></i>
           </a>
         </div>
@@ -97,8 +109,25 @@
         </div>
 
         <div id="productImageWrapper" class="w-full h-full relative overflow-hidden group">
-          <img id="productImage" src="" alt="Product Image" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+          <!-- Main image -->
+          <img id="productImage" src="" alt="Product Image"
+               class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105">
+          <!-- Hover image (hidden until loaded) -->
+          <img id="productHoverImage" src="" alt="Product Image Hover"
+               class="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105 hidden">
           <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent lg:hidden pointer-events-none"></div>
+        </div>
+
+        <!-- Image toggle thumbnails (shown only when hover image exists) -->
+        <div id="imageThumbnailBar" class="hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-20 gap-2">
+          <button id="thumbMain" type="button"
+            class="w-14 h-14 border-2 border-secondary overflow-hidden shadow-[2px_2px_0_0_#CC6B48] opacity-100 transition-opacity">
+            <img id="thumbMainImg" src="" alt="Main" class="w-full h-full object-cover">
+          </button>
+          <button id="thumbHover" type="button"
+            class="w-14 h-14 border-2 border-secondary/50 overflow-hidden shadow-[2px_2px_0_0_#CC6B48] opacity-60 transition-opacity">
+            <img id="thumbHoverImg" src="" alt="Hover" class="w-full h-full object-cover">
+          </button>
         </div>
       </div>
 
@@ -107,7 +136,7 @@
         
         <!-- Breadcrumbs -->
         <div class="flex items-center text-sm font-bold uppercase tracking-[0.15em] text-primary/50 mb-8" data-aos="fade-up">
-          <a href="index.html#menu" class="hover:text-primary transition-colors">Menu</a>
+          <a href="index#menu" class="hover:text-primary transition-colors">Menu</a>
           <span class="mx-2">/</span>
           <a id="breadcrumbCategory" href="#" class="hover:text-primary transition-colors">Category</a>
         </div>
@@ -140,12 +169,52 @@
           </p>
         </div>
 
-        <!-- Action Button (Contact) -->
+        <!-- Cost & Product Details (hidden when no data) -->
+        <div id="productDetailsWrapper" class="hidden mb-12" data-aos="fade-up" data-aos-delay="350">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4 border-b-2 border-primary/10 pb-2">Product Details</p>
+          <dl class="divide-y divide-primary/5">
+
+            <div id="detailPriceWithoutPackRow" class="hidden items-center justify-between py-3">
+              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Price Without Packing</dt>
+              <dd id="detailPriceWithoutPack" class="font-black text-primary text-sm">—</dd>
+            </div>
+
+            <div id="detailFoodCostRow" class="hidden items-center justify-between py-3">
+              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Food Cost</dt>
+              <dd id="detailFoodCost" class="font-black text-primary text-sm">—</dd>
+            </div>
+
+            <div id="detailPackagingCostRow" class="hidden items-center justify-between py-3">
+              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Packaging Cost</dt>
+              <dd id="detailPackagingCost" class="font-black text-primary text-sm">—</dd>
+            </div>
+
+            <div id="detailCogsRow" class="hidden items-center justify-between py-3">
+              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">COGS %</dt>
+              <dd id="detailCogs" class="font-black text-primary text-sm">—</dd>
+            </div>
+
+            <div id="detailMarginRow" class="hidden items-center justify-between py-3">
+              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Margin %</dt>
+              <dd id="detailMargin" class="font-black text-primary text-sm">—</dd>
+            </div>
+
+          </dl>
+        </div>
+
+        <!-- Comments / Notes (hidden when empty) -->
+        <div id="productCommentsWrapper" class="hidden mb-12" data-aos="fade-up" data-aos-delay="370">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4 border-b-2 border-primary/10 pb-2">Notes</p>
+          <p id="productComments" class="text-base text-primary/70 leading-relaxed font-medium italic"></p>
+        </div>
+
+        <!-- Action Button (Contact via WhatsApp) -->
         <div class="mt-auto pt-8" data-aos="fade-up" data-aos-delay="400">
-          <a href="index.html#contact" class="flex items-center justify-center w-full bg-primary text-secondary hover:bg-accent hover:text-primary transition-all duration-300 font-black uppercase text-xl md:text-2xl tracking-[0.15em] py-6 border-2 border-primary hover:shadow-[8px_8px_0_0_#2E2B29] active:translate-y-1 active:shadow-[2px_2px_0_0_#2E2B29]">
-            Contact Us
+          <a id="whatsappCtaBtn" href="#" target="_blank" rel="noopener noreferrer" class="product-whatsapp-cta flex items-center justify-center gap-3 w-full bg-primary text-secondary hover:bg-accent hover:text-primary transition-all duration-300 font-black uppercase text-xl md:text-2xl tracking-[0.15em] py-6 border-2 border-primary hover:shadow-[8px_8px_0_0_#2E2B29] active:translate-y-1 active:shadow-[2px_2px_0_0_#2E2B29] group">
+            <i class="fab fa-whatsapp text-2xl transform group-hover:scale-110 transition-transform"></i>
+            Order via WhatsApp
           </a>
-          <p class="text-center text-primary/50 text-xs font-bold uppercase tracking-widest mt-4">Available via Contact Only</p>
+          <p class="text-center text-primary/50 text-xs font-bold uppercase tracking-widest mt-4">Order request is processed directly via WhatsApp</p>
         </div>
 
       </div>
@@ -194,6 +263,11 @@
     </style>
   </noscript>
   
+  <!-- Supabase -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="./src/js/supabase-config.js"></script>
+  <script defer src="./src/js/supabase-client.js"></script>
+  <script defer src="./src/js/menu-api.js"></script>
   <!-- Main JS (Includes HTML loader and mobile menu) -->
   <script defer src="./src/js/main.js"></script>
   <!-- Product Specific JS -->

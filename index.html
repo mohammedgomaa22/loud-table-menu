@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <title>MMC Central</title>
-  <meta name="description" content="" />
+  <title id="siteTitle">MMC Central</title>
+  <meta id="siteMetaDescription" name="description" content="" />
   <meta name="keywords" content="" />
   <meta name="theme-color" content="#6b6e55" />
   <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
@@ -15,6 +15,7 @@
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://vsabhdkwoatqzorgtygn.supabase.co">
   <!-- Google Font (Cairo) with font-display swap -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Tailwind CDN (recommended to replace with compiled CSS for production) -->
@@ -111,7 +112,7 @@
     <section class="relative min-h-[92vh] flex items-center justify-start overflow-hidden bg-primary">
       <!-- Background Image with proper overlay -->
       <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
+        <img id="heroBgImage" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
           alt="Fresh Bakery" class="w-full h-full object-cover opacity-60" />
         <!-- Warm gradient overlay matching brand palette -->
         <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/75 to-primary/20"></div>
@@ -216,11 +217,11 @@
             </div>
             <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6">Crafted with <span
                 class="text-accent">Purpose.</span></h2>
-            <p class="text-secondary/70 text-lg mb-6 leading-relaxed">
+            <p id="aboutTextPrimary" class="text-secondary/70 text-lg mb-6 leading-relaxed">
               We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors.
               From our freshly baked croissants to our vibrant pastries, every item is crafted to make a statement.
             </p>
-            <p class="text-secondary/70 text-lg mb-10 leading-relaxed">
+            <p id="aboutTextAddress" class="text-secondary/70 text-lg mb-10 leading-relaxed">
               Based in Riyadh, we deliver the finest bakery items right to your door — perfectly packaged
               and ready to be the center of attention.
             </p>
@@ -284,31 +285,11 @@
 
 
     <!-- PARTNERS SECTION -->
-    <section class="py-20 bg-primary border-y border-secondary/10 overflow-hidden">
+    <section id="partnersSection" class="py-20 bg-primary border-y border-secondary/10 overflow-hidden hidden">
 
       <div class="marquee-container" data-aos="fade-in">
-        <div class="marquee-content">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"
-            class="partner-logo">
-        </div>
-        <div class="marquee-content">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
-            class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="partner-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"
-            class="partner-logo">
-        </div>
+        <div id="partnersMarqueeA" class="marquee-content"></div>
+        <div id="partnersMarqueeB" class="marquee-content" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -386,6 +367,11 @@
   </noscript>
   <!-- Swiper JS Initialization -->
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Supabase -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="./src/js/supabase-config.js"></script>
+  <script defer src="./src/js/supabase-client.js"></script>
+  <script defer src="./src/js/menu-api.js"></script>
   <!-- Main JS (vanilla, no modules) -->
   <script defer src="./src/js/main.js"></script>
   <!-- ===== END SCRIPTS ===== -->

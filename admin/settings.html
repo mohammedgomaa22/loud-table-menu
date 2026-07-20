@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
+  <base href="/admin/">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <title>LOUD. | Settings</title>
+  <title>MMC Central | Settings</title>
   <!-- Google Font (Cairo) -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -35,9 +36,7 @@
   <!-- Sidebar -->
   <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
     <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
-      <h1 class="text-3xl font-bold uppercase tracking-tighter">
-        LOUD<span class="text-accent">.</span>
-      </h1>
+      <img src="../assets/images/logo.webp" alt="MMC Central" class="h-8 w-auto brightness-0 invert" />
     </div>
     
     <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
@@ -53,13 +52,16 @@
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
       </a>
+      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-handshake w-5 text-center"></i> Partners
+      </a>
       <a href="settings.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors mt-auto">
         <i class="fas fa-cog w-5 text-center"></i> Settings
       </a>
     </nav>
     
     <div class="p-4 border-t border-secondary/10">
-      <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
+      <a href="#" data-admin-logout class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
         <i class="fas fa-sign-out-alt w-5 text-center"></i> Logout
       </a>
     </div>
@@ -98,7 +100,7 @@
         </div>
 
         <!-- Settings Form -->
-        <form class="space-y-8">
+        <form id="settingsForm" class="space-y-8">
           
           <!-- Basic Info Section -->
           <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
@@ -107,22 +109,32 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="md:col-span-2">
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Website Title</label>
-                <input type="text" value="MMC Central" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <input type="text" id="websiteTitle" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
               <div>
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Email</label>
-                <input type="email" value="contact@loud.com" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <label for="contactEmail" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Email</label>
+                <input type="email" id="contactEmail" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div>
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Phone</label>
-                <input type="tel" value="+966 50 123 4567" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <label for="contactPhone" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Phone</label>
+                <input type="tel" id="contactPhone" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div class="md:col-span-2">
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">About Text (Footer/Hero)</label>
-                <textarea rows="3" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none">We believe in food that speaks for itself. No shortcuts, just authentic ingredients and bold flavors.</textarea>
+                <label for="metaDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Meta Description <span class="text-primary/40 normal-case font-normal">(SEO — shown in search results)</span></label>
+                <textarea id="metaDescription" rows="2" maxlength="160" placeholder="Short description of the website for search engines..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="aboutText" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">About Text</label>
+                <textarea id="aboutText" rows="3" placeholder="We believe in food that speaks for itself..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="addressText" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Address / Delivery Info</label>
+                <input type="text" id="addressText" placeholder="Based in Riyadh, we deliver..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
             </div>
           </div>
@@ -131,21 +143,44 @@
           <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
             <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Branding & Images</h4>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
               
               <!-- Logo Upload -->
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-4 text-primary">Website Logo</label>
-                <div class="flex items-center gap-4 mb-4">
-                  <div class="w-20 h-20 bg-primary flex items-center justify-center p-2 border border-primary/20">
-                    <img src="../assets/icons/logo-v2.svg" alt="Current Logo" class="max-w-full max-h-full brightness-0 invert">
+                <div class="flex flex-col gap-4">
+                  <div class="w-full h-24 bg-primary flex items-center justify-center p-4 border-2 border-dashed border-primary/20 relative group">
+                    <img id="logoPreview" src="../assets/images/logo.webp" alt="Current Logo" class="max-w-full max-h-full brightness-0 invert object-contain">
                   </div>
                   <div>
-                    <button type="button" class="bg-secondary text-primary px-4 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors mb-2 block relative overflow-hidden">
-                      <span class="relative z-10">Change Logo</span>
-                      <input type="file" class="absolute inset-0 opacity-0 cursor-pointer z-20">
-                    </button>
-                    <p class="text-[10px] text-primary/50">SVG or PNG recommended. Max 2MB.</p>
+                    <div class="flex gap-2 mb-2">
+                      <button type="button" class="bg-secondary text-primary px-3 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors relative overflow-hidden flex-1 text-center">
+                        <span class="relative z-10">Upload File</span>
+                        <input type="file" id="logoFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
+                      </button>
+                    </div>
+                    <input type="text" id="logoUrl" placeholder="Or enter logo URL..." class="w-full bg-secondary border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
+                    <p class="text-[10px] text-primary/50 mt-1">SVG, WebP or PNG recommended. Max 2MB.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Favicon Upload -->
+              <div>
+                <label class="block font-bold uppercase tracking-widest text-xs mb-4 text-primary">Website Favicon</label>
+                <div class="flex flex-col gap-4">
+                  <div class="w-full h-24 bg-secondary flex items-center justify-center p-4 border-2 border-dashed border-primary/20 relative group">
+                    <img id="faviconPreview" src="../assets/images/favicon.webp" alt="Current Favicon" class="w-12 h-12 object-contain">
+                  </div>
+                  <div>
+                    <div class="flex gap-2 mb-2">
+                      <button type="button" class="bg-secondary text-primary px-3 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors relative overflow-hidden flex-1 text-center">
+                        <span class="relative z-10">Upload File</span>
+                        <input type="file" id="faviconFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
+                      </button>
+                    </div>
+                    <input type="text" id="faviconUrl" placeholder="Or enter favicon URL..." class="w-full bg-secondary border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
+                    <p class="text-[10px] text-primary/50 mt-1">WebP, PNG or ICO recommended. Max 1MB.</p>
                   </div>
                 </div>
               </div>
@@ -153,16 +188,19 @@
               <!-- Hero Image Upload -->
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-4 text-primary">Hero Background Image</label>
-                <div class="flex items-center gap-4 mb-4">
-                  <div class="w-32 h-20 bg-secondary flex items-center justify-center border border-primary/20 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=200&auto=format&fit=crop" alt="Hero" class="w-full h-full object-cover">
+                <div class="flex flex-col gap-4">
+                  <div class="w-full h-24 bg-secondary flex items-center justify-center border-2 border-dashed border-primary/20 overflow-hidden relative group">
+                    <img id="heroPreview" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=200&auto=format&fit=crop" alt="Hero" class="w-full h-full object-cover">
                   </div>
                   <div>
-                    <button type="button" class="bg-secondary text-primary px-4 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors mb-2 block relative overflow-hidden">
-                      <span class="relative z-10">Update Image</span>
-                      <input type="file" class="absolute inset-0 opacity-0 cursor-pointer z-20">
-                    </button>
-                    <p class="text-[10px] text-primary/50">High-res JPG recommended (1920x1080).</p>
+                    <div class="flex gap-2 mb-2">
+                      <button type="button" class="bg-secondary text-primary px-3 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors relative overflow-hidden flex-1 text-center">
+                        <span class="relative z-10">Upload File</span>
+                        <input type="file" id="heroFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
+                      </button>
+                    </div>
+                    <input type="text" id="heroImageUrl" placeholder="Or enter image URL..." class="w-full bg-secondary border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
+                    <p class="text-[10px] text-primary/50 mt-1">High-res JPG or WebP. Max 5MB.</p>
                   </div>
                 </div>
               </div>
@@ -177,29 +215,39 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-instagram mr-2"></i>Instagram</label>
-                <input type="url" placeholder="https://instagram.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-              
-              <div>
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-twitter mr-2"></i>Twitter / X</label>
-                <input type="url" placeholder="https://twitter.com/..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <input type="url" id="instagramUrl" placeholder="https://instagram.com/mmccentral" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
               <div>
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-tiktok mr-2"></i>TikTok</label>
-                <input type="url" placeholder="https://tiktok.com/@..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <label for="facebookUrl" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-facebook mr-2"></i>Facebook</label>
+                <input type="url" id="facebookUrl" placeholder="https://facebook.com/mmccentral" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
               <div>
-                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-whatsapp mr-2"></i>WhatsApp Number</label>
-                <input type="text" placeholder="+966..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                <label for="twitterUrl" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-twitter mr-2"></i>Twitter / X</label>
+                <input type="url" id="twitterUrl" placeholder="https://twitter.com/mmccentral" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div>
+                <label for="tiktokUrl" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-tiktok mr-2"></i>TikTok</label>
+                <input type="url" id="tiktokUrl" placeholder="https://tiktok.com/@mmccentral" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+              
+              <div>
+                <label for="whatsappNumber" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary"><i class="fab fa-whatsapp mr-2"></i>WhatsApp Number</label>
+                <input type="text" id="whatsappNumber" placeholder="9665..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="whatsappMessage" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">WhatsApp Default Message</label>
+                <textarea id="whatsappMessage" rows="2" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
               </div>
             </div>
           </div>
 
           <!-- Save Actions -->
           <div class="flex justify-end gap-4 pb-10">
-            <button type="button" class="bg-accent text-primary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-secondary transition-colors shadow-[6px_6px_0_0_#2E2B29]">
+            <button type="submit" id="saveSettingsBtn" class="bg-accent text-primary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-secondary transition-colors shadow-[6px_6px_0_0_#2E2B29]">
               Save All Changes
             </button>
           </div>
@@ -213,34 +261,11 @@
   <!-- Mobile Sidebar Overlay -->
   <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
 
-  <!-- Mobile Sidebar Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const sidebar = document.querySelector('aside');
-      const overlay = document.getElementById('mobileSidebarOverlay');
-      
-      let isMobileMenuOpen = false;
-
-      function toggleMobileMenu() {
-        isMobileMenuOpen = !isMobileMenuOpen;
-        if(isMobileMenuOpen) {
-          sidebar.classList.remove('hidden');
-          sidebar.classList.add('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.remove('hidden');
-          setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-        } else {
-          sidebar.classList.add('hidden');
-          sidebar.classList.remove('absolute', 'inset-y-0', 'left-0', 'z-50');
-          overlay.classList.add('opacity-0');
-          setTimeout(() => overlay.classList.add('hidden'), 300);
-        }
-      }
-
-      if(mobileBtn) mobileBtn.addEventListener('click', toggleMobileMenu);
-      if(overlay) overlay.addEventListener('click', toggleMobileMenu);
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../src/js/supabase-config.js"></script>
+  <script src="../src/js/supabase-client.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-settings.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,61 @@
+# Prevent Supabase Free-tier project pause due to inactivity.
+# Runs every 3 days and sends a lightweight authenticated REST request.
+#
+# Setup (one-time):
+# 1. Push this repo to GitHub
+# 2. Repo → Settings → Secrets and variables → Actions
+#    Add:
+#      SUPABASE_URL      = https://xxxx.supabase.co
+#      SUPABASE_ANON_KEY = your anon public key
+# 3. Actions → enable workflows if prompted
+#
+# Note: For real client production sites, prefer Supabase Pro
+# (paid projects do not pause). Keep-alive is a free-tier workaround.
+
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Every 3 days at 06:00 UTC
+    - cron: '0 6 */3 * *'
+  workflow_dispatch: # allow manual run from Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase (keep project awake)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL:-}" ] || [ -z "${SUPABASE_ANON_KEY:-}" ]; then
+            echo "::error::Missing secrets. Add SUPABASE_URL and SUPABASE_ANON_KEY in repo Settings → Secrets."
+            exit 1
+          fi
+
+          # Strip trailing slash
+          BASE="${SUPABASE_URL%/}"
+          ENDPOINT="${BASE}/rest/v1/site_settings?select=id&limit=1"
+
+          HTTP_CODE=$(curl -sS -o /tmp/sb-keepalive-body.txt -w "%{http_code}" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+            -H "Accept: application/json" \
+            "$ENDPOINT")
+
+          echo "HTTP status: ${HTTP_CODE}"
+          head -c 500 /tmp/sb-keepalive-body.txt || true
+          echo
+
+          # 2xx = project is awake and responding
+          # 404 can still mean project is up (table missing) — treat as success for keep-alive
+          if [[ "$HTTP_CODE" =~ ^2 ]] || [[ "$HTTP_CODE" == "404" ]]; then
+            echo "Keep-alive OK — project is responding."
+            exit 0
+          fi
+
+          echo "::warning::Unexpected status ${HTTP_CODE}. Project may be paused or misconfigured."
+          exit 1

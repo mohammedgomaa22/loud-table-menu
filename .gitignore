@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+debug-*.log
 
 Project_Files&Data
 node_modules
@@ -24,3 +25,13 @@ tailwind.config.js
 *.njsproj
 *.sln
 *.sw?
+
+# Cursor local agent/editor state (not needed on GitHub)
+.cursor/
+
+# Local env / secrets (never commit service_role)
+.env
+.env.*
+!.env.example
+*service_role*
+
