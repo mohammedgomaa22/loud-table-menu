@@ -1,8 +1,20 @@
 /* ========== GLOBAL CONFIGURATIONS ========== */
 const MMC_CONFIG = {
   whatsappNumber: "966500000000", // Replace with client's Riyadh phone number (with country code, e.g., 9665XXXXXXXX)
-  whatsappMessage: "Hello MMC Central, I would like to inquire about your catering/menu services."
+  whatsappMessage: "Hello MMC Central, I would like to inquire about your catering/menu services.",
+  currency: 'KWD',
+  showPrices: false // set true when ready to display selling prices on the public site
 };
+
+function formatMoney(amount) {
+  if (amount == null || amount === '') return null;
+  return `${MMC_CONFIG.currency} ${Number(amount).toFixed(3)}`;
+}
+
+function publicPriceText(amount) {
+  if (!MMC_CONFIG.showPrices) return null;
+  return formatMoney(amount) || 'Price on ask';
+}
 
 /* ========== THEMED IMAGE FALLBACK POOL ========== */
 function getProductImage(product, categorySlug) {

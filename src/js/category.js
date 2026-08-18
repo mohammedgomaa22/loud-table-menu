@@ -89,8 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const soldOutBadge = !isAvailable ? 
         `<div class="absolute top-3 right-3 bg-primary text-secondary font-black text-[10px] uppercase px-3 py-1.5 tracking-[0.15em] border-2 border-secondary shadow-[3px_3px_0_0_#CC6B48] z-20">SOLD OUT</div>` : '';
 
-      // Format Price
-      const priceText = product.price != null ? `BD ${Number(product.price).toFixed(3)}` : 'Price on ask';
+      const priceText = publicPriceText(product.price);
 
       // Themed images (using shared fallback engine)
       const img1 = getProductImage(product, category.slug);
@@ -121,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           <!-- Price + CTA -->
           <div class="mt-auto pt-3 border-t border-primary/8 flex items-center justify-between">
-            <span class="text-xl font-black text-primary">${priceText}</span>
+            ${priceText ? `<span class="text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
             <span class="text-[10px] font-bold uppercase tracking-widest text-primary/50 group-hover:text-accent transition-colors flex items-center gap-1.5">
               View <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform duration-300"></i>
             </span>

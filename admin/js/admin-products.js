@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <td class="p-4">${imgCell}</td>
           <td class="p-4 font-bold text-primary text-sm">${escapeHtml(product.name)}</td>
           <td class="p-4 text-sm text-primary/70">${escapeHtml(product.categories?.name || '')}</td>
-          <td class="p-4 text-sm text-primary text-right font-bold">${product.price != null ? `BD ${Number(product.price).toFixed(3)}` : '—'}</td>
+          <td class="p-4 text-sm text-primary text-right font-bold">${product.price != null ? `KWD ${Number(product.price).toFixed(3)}` : '—'}</td>
           <td class="p-4 text-center">${status}</td>
           <td class="p-4 text-right">
             <div class="flex justify-end gap-2">

@@ -67,8 +67,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.title = `MMC Central - ${product.name}`;
     document.getElementById('productName').textContent = product.name;
 
-    const priceText = product.price != null ? `BD ${Number(product.price).toFixed(3)}` : 'Price on ask';
-    document.getElementById('productPrice').textContent = priceText;
+    const priceText = publicPriceText(product.price);
+    const priceSection = document.getElementById('productPriceSection');
+    if (priceText) {
+      document.getElementById('productPrice').textContent = priceText;
+      priceSection?.classList.remove('hidden');
+    } else {
+      priceSection?.classList.add('hidden');
+    }
 
     // Weight
     const weightWrapper = document.getElementById('productWeightWrapper');
@@ -146,22 +152,26 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // Cost & Product Details section
-    _populateDetail('detailPriceWithoutPackRow', 'detailPriceWithoutPack',
-      product.priceWithoutPackaging != null ? `BD ${Number(product.priceWithoutPackaging).toFixed(3)}` : null);
-    _populateDetail('detailFoodCostRow', 'detailFoodCost',
-      product.foodCost != null ? `BD ${Number(product.foodCost).toFixed(3)}` : null);
-    _populateDetail('detailPackagingCostRow', 'detailPackagingCost',
-      product.packagingCost != null ? `BD ${Number(product.packagingCost).toFixed(3)}` : null);
-    _populateDetail('detailCogsRow', 'detailCogs',
-      product.cogsPercent != null ? `${Number(product.cogsPercent).toFixed(1)}%` : null);
-    _populateDetail('detailMarginRow', 'detailMargin',
-      product.marginPercent != null ? `${Number(product.marginPercent).toFixed(1)}%` : null);
-
-    const anyDetail = [product.priceWithoutPackaging, product.foodCost, product.packagingCost,
-                       product.cogsPercent, product.marginPercent].some(v => v != null);
+    // Cost & Product Details — public site only when prices are enabled
     const detailsWrapper = document.getElementById('productDetailsWrapper');
-    if (detailsWrapper && anyDetail) detailsWrapper.classList.remove('hidden');
+    if (MMC_CONFIG.showPrices) {
+      _populateDetail('detailPriceWithoutPackRow', 'detailPriceWithoutPack',
+        formatMoney(product.priceWithoutPackaging));
+      _populateDetail('detailFoodCostRow', 'detailFoodCost',
+        formatMoney(product.foodCost));
+      _populateDetail('detailPackagingCostRow', 'detailPackagingCost',
+        formatMoney(product.packagingCost));
+      _populateDetail('detailCogsRow', 'detailCogs',
+        product.cogsPercent != null ? `${Number(product.cogsPercent).toFixed(1)}%` : null);
+      _populateDetail('detailMarginRow', 'detailMargin',
+        product.marginPercent != null ? `${Number(product.marginPercent).toFixed(1)}%` : null);
+
+      const anyDetail = [product.priceWithoutPackaging, product.foodCost, product.packagingCost,
+                         product.cogsPercent, product.marginPercent].some(v => v != null);
+      if (detailsWrapper && anyDetail) detailsWrapper.classList.remove('hidden');
+    } else if (detailsWrapper) {
+      detailsWrapper.classList.add('hidden');
+    }
 
     // Comments / Notes
     const commentsWrapper = document.getElementById('productCommentsWrapper');
@@ -173,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Set up WhatsApp Order button link
     const whatsappCtaBtn = document.getElementById('whatsappCtaBtn');
     if (whatsappCtaBtn) {
-      const orderMessage = `Hello MMC Central, I would like to order the product: "${product.name}"${product.weight ? ` (${product.weight})` : ''} - Price: ${priceText}`;
+      const orderMessage = `Hello MMC Central, I would like to order the product: "${product.name}"${product.weight ? ` (${product.weight})` : ''}${priceText ? ` - Price: ${priceText}` : ''}`;
       whatsappCtaBtn.href = `https://wa.me/${MMC_CONFIG.whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
     }
   }
@@ -222,7 +232,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const soldOutBadge = !isAvailable ? 
         `<div class="absolute top-2 right-2 bg-primary text-secondary font-black text-[10px] uppercase px-2.5 py-1 tracking-[0.1em] border border-secondary shadow-[2px_2px_0_0_#CC6B48] z-20">SOLD OUT</div>` : '';
 
-      const priceText = product.price != null ? `BD ${Number(product.price).toFixed(3)}` : 'Price on ask';
+      const priceText = publicPriceText(product.price);
 
       // Themed image (using shared fallback engine)
       const img1 = getProductImage(product, category.slug);
@@ -235,7 +245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="p-4 flex flex-col flex-grow bg-white">
           <h3 class="text-lg font-bold uppercase tracking-tight text-primary leading-tight line-clamp-2 mb-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
           <div class="mt-auto pt-2 flex items-center justify-between">
-            <span class="text-xl font-black text-primary">${priceText}</span>
+            ${priceText ? `<span class="text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
             <i class="fas fa-arrow-right text-primary/40 transform group-hover:text-accent group-hover:translate-x-1.5 transition-all duration-300"></i>
           </div>
         </div>
