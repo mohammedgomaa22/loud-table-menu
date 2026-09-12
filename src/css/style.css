@@ -104,6 +104,23 @@ body {
   background: var(--secondary-color);
 }
 
+/* Unified button radius across the public site */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.whatsapp-float,
+.product-whatsapp-cta,
+#headerWhatsappBtn,
+#backBtn,
+#whatsappCtaBtn,
+a.inline-flex[class*="font-bold"][class*="px-"],
+a.flex[class*="font-bold"][class*="px-"][class*="bg-"],
+a[class*="bg-primary"][class*="font-bold"][class*="px-"],
+a[class*="bg-accent"][class*="font-bold"][class*="px-"] {
+  border-radius: 8px !important;
+}
+
 /* Scrollbar (webkit) */
 ::-webkit-scrollbar {
   width: 8px;

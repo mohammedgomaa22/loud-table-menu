@@ -322,25 +322,23 @@ async function loadMenuData() {
       const loadingAttr = index < 2 ? 'eager' : 'lazy';
 
       card.innerHTML = `
-        <div class="h-[400px] md:h-[450px] w-full bg-primary flex flex-col justify-between p-8 border-2 border-secondary hover:border-accent transition-colors relative overflow-hidden">
-          
-          <!-- Background Image & Overlay -->
-          <img src="${bgImage}" alt="${category.name}" loading="${loadingAttr}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-100">
-          <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent"></div>
-          
-          <div class="relative z-20 mt-auto">
-            <h3 class="text-secondary text-3xl md:text-4xl font-bold uppercase tracking-normal mb-4 group-hover:text-accent transition-colors leading-tight line-clamp-2 break-words">${category.name}</h3>
-            <div class="w-12 h-1 bg-secondary/30 mb-6 transition-all duration-500 group-hover:w-24 group-hover:bg-accent"></div>
-            <p class="text-secondary/90 text-sm md:text-base max-w-[90%] mb-8 line-clamp-2">${category.description}</p>
-            
-            <span class="font-bold text-secondary uppercase tracking-widest flex items-center gap-3">
-              Explore 
-              <span class="w-8 h-8 rounded-full bg-accent text-secondary flex items-center justify-center transform group-hover:translate-x-4 transition-transform duration-300">
-                <i class="fas fa-arrow-right text-sm"></i>
-              </span>
-            </span>
+        <article class="menu-category-card h-full flex flex-col bg-white border border-primary/10 overflow-hidden transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-accent group-hover:shadow-[6px_6px_0_0_#CC6B48]">
+          <div class="relative aspect-[3/4] overflow-hidden bg-muted">
+            <img
+              src="${bgImage}"
+              alt="${category.name}"
+              loading="${loadingAttr}"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            >
+            <div class="absolute inset-0 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/10 pointer-events-none"></div>
           </div>
-        </div>
+          <div class="py-6 px-5 text-center bg-white">
+            <h3 class="text-primary text-base md:text-lg font-bold uppercase tracking-[0.14em] leading-snug line-clamp-2 break-words transition-colors duration-300 group-hover:text-accent">
+              ${category.name}
+            </h3>
+            <span class="mt-3 mx-auto block h-[2px] w-8 bg-accent/40 transition-all duration-500 group-hover:w-14 group-hover:bg-accent" aria-hidden="true"></span>
+          </div>
+        </article>
       `;
 
       grid.appendChild(card);
@@ -348,8 +346,8 @@ async function loadMenuData() {
 
     // Initialize Swiper after slides are added
     new Swiper('.categoriesSwiper', {
-      slidesPerView: 1.5,
-      spaceBetween: 16,
+      slidesPerView: 1.35,
+      spaceBetween: 20,
       loop: true,
       speed: 1200, // 1.2 seconds transition duration for a very smooth slide
       autoplay: {
@@ -366,13 +364,16 @@ async function loadMenuData() {
       },
       breakpoints: {
         640: {
-          slidesPerView: 3,
+          slidesPerView: 2.4,
+          spaceBetween: 22,
         },
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 3.5,
+          spaceBetween: 24,
         },
         1280: {
-          slidesPerView: 5,
+          slidesPerView: 4.2,
+          spaceBetween: 28,
         }
       }
     });

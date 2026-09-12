@@ -170,7 +170,26 @@ async function applyAdminBranding() {
   }
 }
 
+function applyAdminButtonRadius() {
+  if (document.getElementById('adminButtonRadiusStyle')) return;
+  const style = document.createElement('style');
+  style.id = 'adminButtonRadiusStyle';
+  style.textContent = `
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    a[class*="bg-primary"][class*="font-bold"],
+    a[class*="bg-accent"][class*="font-bold"],
+    a[class*="bg-secondary"][class*="font-bold"][class*="px-"] {
+      border-radius: 8px !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 async function initAdminShell() {
+  applyAdminButtonRadius();
   const auth = await requireAdminSession();
   if (!auth) return null;
 
