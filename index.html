@@ -106,53 +106,53 @@
   <div data-include="src/partials/header.html"></div>
 
   <!-- ===== START MAIN ===== -->
-  <main role="main" class="pt-[67px]">
+  <main role="main" class="">
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-[92vh] flex items-center justify-start overflow-hidden bg-primary">
+    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary">
       <!-- Background Image with proper overlay -->
       <div class="absolute inset-0">
         <img id="heroBgImage" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
-          alt="Fresh Bakery" class="w-full h-full object-cover opacity-60" />
-        <!-- Warm gradient overlay matching brand palette -->
-        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/75 to-primary/20"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+          alt="Fresh Bakery" class="w-full h-full object-cover" />
+        <!-- <div class="absolute inset-0 bg-primary/55"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/30"></div> -->
       </div>
 
       <!-- Hero Content -->
-      <div class="container relative z-10 py-24 md:py-32" data-aos="fade-up" data-aos-duration="1000">
-        <div class="max-w-3xl">
+      <div class="container relative z-10 py-24 md:py-32 text-center" data-aos="fade-up" data-aos-duration="1000">
+        <div class="max-w-3xl mx-auto">
 
           <!-- Eyebrow label -->
-          <div class="flex items-center gap-3 mb-6" data-aos="fade-right" data-aos-delay="100">
+          <div class="flex items-center justify-center gap-3 mb-6" data-aos="fade-up" data-aos-delay="100">
             <div class="w-10 h-[2px] bg-accent"></div>
-            <span class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Premium Bakery & Catering</span>
+            <span id="heroEyebrow" class="text-accent text-xs font-bold uppercase tracking-[0.3em]">Premium Bakery & Catering</span>
+            <div class="w-10 h-[2px] bg-accent"></div>
           </div>
 
           <!-- Main Headline -->
           <h1 class="text-secondary font-bold uppercase leading-[0.9] tracking-tight mb-6" data-aos="fade-up"
             data-aos-delay="200">
-            <span class="block text-5xl md:text-7xl lg:text-8xl">Quality</span>
-            <span class="block text-5xl md:text-7xl lg:text-8xl">That</span>
-            <span class="block text-6xl md:text-8xl lg:text-[9rem] text-accent drop-shadow-lg">Echoes.</span>
+            <span id="heroTitleLine1" class="block text-5xl md:text-7xl lg:text-8xl">Quality</span>
+            <span id="heroTitleLine2" class="block text-5xl md:text-7xl lg:text-8xl">That</span>
+            <span id="heroTitleAccent" class="block text-6xl md:text-8xl lg:text-[9rem] text-accent drop-shadow-lg">Echoes.</span>
           </h1>
 
           <!-- Sub headline -->
-          <p class="text-secondary/70 text-lg md:text-xl font-light max-w-lg leading-relaxed mb-10" data-aos="fade-up"
+          <p id="heroSubtitle" class="text-secondary/70 text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed mb-10" data-aos="fade-up"
             data-aos-delay="300">
             Authentic ingredients. Bold flavors. Crafted to make a statement on every table.
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex flex-wrap items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
             <a href="#menu"
               class="inline-flex items-center gap-3 bg-accent text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:bg-brand-brown transition-colors duration-300 group">
-              Explore Menu
+              <span id="heroCtaPrimary">Explore Menu</span>
               <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
             </a>
             <a href="#contact"
               class="inline-flex items-center gap-3 border-2 border-secondary/40 text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:border-accent hover:text-accent transition-colors duration-300">
-              Get In Touch
+              <span id="heroCtaSecondary">Get In Touch</span>
             </a>
           </div>
         </div>

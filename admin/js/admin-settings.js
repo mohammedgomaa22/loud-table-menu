@@ -53,6 +53,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (faviconVal) document.getElementById('faviconPreview').src = faviconVal;
     if (heroVal) document.getElementById('heroPreview').src = heroVal;
 
+    document.getElementById('heroEyebrow').value       = data.hero_eyebrow       || '';
+    document.getElementById('heroTitleLine1').value    = data.hero_title_line1   || '';
+    document.getElementById('heroTitleLine2').value    = data.hero_title_line2   || '';
+    document.getElementById('heroTitleAccent').value   = data.hero_title_accent  || '';
+    document.getElementById('heroSubtitle').value      = data.hero_subtitle      || '';
+    document.getElementById('heroCtaPrimary').value    = data.hero_cta_primary   || '';
+    document.getElementById('heroCtaSecondary').value  = data.hero_cta_secondary || '';
+
     document.getElementById('instagramUrl').value    = data.instagram_url     || '';
     document.getElementById('facebookUrl').value     = data.facebook_url      || '';
     document.getElementById('twitterUrl').value      = data.twitter_url       || '';
@@ -72,6 +80,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       logo_url:         document.getElementById('logoUrl').value.trim() || null,
       favicon_url:      document.getElementById('faviconUrl').value.trim() || null,
       hero_image_url:   document.getElementById('heroImageUrl').value.trim() || null,
+      hero_eyebrow:     document.getElementById('heroEyebrow').value.trim() || null,
+      hero_title_line1: document.getElementById('heroTitleLine1').value.trim() || null,
+      hero_title_line2: document.getElementById('heroTitleLine2').value.trim() || null,
+      hero_title_accent: document.getElementById('heroTitleAccent').value.trim() || null,
+      hero_subtitle:    document.getElementById('heroSubtitle').value.trim() || null,
+      hero_cta_primary: document.getElementById('heroCtaPrimary').value.trim() || null,
+      hero_cta_secondary: document.getElementById('heroCtaSecondary').value.trim() || null,
       instagram_url:    document.getElementById('instagramUrl').value.trim() || null,
       facebook_url:     document.getElementById('facebookUrl').value.trim() || null,
       twitter_url:      document.getElementById('twitterUrl').value.trim() || null,

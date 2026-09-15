@@ -238,6 +238,15 @@ async function applySiteSettingsToConfig() {
       _setImgSrc('heroBgImage', settings.hero_image_url);
     }
 
+    // ── Hero texts (homepage) ──
+    _setText('heroEyebrow', settings.hero_eyebrow);
+    _setText('heroTitleLine1', settings.hero_title_line1);
+    _setText('heroTitleLine2', settings.hero_title_line2);
+    _setText('heroTitleAccent', settings.hero_title_accent);
+    _setText('heroSubtitle', settings.hero_subtitle);
+    _setText('heroCtaPrimary', settings.hero_cta_primary);
+    _setText('heroCtaSecondary', settings.hero_cta_secondary);
+
     // ── About section (index.html) ──
     _setText('aboutTextPrimary', settings.about_text);
     _setText('aboutTextAddress', settings.address);

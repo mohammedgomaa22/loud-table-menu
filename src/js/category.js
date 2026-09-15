@@ -91,9 +91,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const priceText = publicPriceText(product.price);
 
-      // Themed images (using shared fallback engine)
+      // Primary product image (hover keeps same image + zoom only)
       const img1 = getProductImage(product, category.slug);
-      const img2 = getProductHoverImage(product, category.slug);
 
       card.innerHTML = `
         ${soldOutBadge}
@@ -101,27 +100,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         <!-- Image Section -->
         <div class="w-full aspect-square bg-primary/5 relative overflow-hidden border-b-2 border-primary/10">
           <img src="${img1}" alt="${product.name}"
-               class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105${img2 ? ' group-hover:opacity-0' : ''}" loading="lazy">
-          ${img2 ? `<img src="${img2}" alt="${product.name} — hover"
-               class="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105" loading="lazy">` : ''}
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
         </div>
 
         <!-- Content Section -->
-        <div class="p-5 flex flex-col flex-grow gap-2">
+        <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow gap-1.5 sm:gap-2">
 
           <!-- Name -->
-          <h3 class="text-base font-black uppercase tracking-tight text-primary leading-snug line-clamp-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
+          <h3 class="text-xs sm:text-sm md:text-base font-black uppercase tracking-tight text-primary leading-snug line-clamp-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
 
           <!-- Weight badge -->
-          ${product.weight ? `<span class="self-start bg-primary/8 text-primary/70 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border-l-2 border-accent">${product.weight}</span>` : ''}
+          ${product.weight ? `<span class="self-start bg-primary/8 text-primary/70 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 border-l-2 border-accent">${product.weight}</span>` : ''}
 
-          <!-- Description snippet -->
-          ${product.description ? `<p class="text-xs text-primary/50 leading-relaxed line-clamp-2">${product.description}</p>` : ''}
+          <!-- Description snippet — hide on very small screens to fit more cards -->
+          ${product.description ? `<p class="hidden sm:block text-xs text-primary/50 leading-relaxed line-clamp-2">${product.description}</p>` : ''}
 
           <!-- Price + CTA -->
-          <div class="mt-auto pt-3 border-t border-primary/8 flex items-center justify-between">
-            ${priceText ? `<span class="text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
-            <span class="text-[10px] font-bold uppercase tracking-widest text-primary/50 group-hover:text-accent transition-colors flex items-center gap-1.5">
+          <div class="mt-auto pt-2 sm:pt-3 border-t border-primary/8 flex items-center justify-between gap-1">
+            ${priceText ? `<span class="text-sm sm:text-lg md:text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
+            <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/50 group-hover:text-accent transition-colors flex items-center gap-1 sm:gap-1.5 shrink-0">
               View <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform duration-300"></i>
             </span>
           </div>

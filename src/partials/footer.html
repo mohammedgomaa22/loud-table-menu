@@ -76,14 +76,20 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-secondary/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary/40 uppercase tracking-[0.15em]">
-      <div>
+    <div class="border-t border-secondary/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary/40">
+      <div class="uppercase tracking-[0.15em]">
         &copy; <script>document.write(new Date().getFullYear())</script> <span id="footerSiteName">MMC Central</span>. All rights reserved.
       </div>
-      <div>
-        🔗by <a href="https://mohammedgomaa.dev" target="_blank" rel="noopener noreferrer"
-          class="font-bold text-accent transition-colors">M|G | Digital Solutions</a>
-      </div>
+      <a href="https://rowadi.com" target="_blank" rel="noopener noreferrer"
+        class="group inline-flex items-center gap-1.5 text-secondary/45 hover:text-accent transition-colors"
+        aria-label="Powered by Rowadi">
+        <span class="uppercase tracking-[0.12em] text-[10px]">Powered by</span>
+        <span class="inline-flex items-baseline gap-1 text-accent group-hover:text-secondary transition-colors">
+          <span class="font-bold tracking-wide leading-none">Rowadi</span>
+          <span class="text-[11px] opacity-90 leading-none">-</span>
+          <span class="font-arabic text-sm font-semibold leading-none" lang="ar" dir="rtl">روادي</span>
+        </span>
+      </a>
     </div>
   </div>
 </footer>

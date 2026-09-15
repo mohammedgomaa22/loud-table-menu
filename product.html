@@ -109,25 +109,9 @@
         </div>
 
         <div id="productImageWrapper" class="w-full h-full relative overflow-hidden group">
-          <!-- Main image -->
           <img id="productImage" src="" alt="Product Image"
-               class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105">
-          <!-- Hover image (hidden until loaded) -->
-          <img id="productHoverImage" src="" alt="Product Image Hover"
-               class="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105 hidden">
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent lg:hidden pointer-events-none"></div>
-        </div>
-
-        <!-- Image toggle thumbnails (shown only when hover image exists) -->
-        <div id="imageThumbnailBar" class="hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-20 gap-2">
-          <button id="thumbMain" type="button"
-            class="w-14 h-14 border-2 border-secondary overflow-hidden shadow-[2px_2px_0_0_#CC6B48] opacity-100 transition-opacity">
-            <img id="thumbMainImg" src="" alt="Main" class="w-full h-full object-cover">
-          </button>
-          <button id="thumbHover" type="button"
-            class="w-14 h-14 border-2 border-secondary/50 overflow-hidden shadow-[2px_2px_0_0_#CC6B48] opacity-60 transition-opacity">
-            <img id="thumbHoverImg" src="" alt="Hover" class="w-full h-full object-cover">
-          </button>
         </div>
       </div>
 
@@ -222,24 +206,24 @@
     </div>
 
     <!-- Related Products Section -->
-    <section id="relatedSection" class="hidden bg-primary py-24 border-t-4 border-accent">
+    <section id="relatedSection" class="hidden bg-secondary py-24 border-t-4 border-accent">
       <div class="container px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12" data-aos="fade-up">
           <div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-secondary mb-2">Also in <span id="relatedCategoryName" class="text-accent">Category</span></h2>
-            <p class="text-secondary/60 font-bold uppercase tracking-widest">More from MMC Central</p>
+            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-primary mb-2">Also in <span id="relatedCategoryName" class="text-accent">Category</span></h2>
+            <p class="text-primary/50 font-bold uppercase tracking-widest">More from MMC Central</p>
           </div>
-          <a id="viewAllBtn" href="#" class="hidden md:inline-flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtn" href="#" class="hidden md:inline-flex items-center gap-2 text-primary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
         
-        <div id="relatedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div id="relatedGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           <!-- Related items will be injected here -->
         </div>
 
         <div class="mt-10 text-center md:hidden">
-          <a id="viewAllBtnMobile" href="#" class="inline-flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtnMobile" href="#" class="inline-flex items-center gap-2 text-primary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>

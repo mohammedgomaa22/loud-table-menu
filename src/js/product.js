@@ -102,54 +102,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       soldOutBadge.classList.add('hidden');
     }
 
-    // Image Setup
-    const imageEl      = document.getElementById('productImage');
-    const hoverImageEl = document.getElementById('productHoverImage');
-    const imgSrc       = getProductImage(product, category.slug);
-    const hoverSrc     = getProductHoverImage(product, category.slug);
+    // Image Setup — primary image only, zoom on hover
+    const imageEl = document.getElementById('productImage');
+    const imgSrc = getProductImage(product, category.slug);
 
     if (imgSrc) {
       imageEl.src = imgSrc;
       imageEl.alt = product.name;
-    }
-
-    // Hover image: show second image layer + thumbnail bar
-    const thumbBar      = document.getElementById('imageThumbnailBar');
-    const thumbMainImg  = document.getElementById('thumbMainImg');
-    const thumbHoverImg = document.getElementById('thumbHoverImg');
-    const thumbMain     = document.getElementById('thumbMain');
-    const thumbHoverBtn = document.getElementById('thumbHover');
-
-    if (hoverSrc && hoverImageEl) {
-      hoverImageEl.src = hoverSrc;
-      hoverImageEl.alt = product.name;
-      hoverImageEl.classList.remove('hidden');
-
-      // Thumbnail bar
-      if (thumbBar && thumbMainImg && thumbHoverImg) {
-        thumbMainImg.src  = imgSrc;
-        thumbHoverImg.src = hoverSrc;
-        thumbBar.classList.remove('hidden');
-        thumbBar.classList.add('flex');
-
-        // Click to pin a specific image
-        thumbMain?.addEventListener('click', () => {
-          imageEl.style.opacity      = '1';
-          hoverImageEl.style.opacity = '0';
-          thumbMain.classList.replace('border-secondary/50', 'border-secondary');
-          thumbMain.classList.replace('opacity-60', 'opacity-100');
-          thumbHoverBtn.classList.replace('border-secondary', 'border-secondary/50');
-          thumbHoverBtn.classList.replace('opacity-100', 'opacity-60');
-        });
-        thumbHoverBtn?.addEventListener('click', () => {
-          imageEl.style.opacity      = '0';
-          hoverImageEl.style.opacity = '1';
-          thumbHoverBtn.classList.replace('border-secondary/50', 'border-secondary');
-          thumbHoverBtn.classList.replace('opacity-60', 'opacity-100');
-          thumbMain.classList.replace('border-secondary', 'border-secondary/50');
-          thumbMain.classList.replace('opacity-100', 'opacity-60');
-        });
-      }
     }
 
     // Cost & Product Details — public site only when prices are enabled
