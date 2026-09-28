@@ -62,18 +62,18 @@
 
 
 :root {
-  /* ===== Brand Color Palette ===== */
-  --color-black:    #2E2B29; /* PANTONE Black C   */
-  --color-primary:  #CC6B48; /* PANTONE 7618 C    */
-  --color-brown:    #926346; /* PANTONE 876 C     */
-  --color-silver:   #DED7D0; /* PANTONE 7604 C    */
-  --color-cream:    #F4F2ED; /* PANTONE 663 C     */
+  /* ===== Brand Color Palette (Monochrome Black & White) ===== */
+  --color-black:    #000000;
+  --color-primary:  #000000;
+  --color-brown:    #171717;
+  --color-silver:   #e5e5e5;
+  --color-cream:    #ffffff;
 
   /* ===== Semantic Tokens ===== */
-  --primary-color:   var(--color-black);
-  --secondary-color: var(--color-cream);
-  --accent-color:    var(--color-primary);
-  --muted-color:     var(--color-silver);
+  --primary-color:   #000000;
+  --secondary-color: #ffffff;
+  --accent-color:    #000000;
+  --muted-color:     #e5e5e5;
 
   --base-font: 'GeneralSans', 'NewTitle', sans-serif;
   --arabic-font: 'Cairo', sans-serif;
@@ -144,22 +144,6 @@ a[class*="bg-accent"][class*="font-bold"][class*="px-"] {
   scrollbar-color: var(--primary-color) var(--secondary-color);
 }
 
-/* Preloader transition */
-#preloader.hide {
-  transform: translateY(-100%);
-}
-
-@keyframes loaderBar {
-  0% { width: 0%; }
-  30% { width: 40%; }
-  60% { width: 70%; }
-  100% { width: 100%; }
-}
-
-.animate-loader-bar {
-  animation: loaderBar 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
 /* ============================ */
 /* ===== SCROLL TOP BTN ======= */
 /* ============================ */
@@ -181,12 +165,12 @@ a[class*="bg-accent"][class*="font-bold"][class*="px-"] {
 /* ======= SWIPER CUSTOM ======= */
 /* ============================ */
 .swiper-pagination-bullet-active {
-  background-color: var(--accent-color) !important;
+  background-color: #000000 !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: var(--primary-color);
-  opacity: 0.5;
+  background-color: #000000;
+  opacity: 0.3;
 }
 
 .swiper-button-next::after,

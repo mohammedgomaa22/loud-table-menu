@@ -79,48 +79,68 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       const card = document.createElement('a');
       card.href = `product?category=${category.slug}&id=${product.id}`;
-      // Clean, compact, MMC Central card
-      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[8px_8px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
+      // Clean, modern card with NO black border and NO orange border
+      card.className = "group relative bg-white rounded-lg overflow-hidden flex flex-col h-full border border-black/10 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
       // Check availability
       const isAvailable = product.available !== false;
       const soldOutBadge = !isAvailable ? 
-        `<div class="absolute top-3 right-3 bg-primary text-secondary font-black text-[10px] uppercase px-3 py-1.5 tracking-[0.15em] border-2 border-secondary shadow-[3px_3px_0_0_#CC6B48] z-20">SOLD OUT</div>` : '';
+        `<div class="absolute top-3 right-3 bg-black text-white font-black text-[10px] uppercase px-3 py-1.5 tracking-[0.15em] rounded shadow-md z-20">SOLD OUT</div>` : '';
 
       const priceText = publicPriceText(product.price);
 
-      // Primary product image (hover keeps same image + zoom only)
+      // Primary product image
       const img1 = getProductImage(product, category.slug);
+
+      // Safe escaped strings for JS handler
+      const safeName = (product.name || '').replace(/'/g, "\\'");
+      const safeWeight = (product.weight || '').replace(/'/g, "\\'");
 
       card.innerHTML = `
         ${soldOutBadge}
 
         <!-- Image Section -->
-        <div class="w-full aspect-square bg-primary/5 relative overflow-hidden border-b-2 border-primary/10">
+        <div class="w-full aspect-square bg-neutral-100 relative overflow-hidden">
           <img src="${img1}" alt="${product.name}"
                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
         </div>
 
         <!-- Content Section -->
-        <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow gap-1.5 sm:gap-2">
+        <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow gap-1.5 sm:gap-2 bg-white">
 
           <!-- Name -->
-          <h3 class="text-xs sm:text-sm md:text-base font-black uppercase tracking-tight text-primary leading-snug line-clamp-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
+          <h3 class="text-xs sm:text-sm md:text-base font-black uppercase tracking-tight text-black leading-snug line-clamp-2">${product.name}</h3>
 
           <!-- Weight badge -->
-          ${product.weight ? `<span class="self-start bg-primary/8 text-primary/70 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 border-l-2 border-accent">${product.weight}</span>` : ''}
+          ${product.weight ? `<span class="self-start bg-neutral-100 text-black/70 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded border-l-2 border-black">${product.weight}</span>` : ''}
 
-          <!-- Description snippet — hide on very small screens to fit more cards -->
-          ${product.description ? `<p class="hidden sm:block text-xs text-primary/50 leading-relaxed line-clamp-2">${product.description}</p>` : ''}
+          <!-- Description snippet -->
+          ${product.description ? `<p class="hidden sm:block text-xs text-neutral-500 leading-relaxed line-clamp-2">${product.description}</p>` : ''}
 
-          <!-- Price + CTA -->
-          <div class="mt-auto pt-2 sm:pt-3 border-t border-primary/8 flex items-center justify-between gap-1">
-            ${priceText ? `<span class="text-sm sm:text-lg md:text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
-            <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/50 group-hover:text-accent transition-colors flex items-center gap-1 sm:gap-1.5 shrink-0">
-              View <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform duration-300"></i>
-            </span>
+          <!-- Price + CTA & Add to Cart -->
+          <div class="mt-auto pt-3 border-t border-black/10 flex items-center justify-between gap-2">
+            <div>
+              ${priceText ? `<span class="text-sm sm:text-base md:text-lg font-black text-black">${priceText}</span>` : '<span class="text-xs font-bold text-neutral-400">View</span>'}
+            </div>
+            
+            <div class="flex items-center gap-1.5">
+              ${isAvailable ? `
+                <button type="button"
+                  onclick="event.preventDefault(); event.stopPropagation(); MMCCart.addItem({ id: '${product.id}', name: '${safeName}', price: ${product.price != null ? product.price : 'null'}, weight: '${safeWeight}', image: '${img1}', categorySlug: '${category.slug}' });"
+                  aria-label="Add to cart"
+                  class="h-8 px-2.5 rounded bg-black text-white hover:bg-neutral-800 flex items-center justify-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors shadow-sm"
+                  title="Add to order">
+                  <i class="fas fa-plus text-[10px]"></i>
+                  <span class="hidden sm:inline">Add</span>
+                </button>
+              ` : ''}
+              
+              <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 group-hover:text-black transition-colors flex items-center gap-1 shrink-0 p-1">
+                <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform duration-300"></i>
+              </span>
+            </div>
           </div>
 
         </div>

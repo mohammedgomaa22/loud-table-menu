@@ -17,10 +17,10 @@
         theme: {
           extend: {
             colors: {
-              primary:   '#2E2B29',
-              secondary: '#F4F2ED',
-              accent:    '#CC6B48',
-              adminbg: '#f8f9fa',
+              primary:   '#000000',
+              secondary: '#ffffff',
+              accent:    '#000000',
+              adminbg: '#f4f4f5',
             },
             fontFamily: {
               sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
@@ -34,28 +34,28 @@
 <body class="bg-adminbg text-primary font-sans antialiased overflow-x-hidden flex h-screen">
 
   <!-- Sidebar -->
-  <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
-    <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
+  <aside class="w-64 bg-black text-white flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
+    <div class="p-6 border-b border-white/10 flex items-center justify-center">
       <img src="../assets/images/logo.webp" alt="MMC Central" class="h-8 w-auto brightness-0 invert" />
     </div>
     
     <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
-      <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-home w-5 text-center"></i> Dashboard
       </a>
-      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-layer-group w-5 text-center"></i> Categories
       </a>
-      <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+      <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-box-open w-5 text-center"></i> Products
       </a>
-      <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+      <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
       </a>
-      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-handshake w-5 text-center"></i> Partners
       </a>
-      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors mt-auto">
+      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs rounded transition-colors mt-auto shadow">
         <i class="fas fa-cog w-5 text-center"></i> Settings
       </a>
     </nav>
@@ -200,6 +200,43 @@
             </div>
           </div>
 
+          <!-- Catering & Orders Section Content -->
+          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+            <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Catering & Orders Section</h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="md:col-span-2">
+                <label for="cateringEyebrow" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Eyebrow Label</label>
+                <input type="text" id="cateringEyebrow" placeholder="Catering & Orders" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div>
+                <label for="cateringTitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 1</label>
+                <input type="text" id="cateringTitle" placeholder="Taste the" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div>
+                <label for="cateringTitleAccent" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Accent Line</label>
+                <input type="text" id="cateringTitleAccent" placeholder="Difference." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="cateringDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Description / Subtitle</label>
+                <textarea id="cateringDescription" rows="2" placeholder="Elevate your next event with our bold, uncompromising pastries and catering menu." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+              </div>
+
+              <div>
+                <label for="cateringCtaPrimary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Primary Button Text</label>
+                <input type="text" id="cateringCtaPrimary" placeholder="Place an Order" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+
+              <div>
+                <label for="cateringCtaSecondary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Secondary Button Text</label>
+                <input type="text" id="cateringCtaSecondary" placeholder="View Menu" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+              </div>
+            </div>
+          </div>
+
           <!-- Branding Section -->
           <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
             <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Branding & Images</h4>
@@ -288,7 +325,7 @@
 
           <!-- Save Actions -->
           <div class="flex justify-end gap-4 pb-10">
-            <button type="submit" id="saveSettingsBtn" class="bg-accent text-primary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-secondary transition-colors shadow-[6px_6px_0_0_#2E2B29]">
+            <button type="submit" id="saveSettingsBtn" class="bg-black text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-neutral-800 transition-colors shadow-lg rounded">
               Save All Changes
             </button>
           </div>

@@ -5,18 +5,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <title>MMC Central - Product Details</title>
-  <meta name="theme-color" content="#2E2B29" />
+  <meta name="theme-color" content="#000000" />
   <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
   <!-- Preload Critical Assets -->
   <link rel="preload" as="image" href="./assets/images/logo.webp" type="image/webp">
   <link rel="preload" as="image" href="./assets/images/favicon.webp" type="image/webp" fetchpriority="high">
-  
+
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Google Font (Cairo) with font-display swap -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -25,17 +25,17 @@
         theme: {
           extend: {
             colors: {
-              /* ===== Brand Palette ===== */
-              'brand-black': '#2E2B29', /* PANTONE Black C  */
-              'brand-terra': '#CC6B48', /* PANTONE 7618 C   */
-              'brand-brown': '#926346', /* PANTONE 876 C    */
-              'brand-silver': '#DED7D0', /* PANTONE 7604 C   */
-              'brand-cream': '#F4F2ED', /* PANTONE 663 C    */
+              /* ===== Brand Palette (Pure Black & White) ===== */
+              'brand-black': '#000000',
+              'brand-terra': '#000000',
+              'brand-brown': '#171717',
+              'brand-silver': '#e5e5e5',
+              'brand-cream': '#ffffff',
               /* ===== Semantic Aliases ===== */
-              primary: '#2E2B29',
-              secondary: '#F4F2ED',
-              accent: '#CC6B48',
-              muted: '#DED7D0',
+              primary: '#000000',
+              secondary: '#ffffff',
+              accent: '#000000',
+              muted: '#e5e5e5',
             },
             fontFamily: {
               sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
@@ -57,148 +57,180 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="preload" as="style" href="./src/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./src/css/all.min.css"></noscript>
-  
+  <noscript>
+    <link rel="stylesheet" href="./src/css/all.min.css">
+  </noscript>
+
   <!-- AOS CSS -->
-  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
-  
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  </noscript>
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./src/css/style.css">
 </head>
 
-<body class="bg-secondary text-primary font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-secondary">
+<body class="bg-white text-black font-sans antialiased overflow-x-hidden selection:bg-black selection:text-white">
 
   <!-- ===== HEADER PLACEHOLDER ===== -->
   <div data-include="src/partials/header.html"></div>
 
   <!-- ===== START MAIN ===== -->
-  <main role="main" class="pt-[67px] min-h-screen flex flex-col bg-secondary relative">
-    
+  <main role="main" class="pt-[67px] min-h-screen flex flex-col bg-white relative">
+
     <!-- Loading State -->
-    <div id="loadingState" class="fixed inset-0 z-50 bg-secondary flex flex-col items-center justify-center transition-opacity duration-500">
-      <i class="fas fa-spinner fa-spin text-6xl text-accent mb-6"></i>
-      <h2 class="text-2xl font-bold uppercase tracking-widest text-primary">Serving...</h2>
+    <div id="loadingState"
+      class="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center transition-opacity duration-500">
+      <i class="fas fa-spinner fa-spin text-5xl text-black mb-6"></i>
+      <h2 class="text-xl font-bold uppercase tracking-widest text-black">Serving...</h2>
     </div>
 
     <!-- Error State -->
     <div id="errorState" class="hidden container mx-auto px-4 py-32 text-center flex-grow items-center justify-center">
-      <h1 class="text-6xl md:text-8xl font-black uppercase text-primary mb-6">404</h1>
-      <p class="text-xl md:text-2xl text-primary/70 uppercase tracking-widest mb-10">Product not found on the table.</p>
-      <a href="index#menu" class="bg-primary text-secondary hover:bg-accent hover:text-primary transition-colors font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary">
+      <h1 class="text-6xl md:text-8xl font-black uppercase text-black mb-6">404</h1>
+      <p class="text-lg md:text-xl text-neutral-500 uppercase tracking-widest mb-10">Product not found on the table.</p>
+      <a href="index#menu"
+        class="bg-black text-white hover:bg-neutral-800 transition-colors font-bold uppercase tracking-widest px-8 py-4 rounded">
         Back to Menu
       </a>
     </div>
 
     <!-- Main Content Container -->
     <div id="productContainer" class="hidden flex-grow w-full min-h-[calc(100vh-67px)]">
-      
+
       <!-- Left Column: Sticky Image -->
-      <div class="lg:w-1/2 relative lg:sticky lg:top-[67px] h-[50vh] lg:h-[calc(100vh-67px)] bg-primary/5 flex-shrink-0 border-b-4 lg:border-b-0 lg:border-r-4 border-primary">
+      <div
+        class="lg:w-1/2 relative lg:sticky lg:top-[67px] h-[50vh] lg:h-[calc(100vh-67px)] bg-neutral-100 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-black/10">
         <div class="absolute top-4 left-4 z-20">
-          <a id="backBtn" href="#" class="inline-flex items-center justify-center w-12 h-12 bg-secondary text-primary border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_#CC6B48] hover:text-accent transition-all duration-300 group">
+          <a id="backBtn" href="#"
+            class="inline-flex items-center justify-center w-11 h-11 bg-white text-black border border-black/20 rounded shadow-md hover:bg-neutral-100 transition-all duration-300 group">
             <i class="fas fa-arrow-left transform group-hover:-translate-x-1 transition-transform"></i>
           </a>
         </div>
-        
-        <div id="soldOutBadge" class="hidden absolute top-4 right-4 z-20 bg-primary text-secondary font-black text-sm uppercase px-4 py-2 tracking-[0.2em] border-2 border-secondary shadow-[4px_4px_0_0_#CC6B48] rotate-3">
+
+        <div id="soldOutBadge"
+          class="hidden absolute top-4 right-4 z-20 bg-black text-white font-black text-xs uppercase px-3 py-1.5 tracking-wider rounded shadow-md">
           SOLD OUT
         </div>
 
         <div id="productImageWrapper" class="w-full h-full relative overflow-hidden group">
           <img id="productImage" src="" alt="Product Image"
-               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent lg:hidden pointer-events-none"></div>
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent lg:hidden pointer-events-none">
+          </div>
         </div>
       </div>
 
       <!-- Right Column: Details (Scrollable) -->
-      <div class="lg:w-1/2 p-6 md:p-12 lg:p-16 xl:p-24 flex flex-col bg-secondary">
-        
+      <div class="lg:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col bg-white">
+
         <!-- Breadcrumbs -->
-        <div class="flex items-center text-sm font-bold uppercase tracking-[0.15em] text-primary/50 mb-8" data-aos="fade-up">
-          <a href="index#menu" class="hover:text-primary transition-colors">Menu</a>
+        <div class="flex items-center text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 mb-8"
+          data-aos="fade-up">
+          <a href="index#menu" class="hover:text-black transition-colors">Menu</a>
           <span class="mx-2">/</span>
-          <a id="breadcrumbCategory" href="#" class="hover:text-primary transition-colors">Category</a>
+          <a id="breadcrumbCategory" href="#" class="hover:text-black transition-colors">Category</a>
         </div>
 
         <!-- Header: Title & Weight -->
         <div class="mb-10" data-aos="fade-up" data-aos-delay="100">
-          <h1 id="productName" class="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-primary mb-6">
+          <h1 id="productName"
+            class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.95] text-black mb-6">
             Product Name
           </h1>
           <div id="productWeightWrapper" class="inline-flex">
-            <span id="productWeight" class="bg-primary/10 text-primary font-bold uppercase tracking-[0.2em] px-4 py-2 border-l-4 border-accent">
+            <span id="productWeight"
+              class="bg-neutral-100 text-black font-bold uppercase tracking-widest text-xs px-3.5 py-1.5 rounded border-l-2 border-black">
               Weight
             </span>
           </div>
         </div>
 
         <!-- Price -->
-        <div id="productPriceSection" class="mb-12 hidden" data-aos="fade-up" data-aos-delay="200">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-2">Price</p>
+        <div id="productPriceSection" class="mb-10 hidden" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">Price</p>
           <div class="flex items-end gap-4">
-            <span id="productPrice" class="text-5xl lg:text-6xl font-black text-primary">KWD 0.000</span>
+            <span id="productPrice" class="text-4xl lg:text-5xl font-black text-black">KWD 0.000</span>
           </div>
         </div>
 
         <!-- Description -->
-        <div id="productDescWrapper" class="mb-12 hidden" data-aos="fade-up" data-aos-delay="300">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4 border-b-2 border-primary/10 pb-2">Description</p>
-          <p id="productDesc" class="text-lg md:text-xl text-primary/80 leading-relaxed font-medium">
+        <div id="productDescWrapper" class="mb-10 hidden" data-aos="fade-up" data-aos-delay="300">
+          <p class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 border-b border-black/10 pb-2">
+            Description</p>
+          <p id="productDesc" class="text-base md:text-lg text-neutral-700 leading-relaxed font-normal">
             Description goes here.
           </p>
         </div>
 
         <!-- Cost & Product Details (hidden when no data) -->
-        <div id="productDetailsWrapper" class="hidden mb-12" data-aos="fade-up" data-aos-delay="350">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4 border-b-2 border-primary/10 pb-2">Product Details</p>
-          <dl class="divide-y divide-primary/5">
+        <div id="productDetailsWrapper" class="hidden mb-10" data-aos="fade-up" data-aos-delay="350">
+          <p class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 border-b border-black/10 pb-2">
+            Product Details</p>
+          <dl class="divide-y divide-black/5">
 
             <div id="detailPriceWithoutPackRow" class="hidden items-center justify-between py-3">
-              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Price Without Packing</dt>
-              <dd id="detailPriceWithoutPack" class="font-black text-primary text-sm">—</dd>
+              <dt class="text-xs font-bold uppercase tracking-widest text-neutral-400">Price Without Packing</dt>
+              <dd id="detailPriceWithoutPack" class="font-black text-black text-sm">—</dd>
             </div>
 
             <div id="detailFoodCostRow" class="hidden items-center justify-between py-3">
-              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Food Cost</dt>
-              <dd id="detailFoodCost" class="font-black text-primary text-sm">—</dd>
+              <dt class="text-xs font-bold uppercase tracking-widest text-neutral-400">Food Cost</dt>
+              <dd id="detailFoodCost" class="font-black text-black text-sm">—</dd>
             </div>
 
             <div id="detailPackagingCostRow" class="hidden items-center justify-between py-3">
-              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Packaging Cost</dt>
-              <dd id="detailPackagingCost" class="font-black text-primary text-sm">—</dd>
+              <dt class="text-xs font-bold uppercase tracking-widest text-neutral-400">Packaging Cost</dt>
+              <dd id="detailPackagingCost" class="font-black text-black text-sm">—</dd>
             </div>
 
             <div id="detailCogsRow" class="hidden items-center justify-between py-3">
-              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">COGS %</dt>
-              <dd id="detailCogs" class="font-black text-primary text-sm">—</dd>
+              <dt class="text-xs font-bold uppercase tracking-widest text-neutral-400">COGS %</dt>
+              <dd id="detailCogs" class="font-black text-black text-sm">—</dd>
             </div>
 
             <div id="detailMarginRow" class="hidden items-center justify-between py-3">
-              <dt class="text-xs font-bold uppercase tracking-widest text-primary/50">Margin %</dt>
-              <dd id="detailMargin" class="font-black text-primary text-sm">—</dd>
+              <dt class="text-xs font-bold uppercase tracking-widest text-neutral-400">Margin %</dt>
+              <dd id="detailMargin" class="font-black text-black text-sm">—</dd>
             </div>
 
           </dl>
         </div>
 
         <!-- Comments / Notes (hidden when empty) -->
-        <div id="productCommentsWrapper" class="hidden mb-12" data-aos="fade-up" data-aos-delay="370">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4 border-b-2 border-primary/10 pb-2">Notes</p>
-          <p id="productComments" class="text-base text-primary/70 leading-relaxed font-medium italic"></p>
+        <div id="productCommentsWrapper" class="hidden mb-10" data-aos="fade-up" data-aos-delay="370">
+          <p class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 border-b border-black/10 pb-2">
+            Notes</p>
+          <p id="productComments" class="text-sm text-neutral-600 leading-relaxed font-normal italic"></p>
         </div>
 
-        <!-- Action Button (Contact via WhatsApp) -->
-        <div class="mt-auto pt-8" data-aos="fade-up" data-aos-delay="400">
-          <a id="whatsappCtaBtn" href="#" target="_blank" rel="noopener noreferrer" class="product-whatsapp-cta flex items-center justify-center gap-3 w-full bg-primary text-secondary hover:bg-accent hover:text-primary transition-all duration-300 font-black uppercase text-xl md:text-2xl tracking-[0.15em] py-6 border-2 border-primary hover:shadow-[8px_8px_0_0_#2E2B29] active:translate-y-1 active:shadow-[2px_2px_0_0_#2E2B29] group">
-            <i class="fab fa-whatsapp text-2xl transform group-hover:scale-110 transition-transform"></i>
-            Order via WhatsApp
-          </a>
-          <p class="text-center text-primary/50 text-xs font-bold uppercase tracking-widest mt-4">Order request is processed directly via WhatsApp</p>
+        <!-- Action Area: Add to Cart + WhatsApp CTA -->
+        <div class="mt-auto pt-6 border-t border-black/10" data-aos="fade-up" data-aos-delay="400">
+
+          <!-- Buttons Group -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <!-- Add to Cart Button -->
+            <button id="addToCartBtn" type="button"
+              class="flex-1 bg-black text-white hover:bg-neutral-800 transition-all duration-300 font-bold uppercase text-sm md:text-base tracking-widest py-4 px-6 rounded-lg flex items-center justify-center gap-3 shadow-md active:scale-[0.99]">
+              <i class="fas fa-shopping-bag"></i>
+              Add to Order
+            </button>
+
+            <!-- Direct Order via WhatsApp -->
+            <a id="whatsappCtaBtn" href="#" target="_blank" rel="noopener noreferrer"
+              class="product-whatsapp-cta flex-1 flex items-center justify-center gap-2.5 bg-[#25D366] text-white hover:bg-[#1faa53] transition-all duration-300 font-bold uppercase text-sm md:text-base tracking-widest py-4 px-6 rounded-lg shadow-md active:scale-[0.99]">
+              <i class="fab fa-whatsapp text-xl"></i>
+              Order via WhatsApp
+            </a>
+          </div>
+
+          <p class="text-center text-neutral-400 text-[11px] font-bold uppercase tracking-widest mt-4">Order requests
+            are confirmed directly via WhatsApp</p>
         </div>
 
       </div>
@@ -206,24 +238,27 @@
     </div>
 
     <!-- Related Products Section -->
-    <section id="relatedSection" class="hidden bg-secondary py-24 border-t-4 border-accent">
+    <section id="relatedSection" class="hidden bg-neutral-50 py-24 border-t border-black/10">
       <div class="container px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12" data-aos="fade-up">
           <div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-primary mb-2">Also in <span id="relatedCategoryName" class="text-accent">Category</span></h2>
-            <p class="text-primary/50 font-bold uppercase tracking-widest">More from MMC Central</p>
+            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight text-black mb-2">Also in <span
+                id="relatedCategoryName">Category</span></h2>
+            <p class="text-neutral-400 font-bold uppercase tracking-widest text-xs">More from MMC Central</p>
           </div>
-          <a id="viewAllBtn" href="#" class="hidden md:inline-flex items-center gap-2 text-primary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtn" href="#"
+            class="hidden md:inline-flex items-center gap-2 text-black hover:text-neutral-500 font-bold uppercase tracking-widest text-xs transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
-        
+
         <div id="relatedGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           <!-- Related items will be injected here -->
         </div>
 
         <div class="mt-10 text-center md:hidden">
-          <a id="viewAllBtnMobile" href="#" class="inline-flex items-center gap-2 text-primary hover:text-accent font-bold uppercase tracking-widest transition-colors group">
+          <a id="viewAllBtnMobile" href="#"
+            class="inline-flex items-center gap-2 text-black hover:text-neutral-500 font-bold uppercase tracking-widest text-xs transition-colors group">
             View All <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
@@ -246,12 +281,14 @@
       }
     </style>
   </noscript>
-  
+
   <!-- Supabase -->
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="./src/js/supabase-config.js"></script>
   <script defer src="./src/js/supabase-client.js"></script>
   <script defer src="./src/js/menu-api.js"></script>
+  <!-- Shopping Cart Module -->
+  <script defer src="./src/js/cart.js"></script>
   <!-- Main JS (Includes HTML loader and mobile menu) -->
   <script defer src="./src/js/main.js"></script>
   <!-- Product Specific JS -->
@@ -259,8 +296,5 @@
   <!-- ===== END SCRIPTS ===== -->
 
 </body>
+
 </html>
-
-
-
-

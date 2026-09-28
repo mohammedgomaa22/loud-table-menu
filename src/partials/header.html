@@ -1,55 +1,65 @@
-<!-- Thin accent bar at the very top -->
-<div class="fixed top-0 left-0 w-full h-[3px] bg-accent z-[51]"></div>
+<!-- Thin bar at the very top -->
+<div class="fixed top-0 left-0 w-full h-[2px] bg-white/20 z-[51]"></div>
 
 <header id="siteHeader"
-  class="fixed w-full top-[3px] left-0 z-50 bg-black/50 backdrop-blur-sm border-b border-primary/10 transition-all duration-300">
+  class="fixed w-full top-[2px] left-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/10 transition-all duration-300">
   <div class="container py-4 flex items-center justify-between relative">
 
     <!-- Left: Desktop Nav Links -->
     <nav class="hidden lg:flex items-center gap-8 text-white">
       <a href="#menu"
-        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
+        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-white/70 transition-colors relative group">
         Menu
         <span
-          class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-      </a>
-      <a href="#about"
-        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
-        Our Story
-        <span
-          class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+          class="absolute -bottom-1 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a href="#contact"
-        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent transition-colors relative group">
+        class="text-xs font-bold uppercase tracking-[0.2em] hover:text-white/70 transition-colors relative group">
         Contact
         <span
-          class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+          class="absolute -bottom-1 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
       </a>
     </nav>
 
-    <!-- Left: Mobile WhatsApp Button -->
-    <a id="headerWhatsappBtn" href="#" aria-label="WhatsApp"
-      class="lg:hidden flex items-center justify-center w-10 h-10 bg-[#25D366] text-white border-2 border-white shadow-[2px_2px_0_0_#2E2B29] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#2E2B29] hover:bg-[#128C7E] hover:text-secondary hover:shadow-[3px_3px_0_0_#2E2B29] transition-all text-lg">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Left: Mobile WhatsApp & Cart Buttons -->
+    <div class="lg:hidden flex items-center gap-2">
+      <a id="headerWhatsappBtn" href="#" aria-label="WhatsApp"
+        class="flex items-center justify-center w-10 h-10 bg-black text-white border border-white/30 rounded shadow-md active:translate-y-0.5 hover:bg-white hover:text-black transition-all text-lg">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <button type="button" onclick="MMCCart.openDrawer()" aria-label="Open Cart"
+        class="relative flex items-center justify-center w-10 h-10 bg-white text-black border border-white rounded shadow-md active:translate-y-0.5 hover:bg-neutral-200 transition-all text-base">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count-badge hidden absolute -top-1 -right-1 bg-black text-white text-[9px] font-black w-4 h-4 rounded-full items-center justify-center">0</span>
+      </button>
+    </div>
 
     <!-- Center Logo -->
     <a href="index.html"
       class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
       aria-label="MMC Central Home">
-      <img id="headerLogo" src="./assets/images/logo.webp" alt="MMC Central" width="160" height="40" class="h-8 md:h-10 w-auto"
+      <img id="headerLogo" src="./assets/images/logo.webp" alt="MMC Central" width="160" height="40" class="h-8 md:h-10 w-auto brightness-0 invert"
         loading="eager" />
     </a>
 
     <!-- Right Icons -->
-    <div class="flex items-center gap-5 text-white ml-auto lg:ml-0">
+    <div class="flex items-center gap-4 text-white ml-auto lg:ml-0">
+      <!-- Cart button — desktop only -->
+      <button type="button" onclick="MMCCart.openDrawer()" aria-label="Open Cart"
+        class="hidden lg:inline-flex items-center gap-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest px-4 py-2.5 rounded hover:bg-neutral-200 transition-colors shadow-sm">
+        <i class="fas fa-shopping-bag text-sm"></i>
+        <span>Cart</span>
+        <span class="cart-count-badge hidden items-center justify-center bg-black text-white text-[10px] font-black w-5 h-5 rounded-full">0</span>
+      </button>
+
       <!-- Order CTA — desktop only -->
       <a href="#contact"
-        class="hidden lg:inline-flex items-center gap-2 bg-accent text-secondary text-xs font-bold uppercase tracking-widest px-5 py-2.5 hover:bg-brand-brown transition-colors duration-300">
+        class="hidden lg:inline-flex items-center gap-2 border border-white/40 text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded hover:bg-white hover:text-black transition-colors duration-300">
         Order Now
       </a>
+
       <!-- Hamburger -->
-      <button id="mobileMenuBtn" class="hover:text-accent transition-colors text-xl focus:outline-none"
+      <button id="mobileMenuBtn" class="hover:text-white/70 transition-colors text-xl focus:outline-none ml-2"
         aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -59,11 +69,11 @@
 
 <!-- Fullscreen Menu Overlay -->
 <div id="mobileNav"
-  class="fixed inset-0 bg-primary z-[60] flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none transform -translate-y-8">
+  class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none transform -translate-y-8">
 
   <!-- Close Button -->
   <button id="closeMenuBtn"
-    class="absolute top-6 right-6 text-secondary hover:text-accent text-3xl focus:outline-none transition-colors"
+    class="absolute top-6 right-6 text-white hover:text-neutral-400 text-3xl focus:outline-none transition-colors"
     aria-label="Close Menu">
     <i class="fas fa-times"></i>
   </button>
@@ -77,52 +87,46 @@
   <nav class="flex flex-col items-start gap-8 px-8 w-full max-w-lg">
     <!-- Eyebrow -->
     <div class="flex items-center gap-3 mb-2">
-      <div class="w-8 h-[2px] bg-accent"></div>
-      <span class="text-accent text-[10px] font-bold uppercase tracking-[0.3em]">Navigation</span>
+      <div class="w-8 h-[2px] bg-white"></div>
+      <span class="text-white/60 text-[10px] font-bold uppercase tracking-[0.3em]">Navigation</span>
     </div>
 
     <a href="#menu"
-      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
+      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-white hover:text-white/70 transition-colors relative group leading-none">
       Menu
       <span
-        class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-    </a>
-    <a href="#about"
-      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
-      Our Story
-      <span
-        class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+        class="absolute -bottom-1 left-0 w-0 h-[3px] bg-white transition-all duration-300 group-hover:w-full"></span>
     </a>
     <a href="#contact"
-      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-secondary hover:text-accent transition-colors relative group leading-none">
+      class="mobile-link text-5xl md:text-7xl font-bold uppercase tracking-tight text-white hover:text-white/70 transition-colors relative group leading-none">
       Contact
       <span
-        class="absolute -bottom-1 left-0 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+        class="absolute -bottom-1 left-0 w-0 h-[3px] bg-white transition-all duration-300 group-hover:w-full"></span>
     </a>
 
-    <!-- Order CTA inside mobile menu -->
-    <a href="#contact"
-      class="mobile-link mt-4 inline-flex items-center gap-3 bg-accent text-secondary font-bold uppercase tracking-widest px-8 py-4 hover:bg-brand-brown transition-colors duration-300">
-      Place an Order
-      <i class="fas fa-arrow-right text-sm"></i>
-    </a>
+    <!-- Cart inside mobile menu -->
+    <button type="button" onclick="MMCCart.openDrawer()"
+      class="mobile-link mt-2 inline-flex items-center gap-3 bg-white text-black font-bold uppercase tracking-widest px-8 py-4 rounded hover:bg-neutral-200 transition-colors">
+      <i class="fas fa-shopping-bag"></i>
+      View Cart (<span class="cart-count-badge inline">0</span>)
+    </button>
   </nav>
 
   <!-- Social Links -->
-  <div class="absolute bottom-10 flex gap-8 text-secondary text-xl opacity-60">
-    <a id="mobileNavInstagramLink" href="#" class="hover:text-accent hover:opacity-100 transition-all hidden" aria-label="Instagram">
+  <div class="absolute bottom-10 flex gap-8 text-white text-xl opacity-60">
+    <a id="mobileNavInstagramLink" href="#" class="hover:text-white hover:opacity-100 transition-all hidden" aria-label="Instagram">
       <i class="fab fa-instagram"></i>
     </a>
-    <a id="mobileNavFacebookLink" href="#" class="hover:text-accent hover:opacity-100 transition-all hidden" aria-label="Facebook">
+    <a id="mobileNavFacebookLink" href="#" class="hover:text-white hover:opacity-100 transition-all hidden" aria-label="Facebook">
       <i class="fab fa-facebook"></i>
     </a>
-    <a id="mobileNavTwitterLink" href="#" class="hover:text-accent hover:opacity-100 transition-all hidden" aria-label="Twitter">
+    <a id="mobileNavTwitterLink" href="#" class="hover:text-white hover:opacity-100 transition-all hidden" aria-label="Twitter">
       <i class="fab fa-twitter"></i>
     </a>
-    <a id="mobileNavTiktokLink" href="#" class="hover:text-accent hover:opacity-100 transition-all hidden" aria-label="TikTok">
+    <a id="mobileNavTiktokLink" href="#" class="hover:text-white hover:opacity-100 transition-all hidden" aria-label="TikTok">
       <i class="fab fa-tiktok"></i>
     </a>
-    <a id="mobileNavWhatsappLink" href="#" class="hover:text-accent hover:opacity-100 transition-all hidden" aria-label="WhatsApp">
+    <a id="mobileNavWhatsappLink" href="#" class="hover:text-white hover:opacity-100 transition-all hidden" aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>

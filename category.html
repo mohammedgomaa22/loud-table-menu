@@ -5,18 +5,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <title>MMC Central - Category</title>
-  <meta name="theme-color" content="#2E2B29" />
+  <meta name="theme-color" content="#000000" />
   <link rel="shortcut icon" href="./assets/images/favicon.webp" type="image/webp" />
   <!-- Preload Critical Assets -->
   <link rel="preload" as="image" href="./assets/images/logo.webp" type="image/webp">
   <link rel="preload" as="image" href="./assets/images/favicon.webp" type="image/webp" fetchpriority="high">
-  
+
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Google Font (Cairo) with font-display swap -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -25,17 +25,17 @@
         theme: {
           extend: {
             colors: {
-              /* ===== Brand Palette ===== */
-              'brand-black': '#2E2B29', /* PANTONE Black C  */
-              'brand-terra': '#CC6B48', /* PANTONE 7618 C   */
-              'brand-brown': '#926346', /* PANTONE 876 C    */
-              'brand-silver': '#DED7D0', /* PANTONE 7604 C   */
-              'brand-cream': '#F4F2ED', /* PANTONE 663 C    */
+              /* ===== Brand Palette (Pure Black & White) ===== */
+              'brand-black': '#000000',
+              'brand-terra': '#000000',
+              'brand-brown': '#171717',
+              'brand-silver': '#e5e5e5',
+              'brand-cream': '#ffffff',
               /* ===== Semantic Aliases ===== */
-              primary: '#2E2B29',
-              secondary: '#F4F2ED',
-              accent: '#CC6B48',
-              muted: '#DED7D0',
+              primary: '#000000',
+              secondary: '#ffffff',
+              accent: '#000000',
+              muted: '#e5e5e5',
             },
             fontFamily: {
               sans: ['GeneralSans', 'NewTitle', 'sans-serif'],
@@ -57,20 +57,25 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="preload" as="style" href="./src/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./src/css/all.min.css"></noscript>
-  
+  <noscript>
+    <link rel="stylesheet" href="./src/css/all.min.css">
+  </noscript>
+
   <!-- AOS CSS -->
-  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
-  
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  </noscript>
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./src/css/style.css">
 </head>
 
-<body class="bg-secondary text-primary font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-secondary">
+<body class="bg-white text-black font-sans antialiased overflow-x-hidden selection:bg-black selection:text-white">
 
   <!-- ===== HEADER PLACEHOLDER ===== -->
   <div data-include="src/partials/header.html"></div>
@@ -79,50 +84,52 @@
   <main role="main" class="pt-[67px] min-h-screen flex flex-col">
 
     <!-- CATEGORY HERO SECTION -->
-    <section class="relative bg-primary py-24 md:py-32 flex items-center justify-center overflow-hidden border-b-4 border-accent">
+    <section
+      class="relative bg-black py-24 md:py-32 flex items-center justify-center overflow-hidden border-b border-white/10">
       <!-- Dynamic Background Image with proper overlay -->
       <div class="absolute inset-0">
-        <img id="categoryHeroBg" src="" alt="" class="w-full h-full object-cover  transition-opacity duration-700" />
-        <!-- Warm gradient overlay matching brand palette -->
-        <!-- <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/70 to-primary/45"></div> -->
+        <img id="categoryHeroBg" src="" alt="" class="w-full h-full object-cover" />
+        <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70"></div> -->
       </div>
-      
+
       <div class="container relative z-10 text-center px-4" data-aos="fade-up">
-        <h1 id="categoryTitle" class="text-white text-6xl md:text-8xl lg:text-[10rem] font-bold uppercase tracking-tighter leading-none mb-4">
+        <h1 id="categoryTitle"
+          class="text-white text-5xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter leading-none mb-4">
           Loading...
         </h1>
-        <p id="categoryDesc" class="text-white/80 text-lg md:text-2xl uppercase tracking-widest max-w-2xl mx-auto">
+        <p id="categoryDesc" class="text-white/80 text-lg md:text-xl uppercase tracking-widest max-w-2xl mx-auto">
           Please wait while we fetch the menu
         </p>
       </div>
     </section>
 
     <!-- PRODUCTS GRID SECTION -->
-    <section class="flex-grow py-24 bg-secondary">
+    <section class="flex-grow py-24 bg-white">
       <div class="container">
-        
+
         <!-- Go Back Link -->
-        <a href="index.html#menu" class="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors mb-12 group">
+        <a href="index.html#menu"
+          class="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-black hover:text-neutral-500 transition-colors mb-12 group text-xs sm:text-sm">
           <i class="fas fa-arrow-left transform group-hover:-translate-x-2 transition-transform"></i> Back to Categories
         </a>
 
         <!-- Loading State -->
         <div id="loadingState" class="text-center py-20">
-          <i class="fas fa-spinner fa-spin text-6xl text-accent mb-6"></i>
-          <h2 class="text-2xl font-bold uppercase tracking-widest">Preparing the table...</h2>
+          <i class="fas fa-spinner fa-spin text-5xl text-black mb-6"></i>
+          <h2 class="text-xl font-bold uppercase tracking-widest text-black">Preparing the table...</h2>
         </div>
 
         <!-- Products Grid -->
         <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 hidden">
-          <!-- Product cards will be injected here -->
+          <!-- Product cards will be injected here via category.js -->
         </div>
 
         <!-- Empty State (Hidden by default) -->
-        <div id="emptyState" class="hidden text-center py-20 border-4 border-dashed border-primary/20">
-          <i class="fas fa-ghost text-6xl text-primary/30 mb-6"></i>
-          <h2 class="text-2xl font-bold uppercase tracking-widest text-primary/50">No items found in this category</h2>
+        <div id="emptyState" class="hidden text-center py-20 border-2 border-dashed border-black/10 rounded-xl">
+          <i class="fas fa-box-open text-5xl text-black/30 mb-6"></i>
+          <h2 class="text-xl font-bold uppercase tracking-widest text-black/60">No items found in this category</h2>
         </div>
-        
+
       </div>
     </section>
 
@@ -142,12 +149,14 @@
       }
     </style>
   </noscript>
-  
+
   <!-- Supabase -->
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="./src/js/supabase-config.js"></script>
   <script defer src="./src/js/supabase-client.js"></script>
   <script defer src="./src/js/menu-api.js"></script>
+  <!-- Shopping Cart Module -->
+  <script defer src="./src/js/cart.js"></script>
   <!-- Main JS (Includes HTML loader and mobile menu) -->
   <script defer src="./src/js/main.js"></script>
   <!-- Category Specific JS -->
@@ -155,8 +164,5 @@
   <!-- ===== END SCRIPTS ===== -->
 
 </body>
+
 </html>
-
-
-
-

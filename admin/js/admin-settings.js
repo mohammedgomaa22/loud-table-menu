@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('heroCtaPrimary').value    = data.hero_cta_primary   || '';
     document.getElementById('heroCtaSecondary').value  = data.hero_cta_secondary || '';
 
+    // Catering & Orders (with localStorage fallback if not in DB yet)
+    let localCatering = {};
+    try {
+      localCatering = JSON.parse(localStorage.getItem('mmc_catering_settings') || '{}');
+    } catch (_) {}
+
+    document.getElementById('cateringEyebrow').value       = data.catering_eyebrow       ?? (localCatering.catering_eyebrow       ?? '');
+    document.getElementById('cateringTitle').value         = data.catering_title         ?? (localCatering.catering_title         ?? '');
+    document.getElementById('cateringTitleAccent').value    = data.catering_title_accent  ?? (localCatering.catering_title_accent  ?? '');
+    document.getElementById('cateringDescription').value   = data.catering_description   ?? (localCatering.catering_description   ?? '');
+    document.getElementById('cateringCtaPrimary').value    = data.catering_cta_primary   ?? (localCatering.catering_cta_primary   ?? '');
+    document.getElementById('cateringCtaSecondary').value  = data.catering_cta_secondary ?? (localCatering.catering_cta_secondary ?? '');
+
     document.getElementById('instagramUrl').value    = data.instagram_url     || '';
     document.getElementById('facebookUrl').value     = data.facebook_url      || '';
     document.getElementById('twitterUrl').value      = data.twitter_url       || '';
@@ -70,6 +83,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function saveSettings() {
+    const cateringData = {
+      catering_eyebrow:       document.getElementById('cateringEyebrow').value.trim() || null,
+      catering_title:         document.getElementById('cateringTitle').value.trim() || null,
+      catering_title_accent:  document.getElementById('cateringTitleAccent').value.trim() || null,
+      catering_description:   document.getElementById('cateringDescription').value.trim() || null,
+      catering_cta_primary:   document.getElementById('cateringCtaPrimary').value.trim() || null,
+      catering_cta_secondary: document.getElementById('cateringCtaSecondary').value.trim() || null
+    };
+
+    // Save locally immediately
+    try {
+      localStorage.setItem('mmc_catering_settings', JSON.stringify(cateringData));
+    } catch (_) {}
+
     const payload = {
       website_title:    document.getElementById('websiteTitle').value.trim(),
       meta_description: document.getElementById('metaDescription').value.trim() || null,
@@ -87,6 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       hero_subtitle:    document.getElementById('heroSubtitle').value.trim() || null,
       hero_cta_primary: document.getElementById('heroCtaPrimary').value.trim() || null,
       hero_cta_secondary: document.getElementById('heroCtaSecondary').value.trim() || null,
+      ...cateringData,
       instagram_url:    document.getElementById('instagramUrl').value.trim() || null,
       facebook_url:     document.getElementById('facebookUrl').value.trim() || null,
       twitter_url:      document.getElementById('twitterUrl').value.trim() || null,
@@ -95,10 +123,32 @@ document.addEventListener('DOMContentLoaded', async () => {
       whatsapp_message: document.getElementById('whatsappMessage').value.trim()
     };
 
-    const { error } = await window.mmcSupabase
+    let { error } = await window.mmcSupabase
       .from('site_settings')
       .update(payload)
       .eq('id', 1);
+
+    // If database table doesn't have catering columns yet, save without them so other fields save successfully
+    if (error && error.message && error.message.includes('catering_')) {
+      const fallbackPayload = { ...payload };
+      delete fallbackPayload.catering_eyebrow;
+      delete fallbackPayload.catering_title;
+      delete fallbackPayload.catering_title_accent;
+      delete fallbackPayload.catering_description;
+      delete fallbackPayload.catering_cta_primary;
+      delete fallbackPayload.catering_cta_secondary;
+
+      const retryRes = await window.mmcSupabase
+        .from('site_settings')
+        .update(fallbackPayload)
+        .eq('id', 1);
+
+      if (!retryRes.error) {
+        showToast('Settings saved. (Catering saved locally - run 12_catering_content.sql in Supabase to sync to database)');
+        return;
+      }
+      error = retryRes.error;
+    }
 
     if (error) {
       showToast(error.message, true);

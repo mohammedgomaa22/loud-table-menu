@@ -139,6 +139,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       commentsWrapper.classList.remove('hidden');
     }
 
+    // Set up Add to Cart button (always adds 1 unit — quantity can be adjusted in cart drawer)
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    if (addToCartBtn) {
+      if (product.available === false) {
+        addToCartBtn.disabled = true;
+        addToCartBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        addToCartBtn.textContent = 'Sold Out';
+      } else {
+        addToCartBtn.disabled = false;
+        addToCartBtn.onclick = () => {
+          if (typeof MMCCart !== 'undefined') {
+            MMCCart.addItem({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              weight: product.weight,
+              image: imgSrc,
+              categorySlug: category.slug
+            }, 1);
+          }
+        };
+      }
+    }
+
     // Set up WhatsApp Order button link
     const whatsappCtaBtn = document.getElementById('whatsappCtaBtn');
     if (whatsappCtaBtn) {
@@ -178,34 +202,49 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('viewAllBtn').href = categoryUrl;
     document.getElementById('viewAllBtnMobile').href = categoryUrl;
 
-    // Render cards
+    // Render cards (Clean monochrome, NO black border, NO orange border)
+    relatedGrid.innerHTML = '';
     relatedItems.forEach((product, index) => {
       const delay = (index % 4) * 100;
       const card = document.createElement('a');
       card.href = `product?category=${category.slug}&id=${product.id}`;
-      card.className = "group relative bg-white border-2 border-primary overflow-hidden flex flex-col h-full hover:shadow-[6px_6px_0_0_#CC6B48] transition-all duration-300 transform hover:-translate-y-1 block";
+      card.className = "group relative bg-white rounded-lg overflow-hidden flex flex-col h-full border border-black/10 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 block";
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', delay.toString());
 
       const isAvailable = product.available !== false;
       const soldOutBadge = !isAvailable ? 
-        `<div class="absolute top-2 right-2 bg-primary text-secondary font-black text-[10px] uppercase px-2.5 py-1 tracking-[0.1em] border border-secondary shadow-[2px_2px_0_0_#CC6B48] z-20">SOLD OUT</div>` : '';
+        `<div class="absolute top-2 right-2 bg-black text-white font-black text-[10px] uppercase px-2.5 py-1 tracking-[0.1em] rounded shadow-md z-20">SOLD OUT</div>` : '';
 
       const priceText = publicPriceText(product.price);
 
-      // Themed image (using shared fallback engine)
+      // Themed image
       const img1 = getProductImage(product, category.slug);
+      const safeName = (product.name || '').replace(/'/g, "\\'");
+      const safeWeight = (product.weight || '').replace(/'/g, "\\'");
 
       card.innerHTML = `
         ${soldOutBadge}
-        <div class="w-full aspect-square bg-primary/5 relative overflow-hidden border-b-2 border-primary/10">
+        <div class="w-full aspect-square bg-neutral-100 relative overflow-hidden">
           <img src="${img1}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
         </div>
         <div class="p-4 flex flex-col flex-grow bg-white">
-          <h3 class="text-lg font-bold uppercase tracking-tight text-primary leading-tight line-clamp-2 mb-2 group-hover:text-accent transition-colors duration-300">${product.name}</h3>
-          <div class="mt-auto pt-2 flex items-center justify-between">
-            ${priceText ? `<span class="text-xl font-black text-primary">${priceText}</span>` : '<span></span>'}
-            <i class="fas fa-arrow-right text-primary/40 transform group-hover:text-accent group-hover:translate-x-1.5 transition-all duration-300"></i>
+          <h3 class="text-sm md:text-base font-bold uppercase tracking-tight text-black leading-tight line-clamp-2 mb-2">${product.name}</h3>
+          <div class="mt-auto pt-2 flex items-center justify-between border-t border-black/10">
+            ${priceText ? `<span class="text-sm md:text-base font-black text-black">${priceText}</span>` : '<span class="text-xs text-neutral-400">View</span>'}
+            
+            <div class="flex items-center gap-1.5">
+              ${isAvailable ? `
+                <button type="button"
+                  onclick="event.preventDefault(); event.stopPropagation(); MMCCart.addItem({ id: '${product.id}', name: '${safeName}', price: ${product.price != null ? product.price : 'null'}, weight: '${safeWeight}', image: '${img1}', categorySlug: '${category.slug}' });"
+                  aria-label="Add to cart"
+                  class="h-7 px-2 rounded bg-black text-white hover:bg-neutral-800 flex items-center justify-center gap-1 text-[10px] font-bold uppercase transition-colors"
+                  title="Add to cart">
+                  <i class="fas fa-plus text-[9px]"></i> Add
+                </button>
+              ` : ''}
+              <i class="fas fa-arrow-right text-black/40 transform group-hover:text-black group-hover:translate-x-1 transition-all duration-300 ml-1"></i>
+            </div>
           </div>
         </div>
       `;

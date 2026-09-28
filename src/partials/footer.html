@@ -1,7 +1,4 @@
-<footer role="contentinfo" class="bg-primary text-secondary">
-  <!-- Top accent bar -->
-  <div class="w-full h-[3px] bg-accent"></div>
-
+<footer role="contentinfo" class="bg-black text-white border-t border-white/10">
   <div class="container py-16">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 
@@ -11,24 +8,22 @@
           <img id="footerLogo" src="./assets/images/logo.webp" alt="MMC Central" width="140" height="40"
             class="h-9 w-auto brightness-0 invert" />
         </a>
-        <p id="footerAboutText" class="text-secondary/50 text-sm leading-relaxed max-w-xs">
-          Premium bakery & catering. Authentic ingredients, bold flavors — crafted to make a statement.
-        </p>
+        <p id="footerAboutText" class="text-neutral-400 text-sm leading-relaxed max-w-xs hidden"></p>
         <!-- Social -->
-        <div class="flex items-center gap-5 mt-6 text-lg text-secondary/50">
-          <a id="footerInstagramLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Instagram">
+        <div class="flex items-center gap-5 mt-6 text-lg text-neutral-400">
+          <a id="footerInstagramLink" href="#" class="hover:text-white transition-colors hidden" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a id="footerFacebookLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Facebook">
+          <a id="footerFacebookLink" href="#" class="hover:text-white transition-colors hidden" aria-label="Facebook">
             <i class="fab fa-facebook"></i>
           </a>
-          <a id="footerTwitterLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="Twitter">
+          <a id="footerTwitterLink" href="#" class="hover:text-white transition-colors hidden" aria-label="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
-          <a id="footerTiktokLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="TikTok">
+          <a id="footerTiktokLink" href="#" class="hover:text-white transition-colors hidden" aria-label="TikTok">
             <i class="fab fa-tiktok"></i>
           </a>
-          <a id="footerWhatsappLink" href="#" class="hover:text-accent transition-colors hidden" aria-label="WhatsApp">
+          <a id="footerWhatsappLink" href="#" class="hover:text-white transition-colors hidden" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
         </div>
@@ -36,39 +31,39 @@
 
       <!-- Nav Column -->
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Navigate</h4>
+        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-white mb-5">Navigate</h4>
         <ul class="space-y-3">
-          <li><a href="#menu" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Our Menu</a></li>
-          <li><a href="#about" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Our Story</a></li>
-          <li><a href="#contact" class="text-secondary/60 hover:text-accent transition-colors text-sm uppercase tracking-wider font-medium">Contact</a></li>
+          <li><a href="#menu" class="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">Our Menu</a></li>
+          <li><a href="#contact" class="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">Contact</a></li>
+          <li><button type="button" onclick="MMCCart.openDrawer()" class="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-wider font-medium">View Cart</button></li>
         </ul>
       </div>
 
       <!-- Contact Column -->
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-5">Contact</h4>
+        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-white mb-5">Contact</h4>
         <ul class="space-y-3 mb-6">
           <li id="footerEmailItem" class="hidden">
-            <a id="footerContactEmail" href="#" class="flex items-center gap-2 text-secondary/60 hover:text-accent transition-colors text-sm">
-              <i class="fas fa-envelope text-accent/60 w-4 text-center"></i>
-              <span>—</span>
+            <a id="footerContactEmail" href="#" class="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-sm">
+              <i class="fas fa-envelope text-white/50 w-4 text-center"></i>
+              <span></span>
             </a>
           </li>
           <li id="footerPhoneItem" class="hidden">
-            <a id="footerContactPhone" href="#" class="flex items-center gap-2 text-secondary/60 hover:text-accent transition-colors text-sm">
-              <i class="fas fa-phone text-accent/60 w-4 text-center"></i>
-              <span>—</span>
+            <a id="footerContactPhone" href="#" class="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-sm">
+              <i class="fas fa-phone text-white/50 w-4 text-center"></i>
+              <span></span>
             </a>
           </li>
           <li id="footerAddressItem" class="hidden">
-            <p id="footerAddress" class="flex items-start gap-2 text-secondary/50 text-sm">
-              <i class="fas fa-location-dot text-accent/60 w-4 text-center mt-0.5"></i>
-              <span>—</span>
+            <p id="footerAddress" class="flex items-start gap-2 text-neutral-400 text-sm">
+              <i class="fas fa-location-dot text-white/50 w-4 text-center mt-0.5"></i>
+              <span></span>
             </p>
           </li>
         </ul>
         <a href="#contact"
-          class="inline-flex items-center gap-2 border border-accent/40 text-accent text-sm font-bold uppercase tracking-widest px-6 py-3 hover:bg-accent hover:text-secondary transition-all duration-300 group">
+          class="inline-flex items-center gap-2 bg-white text-black text-sm font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-neutral-200 transition-all duration-300 group">
           Place an Order
           <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
         </a>
@@ -76,15 +71,15 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-secondary/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary/40">
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
       <div class="uppercase tracking-[0.15em]">
         &copy; <script>document.write(new Date().getFullYear())</script> <span id="footerSiteName">MMC Central</span>. All rights reserved.
       </div>
       <a href="https://rowadi.com" target="_blank" rel="noopener noreferrer"
-        class="group inline-flex items-center gap-1.5 text-secondary/45 hover:text-accent transition-colors"
+        class="group inline-flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors"
         aria-label="Powered by Rowadi">
         <span class="uppercase tracking-[0.12em] text-[10px]">Powered by</span>
-        <span class="inline-flex items-baseline gap-1 text-accent group-hover:text-secondary transition-colors">
+        <span class="inline-flex items-baseline gap-1 text-white group-hover:text-neutral-300 transition-colors">
           <span class="font-bold tracking-wide leading-none">Rowadi</span>
           <span class="text-[11px] opacity-90 leading-none">-</span>
           <span class="font-arabic text-sm font-semibold leading-none" lang="ar" dir="rtl">روادي</span>

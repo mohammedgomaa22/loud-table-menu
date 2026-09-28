@@ -131,15 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-/* ========== PAGE PRELOADER ========== */
-window.addEventListener("load", function () {
-  const pre = document.getElementById("preloader");
-  if (pre) {
-    setTimeout(() => {
-      pre.classList.add("hide");
-    }, 3000);
-  }
-});
+/* ========== PAGE PRELOADER (DISABLED) ========== */
+// Preloader disabled per configuration
 
 
 /* ========== SCROLL-AWARE HEADER ========== */
@@ -322,21 +315,21 @@ async function loadMenuData() {
       const loadingAttr = index < 2 ? 'eager' : 'lazy';
 
       card.innerHTML = `
-        <article class="menu-category-card h-full flex flex-col bg-white border border-primary/10 overflow-hidden transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-accent group-hover:shadow-[6px_6px_0_0_#CC6B48]">
-          <div class="relative aspect-[3/4] overflow-hidden bg-muted">
+        <article class="menu-category-card h-full flex flex-col bg-white border border-black/10 rounded-lg overflow-hidden transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:shadow-xl">
+          <div class="relative aspect-[3/4] overflow-hidden bg-neutral-100">
             <img
               src="${bgImage}"
               alt="${category.name}"
               loading="${loadingAttr}"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             >
-            <div class="absolute inset-0 bg-primary/0 transition-colors duration-500 group-hover:bg-primary/10 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5 pointer-events-none"></div>
           </div>
           <div class="py-6 px-5 text-center bg-white">
-            <h3 class="text-primary text-base md:text-lg font-bold uppercase tracking-[0.14em] leading-snug line-clamp-2 break-words transition-colors duration-300 group-hover:text-accent">
+            <h3 class="text-black text-base md:text-lg font-bold uppercase tracking-[0.14em] leading-snug line-clamp-2 break-words transition-colors duration-300">
               ${category.name}
             </h3>
-            <span class="mt-3 mx-auto block h-[2px] w-8 bg-accent/40 transition-all duration-500 group-hover:w-14 group-hover:bg-accent" aria-hidden="true"></span>
+            <span class="mt-3 mx-auto block h-[2px] w-8 bg-black/20 transition-all duration-500 group-hover:w-14 group-hover:bg-black" aria-hidden="true"></span>
           </div>
         </article>
       `;

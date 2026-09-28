@@ -172,7 +172,7 @@ async function fetchPartners() {
 function _setLink(id, url) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (url) {
+  if (url && String(url).trim() !== '') {
     el.href = url;
     el.classList.remove('hidden');
   } else {
@@ -180,9 +180,20 @@ function _setLink(id, url) {
   }
 }
 
-function _setText(id, text) {
-  const el = document.getElementById(id);
-  if (el && text) el.textContent = text;
+function _setTextOrHide(elementId, wrapperId, text) {
+  const el = document.getElementById(elementId);
+  const wrap = wrapperId ? document.getElementById(wrapperId) : el;
+  const hasValue = text != null && String(text).trim() !== '';
+  if (el) {
+    el.textContent = hasValue ? text.trim() : '';
+  }
+  if (wrap) {
+    if (hasValue) {
+      wrap.classList.remove('hidden');
+    } else {
+      wrap.classList.add('hidden');
+    }
+  }
 }
 
 function _setImgSrc(id, url) {
@@ -197,10 +208,9 @@ function _isRemoteUrl(url) {
 
 async function applySiteSettingsToConfig() {
   try {
-    const settings = await fetchSiteSettings();
-    if (!settings) return;
+    const settings = (await fetchSiteSettings()) || {};
 
-    // ── WhatsApp config (used by main.js button builder) ──
+    // ── WhatsApp config (used by main.js & cart.js) ──
     if (settings.whatsapp_number) {
       MMC_CONFIG.whatsappNumber = String(settings.whatsapp_number).replace(/\D/g, '');
     }
@@ -209,12 +219,14 @@ async function applySiteSettingsToConfig() {
     }
 
     // ── Page title & meta description ──
-    if (settings.website_title) {
+    if (settings.website_title && settings.website_title.trim()) {
       document.title = settings.website_title;
-      _setText('siteTitle', settings.website_title);
-      _setText('footerSiteName', settings.website_title);
+      const titleEl = document.getElementById('siteTitle');
+      if (titleEl) titleEl.textContent = settings.website_title;
+      const footerSiteEl = document.getElementById('footerSiteName');
+      if (footerSiteEl) footerSiteEl.textContent = settings.website_title;
     }
-    if (settings.meta_description) {
+    if (settings.meta_description && settings.meta_description.trim()) {
       const meta = document.getElementById('siteMetaDescription');
       if (meta) meta.setAttribute('content', settings.meta_description);
     }
@@ -224,6 +236,7 @@ async function applySiteSettingsToConfig() {
       _setImgSrc('headerLogo', settings.logo_url);
       _setImgSrc('mobileMenuLogo', settings.logo_url);
       _setImgSrc('footerLogo', settings.logo_url);
+      _setImgSrc('heroLogo', settings.logo_url);
     }
 
     // ── Website Favicon (only if a real URL was uploaded) ──
@@ -238,44 +251,98 @@ async function applySiteSettingsToConfig() {
       _setImgSrc('heroBgImage', settings.hero_image_url);
     }
 
-    // ── Hero texts (homepage) ──
-    _setText('heroEyebrow', settings.hero_eyebrow);
-    _setText('heroTitleLine1', settings.hero_title_line1);
-    _setText('heroTitleLine2', settings.hero_title_line2);
-    _setText('heroTitleAccent', settings.hero_title_accent);
-    _setText('heroSubtitle', settings.hero_subtitle);
-    _setText('heroCtaPrimary', settings.hero_cta_primary);
-    _setText('heroCtaSecondary', settings.hero_cta_secondary);
+    // ── Hero Section (Strictly hide if empty in dashboard) ──
+    _setTextOrHide('heroEyebrow', 'heroEyebrowWrapper', settings.hero_eyebrow);
+    _setTextOrHide('heroSubtitle', 'heroSubtitle', settings.hero_subtitle);
+    _setTextOrHide('heroCtaPrimary', 'heroCtaPrimaryBtn', settings.hero_cta_primary);
+    _setTextOrHide('heroCtaSecondary', 'heroCtaSecondaryBtn', settings.hero_cta_secondary);
 
-    // ── About section (index.html) ──
-    _setText('aboutTextPrimary', settings.about_text);
-    _setText('aboutTextAddress', settings.address);
+    // Hero title text (optional - default is white logo as requested)
+    const titleLine1 = (settings.hero_title_line1 || '').trim();
+    const titleLine2 = (settings.hero_title_line2 || '').trim();
+    const titleAccent = (settings.hero_title_accent || '').trim();
+    const isDefaultMmc = (titleLine1.toUpperCase() === 'MMC' && titleLine2.toUpperCase() === 'CENTRAL');
+    const heroTitleWrapper = document.getElementById('heroTitleWrapper');
+
+    if (heroTitleWrapper) {
+      if (!isDefaultMmc && (titleLine1 || titleLine2 || titleAccent)) {
+        _setTextOrHide('heroTitleLine1', 'heroTitleLine1', titleLine1);
+        _setTextOrHide('heroTitleLine2', 'heroTitleLine2', titleLine2);
+        _setTextOrHide('heroTitleAccent', 'heroTitleAccent', titleAccent);
+        heroTitleWrapper.classList.remove('hidden');
+      } else {
+        heroTitleWrapper.classList.add('hidden');
+      }
+    }
+
+    // ── Catering & Orders Section ──
+    let localCatering = {};
+    try {
+      localCatering = JSON.parse(localStorage.getItem('mmc_catering_settings') || '{}');
+    } catch (_) {}
+
+    const cateringEyebrow = settings.catering_eyebrow ?? localCatering.catering_eyebrow;
+    const cateringTitle = settings.catering_title ?? localCatering.catering_title;
+    const cateringTitleAccent = settings.catering_title_accent ?? localCatering.catering_title_accent;
+    const cateringDesc = settings.catering_description ?? localCatering.catering_description;
+    const cateringCta1 = settings.catering_cta_primary ?? localCatering.catering_cta_primary;
+    const cateringCta2 = settings.catering_cta_secondary ?? localCatering.catering_cta_secondary;
+
+    const hasAnyCatering = [cateringEyebrow, cateringTitle, cateringTitleAccent, cateringDesc, cateringCta1, cateringCta2]
+      .some(val => val != null && String(val).trim() !== '');
+
+    const cateringSection = document.getElementById('cateringSection');
+    if (cateringSection) {
+      if (!hasAnyCatering) {
+        cateringSection.classList.add('hidden');
+      } else {
+        cateringSection.classList.remove('hidden');
+        _setTextOrHide('cateringEyebrow', 'cateringEyebrowWrapper', cateringEyebrow);
+        _setTextOrHide('cateringTitle', null, cateringTitle);
+        _setTextOrHide('cateringTitleAccent', null, cateringTitleAccent);
+        _setTextOrHide('cateringDescription', 'cateringDescription', cateringDesc);
+        _setTextOrHide('cateringCtaPrimary', 'cateringCtaPrimaryBtn', cateringCta1);
+        _setTextOrHide('cateringCtaSecondary', 'cateringCtaSecondaryBtn', cateringCta2);
+      }
+    }
 
     // ── Footer about paragraph ──
-    _setText('footerAboutText', settings.about_text);
+    _setTextOrHide('footerAboutText', 'footerAboutText', settings.about_text);
 
-    // ── Footer contact info ──
+    // ── Footer contact info (strictly hide if empty) ──
     const emailEl = document.getElementById('footerContactEmail');
     const emailItem = document.getElementById('footerEmailItem');
-    if (emailEl && emailItem && settings.contact_email) {
-      emailEl.href = `mailto:${settings.contact_email}`;
-      emailEl.querySelector('span').textContent = settings.contact_email;
-      emailItem.classList.remove('hidden');
+    if (emailEl && emailItem) {
+      if (settings.contact_email && settings.contact_email.trim()) {
+        emailEl.href = `mailto:${settings.contact_email.trim()}`;
+        emailEl.querySelector('span').textContent = settings.contact_email.trim();
+        emailItem.classList.remove('hidden');
+      } else {
+        emailItem.classList.add('hidden');
+      }
     }
 
     const phoneEl = document.getElementById('footerContactPhone');
     const phoneItem = document.getElementById('footerPhoneItem');
-    if (phoneEl && phoneItem && settings.contact_phone) {
-      phoneEl.href = `tel:${settings.contact_phone.replace(/\s/g, '')}`;
-      phoneEl.querySelector('span').textContent = settings.contact_phone;
-      phoneItem.classList.remove('hidden');
+    if (phoneEl && phoneItem) {
+      if (settings.contact_phone && settings.contact_phone.trim()) {
+        phoneEl.href = `tel:${settings.contact_phone.replace(/\s/g, '')}`;
+        phoneEl.querySelector('span').textContent = settings.contact_phone.trim();
+        phoneItem.classList.remove('hidden');
+      } else {
+        phoneItem.classList.add('hidden');
+      }
     }
 
     const addressEl = document.getElementById('footerAddress');
     const addressItem = document.getElementById('footerAddressItem');
-    if (addressEl && addressItem && settings.address) {
-      addressEl.querySelector('span').textContent = settings.address;
-      addressItem.classList.remove('hidden');
+    if (addressEl && addressItem) {
+      if (settings.address && settings.address.trim()) {
+        addressEl.querySelector('span').textContent = settings.address.trim();
+        addressItem.classList.remove('hidden');
+      } else {
+        addressItem.classList.add('hidden');
+      }
     }
 
     // ── Social links (footer) ──
@@ -297,7 +364,7 @@ async function applySiteSettingsToConfig() {
     _setLink('mobileNavTwitterLink',   settings.twitter_url);
     _setLink('mobileNavTiktokLink',    settings.tiktok_url);
 
-    // ── WhatsApp button in header (already has id="headerWhatsappBtn") ──
+    // ── WhatsApp button in header ──
     const headerWaBtn = document.getElementById('headerWhatsappBtn');
     if (headerWaBtn && waUrl) {
       headerWaBtn.href = waUrl;
