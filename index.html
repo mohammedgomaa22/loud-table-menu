@@ -91,12 +91,30 @@
   <main role="main">
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black">
-      <!-- Background Image with proper overlay -->
-      <div class="absolute inset-0">
-        <img id="heroBgImage" src="" alt="Fresh Bakery" class="w-full h-full object-cover" />
-        <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/70"></div> -->
+    <section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black group/hero">
+      <!-- Background Slider Container with Gradient Overlay -->
+      <div id="heroSliderContainer" class="absolute inset-0 overflow-hidden select-none">
+        <div id="heroSliderTrack" class="hero-slider-track">
+          <div class="hero-slide active">
+            <img id="heroBgImage" src="./assets/images/hero-sec.webp" alt="Fresh Bakery" class="hero-slide-img" />
+          </div>
+        </div>
+        <!-- Gradient Overlay for optimal text and logo contrast -->
+        <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/65 pointer-events-none z-[2]"></div> -->
       </div>
+
+      <!-- Slider Dots Indicators -->
+      <!-- <div id="heroSliderDots" class="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 transition-opacity duration-300 pointer-events-auto"></div> -->
+
+      <!-- Slider Next/Prev Arrows (desktop) -->
+      <!-- <button type="button" id="heroSliderPrev" aria-label="Previous Slide"
+        class="hidden sm:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white/70 hover:text-white hover:border-white hover:bg-white/20 transition-all duration-300 opacity-0 group-hover/hero:opacity-100 focus:opacity-100 shadow-xl cursor-pointer">
+        <i class="fas fa-chevron-left text-sm"></i>
+      </button>
+      <button type="button" id="heroSliderNext" aria-label="Next Slide"
+        class="hidden sm:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white/70 hover:text-white hover:border-white hover:bg-white/20 transition-all duration-300 opacity-0 group-hover/hero:opacity-100 focus:opacity-100 shadow-xl cursor-pointer">
+        <i class="fas fa-chevron-right text-sm"></i>
+      </button> -->
 
       <!-- Hero Content -->
       <div class="container relative z-10 py-24 md:py-32 text-center" data-aos="fade-up" data-aos-duration="1000">
@@ -145,7 +163,7 @@
 
       <!-- Scroll Down Indicator -->
       <a href="#menu"
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors z-10"
         aria-label="Scroll Down">
         <span class="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
         <i class="fas fa-chevron-down text-sm animate-bounce"></i>
@@ -166,7 +184,7 @@
           <div class="w-16 h-[2px] bg-black mx-auto"></div>
         </div>
 
-        <div class="relative px-4 md:px-8" data-aos="fade-up" data-aos-delay="100">
+        <div class="relative" data-aos="fade-up" data-aos-delay="100">
           <!-- Swiper -->
           <div class="swiper categoriesSwiper !pb-16 overflow-hidden">
             <div class="swiper-wrapper" id="categoriesGrid">

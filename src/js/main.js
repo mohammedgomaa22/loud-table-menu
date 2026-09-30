@@ -341,12 +341,12 @@ async function loadMenuData() {
     new Swiper('.categoriesSwiper', {
       slidesPerView: 1.35,
       spaceBetween: 20,
-      loop: true,
+      loop: false,
       speed: 1200, // 1.2 seconds transition duration for a very smooth slide
-      autoplay: {
-        delay: 4000, // Waits 4 seconds before moving
-        disableOnInteraction: false,
-      },
+      autoplay: false,
+      simulateTouch: true,
+      allowTouchMove: true,
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,

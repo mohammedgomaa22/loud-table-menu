@@ -17,6 +17,9 @@
 | 8 | `07_categories_image.sql` | صورة التصنيف |
 | 9 | `08_products_fields.sql` | حقول التكلفة للمنتجات |
 | 10 | `09_partners.sql` | جدول الشركاء (Partners) |
+| 11 | `11_hero_content.sql` | نصوص وأزرار الهيرو |
+| 12 | `12_catering_content.sql` | نصوص قسم الكيترينج والطلبات |
+| 13 | `13_hero_slider.sql` | سلايدر صور الهيرو المتحركة وتوقيت التبديل |
 
 ---
 

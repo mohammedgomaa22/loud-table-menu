@@ -321,7 +321,7 @@ const MMCCart = {
           <!-- WhatsApp Order CTA -->
           <button type="button" onclick="MMCCart.checkoutViaWhatsApp()" class="w-full bg-[#25D366] text-white hover:bg-[#1faa53] font-bold uppercase tracking-widest text-xs py-4 px-6 rounded flex items-center justify-center gap-3 transition-colors shadow-lg active:scale-[0.99]">
             <i class="fab fa-whatsapp text-lg"></i>
-            Order via WhatsApp
+            Inquire via WhatsApp
           </button>
 
           <button type="button" onclick="MMCCart.clear()" class="w-full mt-2 text-[10px] font-bold uppercase tracking-wider text-black/40 hover:text-black transition-colors text-center py-1">

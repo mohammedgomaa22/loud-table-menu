@@ -179,23 +179,66 @@
                 <input type="text" id="heroCtaSecondary" placeholder="Get In Touch" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
 
-              <div class="md:col-span-2">
-                <label class="block font-bold uppercase tracking-widest text-xs mb-4 text-primary">Hero Background Image</label>
-                <div class="flex flex-col sm:flex-row gap-4 items-start">
-                  <div class="w-full sm:w-48 h-28 bg-secondary flex items-center justify-center border-2 border-dashed border-primary/20 overflow-hidden flex-shrink-0">
-                    <img id="heroPreview" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=200&auto=format&fit=crop" alt="Hero" class="w-full h-full object-cover">
+              <!-- Hero Slider Section -->
+              <div class="md:col-span-2 border-t border-primary/10 pt-6 mt-2">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                  <div>
+                    <label class="block font-bold uppercase tracking-widest text-xs text-primary">Hero Slider Images (صور سلايدر الهيرو)</label>
+                    <p class="text-[11px] text-primary/60 mt-0.5">Upload or enter multiple images to turn the hero background into an animated cinematic slider.</p>
                   </div>
-                  <div class="flex-1 w-full">
-                    <div class="flex gap-2 mb-2">
-                      <button type="button" class="bg-secondary text-primary px-3 py-2 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors relative overflow-hidden flex-1 sm:flex-none text-center">
-                        <span class="relative z-10">Upload File</span>
-                        <input type="file" id="heroFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
-                      </button>
-                    </div>
-                    <input type="text" id="heroImageUrl" placeholder="Or enter image URL..." class="w-full bg-secondary border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent transition-colors">
-                    <p class="text-[10px] text-primary/50 mt-1">High-res JPG or WebP. Max 5MB. Used as the homepage hero background.</p>
+                  <div class="flex items-center gap-2">
+                    <label for="heroSliderInterval" class="text-xs font-bold uppercase tracking-wider text-primary whitespace-nowrap">Interval:</label>
+                    <select id="heroSliderInterval" class="bg-secondary border border-primary/20 p-2 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
+                      <option value="3">3 Seconds</option>
+                      <option value="4">4 Seconds</option>
+                      <option value="5" selected>5 Seconds (Recommended)</option>
+                      <option value="6">6 Seconds</option>
+                      <option value="8">8 Seconds</option>
+                      <option value="10">10 Seconds</option>
+                    </select>
                   </div>
                 </div>
+
+                <!-- Add Images Actions -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <!-- File Upload (Single or Multiple) -->
+                  <div class="border-2 border-dashed border-primary/30 p-4 bg-secondary/40 hover:bg-secondary hover:border-black transition-colors flex flex-col items-center justify-center text-center relative group min-h-[90px]">
+                    <i class="fas fa-cloud-arrow-up text-2xl text-primary/60 mb-2 group-hover:scale-110 group-hover:text-primary transition-all"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Upload Images (One or Multiple)</span>
+                    <span class="text-[10px] text-primary/50 mt-0.5">PNG, JPG, WebP. High resolution recommended.</span>
+                    <input type="file" id="heroSliderFilesInput" accept="image/*" multiple class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                  </div>
+
+                  <!-- Add by URL -->
+                  <div class="border border-primary/20 p-4 bg-secondary/40 flex flex-col justify-between min-h-[90px]">
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mb-1">Add Image by URL</span>
+                    <div class="flex gap-2 mt-auto">
+                      <input type="url" id="heroAddUrlInput" placeholder="https://example.com/photo.jpg" class="flex-1 bg-white border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent">
+                      <button type="button" id="heroAddUrlBtn" class="bg-primary text-secondary px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors whitespace-nowrap">
+                        <i class="fas fa-plus mr-1"></i> Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Images Gallery / List -->
+                <div class="mb-2">
+                  <div class="flex items-center justify-between text-xs text-primary/60 mb-2">
+                    <span class="font-bold uppercase tracking-wider">Current Slides (<span id="heroImagesCount">0</span>)</span>
+                    <span class="text-[10px]">Use arrows to reorder • First slide is the primary hero cover</span>
+                  </div>
+                  <div id="heroImagesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <!-- Rendered dynamically -->
+                  </div>
+                  <div id="heroImagesEmpty" class="hidden text-center py-8 px-4 border border-dashed border-primary/20 bg-secondary/30 text-xs text-primary/50">
+                    <i class="fas fa-images text-2xl mb-2 opacity-40 block"></i>
+                    No custom slides added yet. The site will display default bakery showcase slides.
+                  </div>
+                </div>
+
+                <!-- Hidden input for backward compatibility -->
+                <input type="hidden" id="heroImageUrl">
+                <img id="heroPreview" class="hidden" src="" alt="Hero Preview">
               </div>
             </div>
           </div>
