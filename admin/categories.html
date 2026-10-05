@@ -30,6 +30,14 @@
       }
     }
   </script>
+  <style>
+    /* Drag & Drop styles */
+    .drag-handle { cursor: grab; }
+    .drag-handle:active { cursor: grabbing; }
+    .sortable-ghost { opacity: 0.4; background: #F4F2ED; }
+    .sortable-chosen { background: #fefce8; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .sortable-drag { opacity: 1 !important; }
+  </style>
 </head>
 <body class="bg-adminbg text-primary font-sans antialiased overflow-x-hidden flex h-screen">
 
@@ -96,7 +104,7 @@
       <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">All Categories</h3>
-          <p class="text-primary/60 text-sm">Manage your menu categories</p>
+          <p class="text-primary/60 text-sm">Manage your menu categories — drag rows to reorder</p>
         </div>
         <button type="button" id="toggleCategoryFormBtn" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-colors flex items-center gap-2 shadow-[4px_4px_0_0_#CC6B48]">
           <i class="fas fa-plus"></i> Add New Category
@@ -124,11 +132,13 @@
               class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-mono text-sm">
           </div>
 
-          <!-- Image Upload -->
+          <!-- Category Image Upload -->
           <div class="md:col-span-2">
-            <label class="block font-bold uppercase tracking-widest text-xs mb-3 text-primary">Category Image</label>
+            <label class="block font-bold uppercase tracking-widest text-xs mb-3 text-primary">
+              <i class="fas fa-image mr-1 text-accent"></i> Category Image
+              <span class="normal-case font-normal text-primary/40">(shown on menu cards)</span>
+            </label>
             <div class="flex flex-col sm:flex-row gap-4">
-
               <!-- Preview -->
               <div class="w-full sm:w-36 h-24 sm:h-36 flex-shrink-0 bg-secondary border-2 border-dashed border-primary/20 overflow-hidden relative">
                 <img id="categoryImagePreview" src="" alt="Preview"
@@ -138,7 +148,6 @@
                   <span class="text-[10px] font-bold uppercase tracking-wider">No image</span>
                 </div>
               </div>
-
               <!-- Controls -->
               <div class="flex-1 flex flex-col gap-3 justify-center">
                 <button type="button" id="categoryImageUploadBtn"
@@ -156,6 +165,44 @@
                 <button type="button" id="categoryImageClearBtn"
                   class="hidden text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors text-left">
                   <i class="fas fa-times mr-1"></i> Remove image
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Banner Upload -->
+          <div class="md:col-span-2">
+            <label class="block font-bold uppercase tracking-widest text-xs mb-3 text-primary">
+              <i class="fas fa-panorama mr-1 text-accent"></i> Category Banner
+              <span class="normal-case font-normal text-primary/40">(wide banner shown at top of category page)</span>
+            </label>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <!-- Preview -->
+              <div class="w-full sm:w-48 h-24 flex-shrink-0 bg-secondary border-2 border-dashed border-primary/20 overflow-hidden relative">
+                <img id="categoryBannerPreview" src="" alt="Banner Preview"
+                  class="w-full h-full object-cover hidden">
+                <div id="categoryBannerPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-primary/30">
+                  <i class="fas fa-panorama text-3xl mb-1"></i>
+                  <span class="text-[10px] font-bold uppercase tracking-wider">No banner</span>
+                </div>
+              </div>
+              <!-- Controls -->
+              <div class="flex-1 flex flex-col gap-3 justify-center">
+                <button type="button" id="categoryBannerUploadBtn"
+                  class="relative inline-flex items-center gap-2 bg-secondary text-primary px-4 py-3 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-secondary transition-colors overflow-hidden border border-primary/20 w-full sm:w-auto">
+                  <i class="fas fa-upload"></i>
+                  <span>Upload Banner</span>
+                  <input type="file" id="categoryBannerFile" accept="image/*"
+                    class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                </button>
+                <div>
+                  <input type="text" id="categoryBannerUrl" placeholder="Or paste banner URL..."
+                    class="w-full bg-secondary border border-primary/20 p-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                  <p class="text-[10px] text-primary/40 mt-1">Recommended: wide/landscape image (e.g. 1600×400px).</p>
+                </div>
+                <button type="button" id="categoryBannerClearBtn"
+                  class="hidden text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors text-left">
+                  <i class="fas fa-times mr-1"></i> Remove banner
                 </button>
               </div>
             </div>
@@ -188,6 +235,7 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-primary text-secondary">
+                <th class="p-4 font-bold uppercase tracking-widest text-xs w-10"></th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs w-20">Image</th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs">Name</th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs hidden md:table-cell">Slug</th>
@@ -197,7 +245,7 @@
             </thead>
             <tbody id="categoriesTableBody" class="divide-y divide-primary/10">
               <tr>
-                <td colspan="5" class="p-6 text-center text-sm text-primary/60">Loading categories...</td>
+                <td colspan="6" class="p-6 text-center text-sm text-primary/60">Loading categories...</td>
               </tr>
             </tbody>
           </table>
@@ -211,12 +259,11 @@
   <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- SortableJS for drag & drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="../src/js/supabase-config.js"></script>
   <script src="../src/js/supabase-client.js"></script>
   <script src="js/admin-common.js"></script>
   <script src="js/admin-categories.js"></script>
 </body>
 </html>
-
-
-

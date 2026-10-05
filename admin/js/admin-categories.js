@@ -11,12 +11,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   const formPanel   = document.getElementById('addCategoryForm');
   const nameInput   = document.getElementById('categoryName');
   const slugInput   = document.getElementById('categorySlug');
-  const imageUrlInput  = document.getElementById('categoryImageUrl');
-  const imageFileInput = document.getElementById('categoryImageFile');
-  const imagePreview   = document.getElementById('categoryImagePreview');
+  const saveBtn     = document.getElementById('saveCategoryBtn');
+
+  // Category Image elements
+  const imageUrlInput    = document.getElementById('categoryImageUrl');
+  const imageFileInput   = document.getElementById('categoryImageFile');
+  const imagePreview     = document.getElementById('categoryImagePreview');
   const imagePlaceholder = document.getElementById('categoryImagePlaceholder');
-  const imageClearBtn  = document.getElementById('categoryImageClearBtn');
-  const saveBtn        = document.getElementById('saveCategoryBtn');
+  const imageClearBtn    = document.getElementById('categoryImageClearBtn');
+
+  // Category Banner elements
+  const bannerUrlInput    = document.getElementById('categoryBannerUrl');
+  const bannerFileInput   = document.getElementById('categoryBannerFile');
+  const bannerPreview     = document.getElementById('categoryBannerPreview');
+  const bannerPlaceholder = document.getElementById('categoryBannerPlaceholder');
+  const bannerClearBtn    = document.getElementById('categoryBannerClearBtn');
 
   await loadCategories();
 
@@ -32,27 +41,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // ── Image URL input → live preview ──
+  // ── Category Image ──
   if (imageUrlInput) {
-    imageUrlInput.addEventListener('input', () => {
-      setImagePreview(imageUrlInput.value.trim());
-    });
+    imageUrlInput.addEventListener('input', () => setImagePreview(imageUrlInput.value.trim()));
   }
-
-  // ── File upload → Supabase Storage ──
   if (imageFileInput) {
     imageFileInput.addEventListener('change', async () => {
       const file = imageFileInput.files[0];
       if (!file) return;
-      await uploadCategoryImage(file);
+      await uploadCategoryFile(file, 'image');
     });
   }
-
-  // ── Clear image ──
   if (imageClearBtn) {
     imageClearBtn.addEventListener('click', () => {
       imageUrlInput.value = '';
       setImagePreview('');
+    });
+  }
+
+  // ── Category Banner ──
+  if (bannerUrlInput) {
+    bannerUrlInput.addEventListener('input', () => setBannerPreview(bannerUrlInput.value.trim()));
+  }
+  if (bannerFileInput) {
+    bannerFileInput.addEventListener('change', async () => {
+      const file = bannerFileInput.files[0];
+      if (!file) return;
+      await uploadCategoryFile(file, 'banner');
+    });
+  }
+  if (bannerClearBtn) {
+    bannerClearBtn.addEventListener('click', () => {
+      bannerUrlInput.value = '';
+      setBannerPreview('');
     });
   }
 
@@ -63,7 +84,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       formPanel.classList.toggle('hidden');
     });
   }
-
   if (cancelBtn) {
     cancelBtn.addEventListener('click', () => {
       resetCategoryForm();
@@ -105,13 +125,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  async function uploadCategoryImage(file) {
+  function setBannerPreview(url) {
+    if (url) {
+      bannerPreview.src = url;
+      bannerPreview.classList.remove('hidden');
+      bannerPlaceholder.classList.add('hidden');
+      bannerClearBtn.classList.remove('hidden');
+    } else {
+      bannerPreview.src = '';
+      bannerPreview.classList.add('hidden');
+      bannerPlaceholder.classList.remove('hidden');
+      bannerClearBtn.classList.add('hidden');
+    }
+  }
+
+  async function uploadCategoryFile(file, type = 'image') {
     if (saveBtn) {
       saveBtn.disabled = true;
       saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
     }
 
-    const ext = file.name.split('.').pop();
+    const ext  = file.name.split('.').pop();
     const path = `categories/${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${ext}`;
 
     const { error } = await window.mmcSupabase.storage
@@ -132,15 +166,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       .from('site-assets')
       .getPublicUrl(path);
 
-    imageUrlInput.value = publicUrl;
-    setImagePreview(publicUrl);
+    if (type === 'banner') {
+      bannerUrlInput.value = publicUrl;
+      setBannerPreview(publicUrl);
+    } else {
+      imageUrlInput.value = publicUrl;
+      setImagePreview(publicUrl);
+    }
     showToast('Image uploaded.');
   }
 
   async function loadCategories() {
     const { data, error } = await window.mmcSupabase
       .from('categories')
-      .select('id, name, slug, description, image_url, sort_order')
+      .select('id, name, slug, description, image_url, banner_url, sort_order')
       .order('sort_order', { ascending: true });
 
     if (error) {
@@ -148,10 +187,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    if (!data.length) {
+    if (!data || !data.length) {
       tableBody.innerHTML = `
         <tr>
-          <td colspan="5" class="p-10 text-center text-sm text-primary/50">
+          <td colspan="6" class="p-10 text-center text-sm text-primary/50">
             <i class="fas fa-layer-group text-3xl mb-3 block text-primary/20"></i>
             No categories yet. Add your first one.
           </td>
@@ -160,7 +199,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     tableBody.innerHTML = data.map((cat) => `
-      <tr class="hover:bg-adminbg transition-colors">
+      <tr class="hover:bg-adminbg transition-colors" data-id="${cat.id}">
+        <td class="p-4 w-10">
+          <div class="drag-handle flex items-center justify-center w-6 h-6 text-primary/30 hover:text-primary/70 transition-colors cursor-grab" title="Drag to reorder">
+            <i class="fas fa-grip-vertical text-sm pointer-events-none"></i>
+          </div>
+        </td>
         <td class="p-4">
           ${cat.image_url
             ? `<img src="${escapeHtml(cat.image_url)}" alt="${escapeHtml(cat.name)}" class="w-14 h-14 object-cover border border-primary/10">`
@@ -169,7 +213,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                </div>`
           }
         </td>
-        <td class="p-4 font-bold text-primary text-sm uppercase tracking-wider">${escapeHtml(cat.name)}</td>
+        <td class="p-4">
+          <span class="font-bold text-primary text-sm uppercase tracking-wider">${escapeHtml(cat.name)}</span>
+          ${cat.banner_url ? `<span class="ml-2 inline-block text-[9px] font-bold uppercase tracking-widest bg-accent/20 text-accent px-1.5 py-0.5">Banner ✓</span>` : ''}
+        </td>
         <td class="p-4 text-xs text-primary/50 font-mono hidden md:table-cell">${escapeHtml(cat.slug)}</td>
         <td class="p-4 text-sm text-primary/60 hidden lg:table-cell max-w-xs truncate">${escapeHtml(cat.description || '—')}</td>
         <td class="p-4 text-right">
@@ -186,6 +233,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         </td>
       </tr>
     `).join('');
+
+    // ── Init SortableJS on tbody ──
+    if (window.Sortable) {
+      Sortable.create(tableBody, {
+        handle: '.drag-handle',
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: async () => {
+          await persistCategoryOrder();
+        }
+      });
+    }
+  }
+
+  /** Save new sort_order to DB after a drag-drop reorder */
+  async function persistCategoryOrder() {
+    const rows = [...tableBody.querySelectorAll('tr[data-id]')];
+    const updates = rows.map((row, idx) => ({
+      id: Number(row.dataset.id),
+      sort_order: idx
+    }));
+
+    // Batch update using individual upsert calls
+    for (const u of updates) {
+      await window.mmcSupabase
+        .from('categories')
+        .update({ sort_order: u.sort_order })
+        .eq('id', u.id);
+    }
+    showToast('Category order saved.');
   }
 
   async function saveCategory() {
@@ -193,6 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const slug        = slugInput?.value.trim() || slugify(name);
     const description = document.getElementById('categoryDescription')?.value.trim();
     const image_url   = imageUrlInput?.value.trim() || null;
+    const banner_url  = bannerUrlInput?.value.trim() || null;
 
     if (!name) {
       showToast('Category name is required.', true);
@@ -203,7 +283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    const payload = { name, slug, description: description || null, image_url };
+    const payload = { name, slug, description: description || null, image_url, banner_url };
 
     let error;
     if (editingCategoryId) {
@@ -231,7 +311,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function startEditCategory(categoryId) {
     const { data, error } = await window.mmcSupabase
       .from('categories')
-      .select('id, name, slug, description, image_url')
+      .select('id, name, slug, description, image_url, banner_url')
       .eq('id', categoryId)
       .single();
 
@@ -245,8 +325,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     slugInput.value   = data.slug;
     slugInput.dataset.manuallyEdited = 'true';
     document.getElementById('categoryDescription').value = data.description || '';
+
     imageUrlInput.value = data.image_url || '';
     setImagePreview(data.image_url || '');
+
+    bannerUrlInput.value = data.banner_url || '';
+    setBannerPreview(data.banner_url || '');
 
     document.getElementById('categoryFormTitle').textContent = 'Edit Category';
     formPanel.classList.remove('hidden');
@@ -276,6 +360,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     delete slugInput.dataset.manuallyEdited;
     setImagePreview('');
     imageUrlInput.value = '';
+    setBannerPreview('');
+    bannerUrlInput.value = '';
     document.getElementById('categoryFormTitle').textContent = 'Add Category';
     if (saveBtn) saveBtn.innerHTML = '<i class="fas fa-check"></i> Save Category';
   }

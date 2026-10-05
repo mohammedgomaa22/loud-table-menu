@@ -342,11 +342,41 @@ async function loadMenuData() {
       slidesPerView: 1.35,
       spaceBetween: 20,
       loop: false,
-      speed: 1200, // 1.2 seconds transition duration for a very smooth slide
+      speed: 650, // Natural, responsive transition duration
       autoplay: false,
+      grabCursor: true,
+
+      // Touch & Gesture sensitivity (touchscreens, iPad, laptops with touch display)
       simulateTouch: true,
       allowTouchMove: true,
-      grabCursor: true,
+      touchEventsTarget: 'container',
+      touchRatio: 1.2,
+      touchAngle: 45,
+      threshold: 3,
+      touchStartPreventDefault: false,
+      touchStartForcePreventDefault: false,
+      touchReleaseOnEdges: true,
+      resistance: true,
+      resistanceRatio: 0.85,
+      passiveListeners: true,
+
+      // Trackpad two-finger swipe & mouse wheel horizontal scrolling (for Mac/laptops)
+      mousewheel: {
+        forceToAxis: true,
+        releaseOnEdges: true,
+        sensitivity: 1,
+      },
+
+      // Keyboard arrow navigation
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+
+      // Prevent accidental link clicks during touch swipe
+      preventClicks: true,
+      preventClicksPropagation: true,
+
       pagination: {
         el: '.swiper-pagination',
         clickable: true,

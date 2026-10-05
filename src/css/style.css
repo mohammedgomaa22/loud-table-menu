@@ -164,6 +164,28 @@ a[class*="bg-accent"][class*="font-bold"][class*="px-"] {
 /* ============================ */
 /* ======= SWIPER CUSTOM ======= */
 /* ============================ */
+.categoriesSwiper {
+  touch-action: pan-y !important;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.categoriesSwiper .swiper-wrapper {
+  touch-action: pan-y !important;
+}
+
+.categoriesSwiper .swiper-slide {
+  touch-action: pan-y !important;
+  -webkit-user-drag: none;
+}
+
+.categoriesSwiper img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .swiper-pagination-bullet-active {
   background-color: #000000 !important;
 }

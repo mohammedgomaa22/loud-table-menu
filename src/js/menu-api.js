@@ -49,7 +49,7 @@ async function fetchMenuData() {
 
   const { data: categories, error: catError } = await window.mmcSupabase
     .from('categories')
-    .select('id, name, slug, icon, description, image_url, sort_order')
+    .select('id, name, slug, icon, description, image_url, banner_url, sort_order')
     .eq('is_active', true)
     .order('sort_order', { ascending: true });
 
@@ -114,6 +114,7 @@ async function fetchMenuData() {
     icon: category.icon,
     description: category.description,
     image: category.image_url || null,
+    banner: category.banner_url || null,
     products: productsByCategory[category.id] || []
   }));
 }

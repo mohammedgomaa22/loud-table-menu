@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (categoryFilter) categoryFilter.addEventListener('change', loadProducts);
   if (searchInput)    searchInput.addEventListener('input', loadProducts);
 
+
   if (tableBody) {
     tableBody.addEventListener('click', async (event) => {
       const editBtn   = event.target.closest('[data-edit-product]');
@@ -232,7 +233,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         : `<div class="w-12 h-12 bg-secondary border border-primary/10 flex items-center justify-center text-primary/30"><i class="fas fa-box-open text-xs"></i></div>`;
 
       return `
-        <tr class="hover:bg-adminbg transition-colors ${product.available ? '' : 'opacity-60'}">
+        <tr class="hover:bg-adminbg transition-colors ${product.available ? '' : 'opacity-60'}" data-id="${product.id}">
+          <td class="p-4 w-10">
+            <div class="drag-handle flex items-center justify-center w-6 h-6 text-primary/30 hover:text-primary/70 transition-colors cursor-grab" title="Drag to reorder">
+              <i class="fas fa-grip-vertical text-sm pointer-events-none"></i>
+            </div>
+          </td>
           <td class="p-4">${imgCell}</td>
           <td class="p-4 font-bold text-primary text-sm">${escapeHtml(product.name)}</td>
           <td class="p-4 text-sm text-primary/70">${escapeHtml(product.categories?.name || '')}</td>
@@ -252,6 +258,21 @@ document.addEventListener('DOMContentLoaded', async () => {
           </td>
         </tr>`;
     }).join('');
+
+    // ── Init SortableJS on tbody (only when no active filter/search) ──
+    const canSort = !filterValue && !searchTerm;
+    if (window.Sortable && canSort) {
+      Sortable.create(tableBody, {
+        handle: '.drag-handle',
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: async () => {
+          await persistProductOrder();
+        }
+      });
+    }
   }
 
   function _num(id) {
@@ -270,7 +291,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     let legacyId = Number(document.getElementById('productLegacyId')?.value);
-    if (!legacyId) {
+
+    // Detect if the category changed while editing — if so, generate a new legacy_id
+    // for the target category to avoid the unique constraint (category_id, legacy_id).
+    const categoryChanged = editingProductDbId && (() => {
+      const originalCategoryId = Number(
+        document.getElementById('productCategory')
+          ?._originalCategoryId
+      );
+      return originalCategoryId && originalCategoryId !== categoryId;
+    })();
+
+    if (!legacyId || categoryChanged) {
       const { data: existing } = await window.mmcSupabase
         .from('products')
         .select('legacy_id')
@@ -313,6 +345,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadProducts();
   }
 
+  /** Save new sort_order to DB after a drag-drop reorder */
+  async function persistProductOrder() {
+    const rows = [...tableBody.querySelectorAll('tr[data-id]')];
+    for (let i = 0; i < rows.length; i++) {
+      await window.mmcSupabase
+        .from('products')
+        .update({ sort_order: i })
+        .eq('id', Number(rows[i].dataset.id));
+    }
+    showToast('Product order saved.');
+  }
+
   async function startEditProduct(productId) {
     const { data, error } = await window.mmcSupabase
       .from('products')
@@ -325,7 +369,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     editingProductDbId = data.id;
 
     document.getElementById('productName').value        = data.name;
-    document.getElementById('productCategory').value    = String(data.category_id);
+    const catSelect = document.getElementById('productCategory');
+    catSelect.value = String(data.category_id);
+    catSelect._originalCategoryId = data.category_id; // track original for change detection
     document.getElementById('productPrice').value       = data.price ?? '';
     document.getElementById('productWeight').value      = data.weight || '';
     document.getElementById('productDescription').value = data.description || '';

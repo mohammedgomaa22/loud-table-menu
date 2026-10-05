@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .drag-handle { cursor: grab; }
+    .drag-handle:active { cursor: grabbing; }
+    .sortable-ghost { opacity: 0.4; background: #F4F2ED; }
+    .sortable-chosen { background: #fefce8; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .sortable-drag { opacity: 1 !important; }
+  </style>
   <script>
     tailwind = {
       config: {
@@ -262,6 +269,7 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-primary text-secondary">
+                <th class="p-4 font-bold uppercase tracking-widest text-xs w-10"></th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs w-16">Image</th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs">Name</th>
                 <th class="p-4 font-bold uppercase tracking-widest text-xs">Category</th>
@@ -286,6 +294,8 @@
   <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- SortableJS for drag & drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="../src/js/supabase-config.js"></script>
   <script src="../src/js/supabase-client.js"></script>
   <script src="js/admin-common.js"></script>

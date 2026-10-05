@@ -40,13 +40,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     titleEl.textContent = category.name;
     descEl.textContent = category.description || 'Discover our flavors';
 
-    // Update Hero Background — use category image from DB, fall back to generic
+    // Update Hero Background:
+    //  1. Use banner_url if available (wide banner image)
+    //  2. Fall back to category image_url
+    //  3. Fall back to generic unsplash photo
     const heroBgEl = document.getElementById('categoryHeroBg');
     if (heroBgEl) {
       const fallbackHeroBg = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1600&auto=format&fit=crop';
-      heroBgEl.src = (category.image && category.image.startsWith('http'))
-        ? category.image
-        : fallbackHeroBg;
+      const bgSrc = (category.banner && category.banner.startsWith('http'))
+        ? category.banner
+        : (category.image && category.image.startsWith('http'))
+          ? category.image
+          : fallbackHeroBg;
+      heroBgEl.src = bgSrc;
       heroBgEl.alt = category.name;
     }
 
