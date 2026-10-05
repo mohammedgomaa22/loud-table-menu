@@ -255,7 +255,7 @@ async function applySiteSettingsToConfig() {
       } else if (typeof settings.hero_images === 'string') {
         try {
           heroImages = JSON.parse(settings.hero_images);
-        } catch (_) {}
+        } catch (_) { }
       }
     }
 
@@ -264,7 +264,7 @@ async function applySiteSettingsToConfig() {
       try {
         const localHero = JSON.parse(localStorage.getItem('mmc_hero_images') || '[]');
         if (Array.isArray(localHero) && localHero.length > 0) heroImages = localHero;
-      } catch (_) {}
+      } catch (_) { }
     }
 
     // Fallback to single hero_image_url if present
@@ -311,7 +311,7 @@ async function applySiteSettingsToConfig() {
     let localCatering = {};
     try {
       localCatering = JSON.parse(localStorage.getItem('mmc_catering_settings') || '{}');
-    } catch (_) {}
+    } catch (_) { }
 
     const cateringEyebrow = settings.catering_eyebrow ?? localCatering.catering_eyebrow;
     const cateringTitle = settings.catering_title ?? localCatering.catering_title;
@@ -379,22 +379,22 @@ async function applySiteSettingsToConfig() {
 
     // ── Social links (footer) ──
     _setLink('footerInstagramLink', settings.instagram_url);
-    _setLink('footerFacebookLink',  settings.facebook_url);
-    _setLink('footerTwitterLink',   settings.twitter_url);
-    _setLink('footerTiktokLink',    settings.tiktok_url);
+    _setLink('footerFacebookLink', settings.facebook_url);
+    _setLink('footerTwitterLink', settings.twitter_url);
+    _setLink('footerTiktokLink', settings.tiktok_url);
 
     // ── WhatsApp links (footer + mobile header) ──
     const waUrl = settings.whatsapp_number
       ? `https://wa.me/${String(settings.whatsapp_number).replace(/\D/g, '')}?text=${encodeURIComponent(settings.whatsapp_message || '')}`
       : null;
-    _setLink('footerWhatsappLink',    waUrl);
+    _setLink('footerWhatsappLink', waUrl);
     _setLink('mobileNavWhatsappLink', waUrl);
 
     // ── Social links (mobile header nav) ──
     _setLink('mobileNavInstagramLink', settings.instagram_url);
-    _setLink('mobileNavFacebookLink',  settings.facebook_url);
-    _setLink('mobileNavTwitterLink',   settings.twitter_url);
-    _setLink('mobileNavTiktokLink',    settings.tiktok_url);
+    _setLink('mobileNavFacebookLink', settings.facebook_url);
+    _setLink('mobileNavTwitterLink', settings.twitter_url);
+    _setLink('mobileNavTiktokLink', settings.tiktok_url);
 
     // ── WhatsApp button in header ──
     const headerWaBtn = document.getElementById('headerWhatsappBtn');
@@ -433,13 +433,13 @@ function initHeroSlider(imagesList, intervalSeconds = 5) {
   let validImages = (imagesList || []).filter(img => typeof img === 'string' && img.trim() !== '');
 
   // If no custom images provided, fallback to default high quality bakery images
-  if (validImages.length === 0) {
-    validImages = [
-      './assets/images/hero-sec.webp',
-      './assets/images/hero.webp',
-      './assets/images/bakery_factory.webp'
-    ];
-  }
+  // if (validImages.length === 0) {
+  //   validImages = [
+  //     './assets/images/hero-sec.webp',
+  //     './assets/images/hero.webp',
+  //     './assets/images/bakery_factory.webp'
+  //   ];
+  // }
 
   container.innerHTML = '';
   if (dotsContainer) dotsContainer.innerHTML = '';
@@ -598,7 +598,7 @@ if (typeof document !== 'undefined') {
       try {
         const local = JSON.parse(localStorage.getItem('mmc_hero_images') || '[]');
         if (Array.isArray(local) && local.length > 0) cachedImages = local;
-      } catch (_) {}
+      } catch (_) { }
       const cachedInterval = Number(localStorage.getItem('mmc_hero_slider_interval')) || 5;
       initHeroSlider(cachedImages, cachedInterval);
     }
