@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <base href="/admin/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <title>MMC Central | Website Sections</title>
+  <!-- Google Font (Cairo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              primary:   '#2E2B29',
+              secondary: '#F4F2ED',
+              accent:    '#CC6B48',
+              adminbg: '#f8f9fa',
+            },
+            fontFamily: {
+              sans: ['GeneralSans', 'NewTitle', 'Cairo', 'sans-serif'],
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .link-chip {
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease-in-out;
+    }
+    .link-chip:hover {
+      background-color: #2E2B29;
+      color: #F4F2ED;
+      border-color: #2E2B29;
+    }
+  </style>
+</head>
+<body class="bg-adminbg text-primary font-sans antialiased overflow-x-hidden flex h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-primary text-secondary flex-shrink-0 hidden md:flex flex-col h-full transition-all duration-300 relative z-20">
+    <div class="p-6 border-b border-secondary/10 flex items-center justify-center">
+      <img src="../assets/images/logo.webp" alt="MMC Central" class="h-8 w-auto brightness-0 invert" />
+    </div>
+    
+    <nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-home w-5 text-center"></i> Dashboard
+      </a>
+      <a href="categories.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-layer-group w-5 text-center"></i> Categories
+      </a>
+      <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-box-open w-5 text-center"></i> Products
+      </a>
+      <a href="sections.html" class="flex items-center gap-3 px-4 py-3 bg-accent text-primary font-bold uppercase tracking-widest text-xs rounded-sm transition-colors">
+        <i class="fas fa-shapes w-5 text-center"></i> Sections
+      </a>
+      <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-envelope w-5 text-center"></i> Messages
+        <span data-unread-messages class="ml-auto bg-accent text-primary text-[10px] px-2 py-0.5 rounded-full hidden">0</span>
+      </a>
+      <a href="partners.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors">
+        <i class="fas fa-handshake w-5 text-center"></i> Partners
+      </a>
+      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:bg-secondary/10 hover:text-secondary rounded-sm transition-colors mt-auto">
+        <i class="fas fa-cog w-5 text-center"></i> Settings
+      </a>
+    </nav>
+    
+    <div class="p-4 border-t border-secondary/10">
+      <a href="#" data-admin-logout class="flex items-center gap-3 px-4 py-3 text-secondary/70 font-bold uppercase tracking-widest text-xs hover:text-red-400 transition-colors">
+        <i class="fas fa-sign-out-alt w-5 text-center"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+    
+    <!-- Topbar -->
+    <header class="h-20 bg-white border-b border-primary/10 flex items-center justify-between px-6 md:px-10 flex-shrink-0 z-10">
+      <div class="flex items-center gap-4">
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-primary hover:text-accent transition-colors">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+        <div>
+          <h2 class="text-xl font-bold uppercase tracking-widest text-primary hidden sm:block">Website Sections</h2>
+          <p class="text-xs text-primary/50 hidden sm:block">Control section visibility, button links, texts, and media</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <a href="../index.html" target="_blank" class="text-xs font-bold uppercase tracking-widest text-primary/60 hover:text-accent transition-colors flex items-center gap-2">
+          <i class="fas fa-external-link-alt"></i> View Website
+        </a>
+        <div class="flex items-center gap-3 border-l border-primary/10 pl-6">
+          <div class="w-10 h-10 rounded-full bg-primary text-accent flex items-center justify-center font-bold text-lg" data-admin-avatar>
+            A
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Area -->
+    <main class="flex-1 overflow-y-auto p-6 md:p-10">
+      <div class="max-w-5xl">
+        
+        <!-- Top Action Bar & Tabs -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">Homepage Sections Manager</h3>
+            <p class="text-primary/60 text-sm">Toggle sections on/off, customize target links, and update visual content</p>
+          </div>
+          <button type="button" id="topSaveBtn" class="bg-primary text-secondary px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-accent hover:text-primary transition-all shadow-[4px_4px_0_0_#2E2B29] flex items-center gap-2 self-start sm:self-auto">
+            <i class="fas fa-save"></i> Save All Sections
+          </button>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <div class="flex flex-wrap gap-2 border-b-2 border-primary/20 pb-4 mb-8">
+          <button type="button" data-tab-target="tab-hero" class="section-tab-btn active px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-primary text-secondary transition-all shadow-[3px_3px_0_0_#2E2B29] flex items-center gap-2">
+            <i class="fas fa-image"></i>
+            <span>Hero & Slider</span>
+            <span class="bg-accent text-primary text-[10px] px-2 py-0.5 rounded-full ml-1" id="tabHeroBadge">0 slides</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-catering" class="section-tab-btn px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-white text-primary hover:bg-secondary transition-all flex items-center gap-2">
+            <i class="fas fa-utensils"></i>
+            <span>Catering & Orders</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-menu" class="section-tab-btn px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-white text-primary hover:bg-secondary transition-all flex items-center gap-2">
+            <i class="fas fa-book-open"></i>
+            <span>Our Menu</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-contact" class="section-tab-btn px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-white text-primary hover:bg-secondary transition-all flex items-center gap-2">
+            <i class="fas fa-paper-plane"></i>
+            <span>Contact Section</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-section1" class="section-tab-btn px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-white text-primary hover:bg-secondary transition-all flex items-center gap-2">
+            <i class="fas fa-layer-group"></i>
+            <span>Custom Section 1</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-section2" class="section-tab-btn px-4 py-3 font-bold uppercase tracking-wider text-xs border-2 border-primary bg-white text-primary hover:bg-secondary transition-all flex items-center gap-2">
+            <i class="fas fa-star"></i>
+            <span>Custom Section 2</span>
+          </button>
+
+          <button type="button" data-tab-target="tab-all" class="section-tab-btn px-3 py-3 font-bold uppercase tracking-wider text-xs border-2 border-dashed border-primary/30 text-primary/70 hover:border-primary hover:text-primary transition-all ml-auto flex items-center gap-1.5">
+            <i class="fas fa-eye"></i>
+            <span>Show All</span>
+          </button>
+        </div>
+
+        <!-- Form for Sections -->
+        <form id="sectionsForm" class="space-y-8">
+          
+          <!-- TAB 1: HERO SECTION -->
+          <div id="tab-hero" class="section-tab-content space-y-6">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+              
+              <!-- Section Card Header with Visibility Toggle -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-image"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Hero Section</h4>
+                    <p class="text-xs text-primary/60">Primary banner at the top of the homepage</p>
+                  </div>
+                </div>
+
+                <!-- Visibility Toggle Switch -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="heroVisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="heroVisible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Texts & Buttons Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="md:col-span-2">
+                  <label for="heroEyebrow" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Eyebrow Label</label>
+                  <input type="text" id="heroEyebrow" placeholder="Premium Bakery & Catering" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div>
+                  <label for="heroTitleLine1" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 1</label>
+                  <input type="text" id="heroTitleLine1" placeholder="Quality" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div>
+                  <label for="heroTitleLine2" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 2</label>
+                  <input type="text" id="heroTitleLine2" placeholder="That" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="heroTitleAccent" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">
+                    Headline Accent Line <span class="text-accent normal-case font-normal">(highlighted in accent color)</span>
+                  </label>
+                  <input type="text" id="heroTitleAccent" placeholder="Echoes." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="heroSubtitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Subtitle</label>
+                  <textarea id="heroSubtitle" rows="2" placeholder="Authentic ingredients. Bold flavors..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Primary Button (Text + Link) -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Hero Primary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="heroCtaPrimary" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="heroCtaPrimary" placeholder="Explore Menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="heroCtaPrimaryUrl" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link / Target Section</label>
+                      <input type="text" id="heroCtaPrimaryUrl" placeholder="#menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <!-- Quick Section Chips -->
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick Select:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaPrimaryUrl" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaPrimaryUrl" data-value="#cateringSection">#cateringSection</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaPrimaryUrl" data-value="#contact">#contact</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Secondary Button (Text + Link) -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Hero Secondary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="heroCtaSecondary" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="heroCtaSecondary" placeholder="Get In Touch" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="heroCtaSecondaryUrl" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link / Target Section</label>
+                      <input type="text" id="heroCtaSecondaryUrl" placeholder="#contact" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <!-- Quick Section Chips -->
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick Select:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaSecondaryUrl" data-value="#contact">#contact</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaSecondaryUrl" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="heroCtaSecondaryUrl" data-value="#cateringSection">#cateringSection</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hero Slider Gallery Section -->
+              <div class="border-t-2 border-primary/10 pt-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                  <div>
+                    <h5 class="text-sm font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                      <i class="fas fa-film text-accent"></i> Hero Slider Images
+                    </h5>
+                    <p class="text-xs text-primary/60 mt-0.5">Upload high-resolution images or provide URLs for the animated hero background slider.</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-xs text-primary/60 bg-secondary px-3 py-1.5 border border-primary/20">
+                    <i class="fas fa-sync-alt text-accent text-[11px]"></i>
+                    <span class="font-semibold uppercase tracking-wider text-[11px]">Fixed: 4s Auto-Transition</span>
+                  </div>
+                </div>
+
+                <!-- Add Images Actions -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <!-- File Upload (Single or Multiple) -->
+                  <div class="border-2 border-dashed border-primary/30 p-6 bg-secondary/40 hover:bg-secondary hover:border-black transition-colors flex flex-col items-center justify-center text-center relative group min-h-[110px]">
+                    <i class="fas fa-cloud-arrow-up text-3xl text-primary/60 mb-2 group-hover:scale-110 group-hover:text-primary transition-all"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Upload Images (One or Multiple)</span>
+                    <span class="text-[10px] text-primary/50 mt-1">PNG, JPG, WebP. High resolution landscape recommended.</span>
+                    <input type="file" id="heroSliderFilesInput" accept="image/*" multiple class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                  </div>
+
+                  <!-- Add by URL -->
+                  <div class="border border-primary/20 p-5 bg-secondary/40 flex flex-col justify-between min-h-[110px]">
+                    <div>
+                      <span class="text-xs font-bold uppercase tracking-wider text-primary block mb-1">Add Image by URL</span>
+                      <span class="text-[10px] text-primary/50 block mb-2">Paste direct image URL from Unsplash or CDN</span>
+                    </div>
+                    <div class="flex gap-2">
+                      <input type="url" id="heroAddUrlInput" placeholder="https://images.unsplash.com/..." class="flex-1 bg-white border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent">
+                      <button type="button" id="heroAddUrlBtn" class="bg-primary text-secondary px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors whitespace-nowrap">
+                        <i class="fas fa-plus mr-1"></i> Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Images Gallery / List -->
+                <div>
+                  <div class="flex items-center justify-between text-xs text-primary/60 mb-3">
+                    <span class="font-bold uppercase tracking-wider">Active Slides (<span id="heroImagesCount">0</span>)</span>
+                    <span class="text-[11px]"><i class="fas fa-info-circle mr-1"></i> Use arrows to reorder • First slide is the primary cover</span>
+                  </div>
+                  <div id="heroImagesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Rendered dynamically -->
+                  </div>
+                  <div id="heroImagesEmpty" class="hidden text-center py-10 px-4 border-2 border-dashed border-primary/20 bg-secondary/30 text-xs text-primary/50">
+                    <i class="fas fa-images text-3xl mb-2 opacity-40 block"></i>
+                    No custom slides added yet. The site will display default showcase images.
+                  </div>
+                </div>
+
+                <input type="hidden" id="heroImageUrl">
+                <img id="heroPreview" class="hidden" src="" alt="Hero Preview">
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: CATERING & ORDERS SECTION -->
+          <div id="tab-catering" class="section-tab-content space-y-6 hidden">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+              
+              <!-- Section Card Header with Visibility Toggle -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-utensils"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Catering & Orders Section</h4>
+                    <p class="text-xs text-primary/60">Special orders and catering showcase on the homepage</p>
+                  </div>
+                </div>
+
+                <!-- Visibility Toggle Switch -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="cateringVisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="cateringVisible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Texts & Buttons Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                  <label for="cateringEyebrow" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Eyebrow Label</label>
+                  <input type="text" id="cateringEyebrow" placeholder="Catering & Orders" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div>
+                  <label for="cateringTitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 1</label>
+                  <input type="text" id="cateringTitle" placeholder="Taste the" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div>
+                  <label for="cateringTitleAccent" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">
+                    Headline Accent Line <span class="text-accent normal-case font-normal">(highlighted in accent color)</span>
+                  </label>
+                  <input type="text" id="cateringTitleAccent" placeholder="Difference." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="cateringDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Description / Subtitle</label>
+                  <textarea id="cateringDescription" rows="3" placeholder="Elevate your next event with our bold, uncompromising pastries and catering menu." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Primary Button (Text + Link) -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Catering Primary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="cateringCtaPrimary" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="cateringCtaPrimary" placeholder="Place an Order" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="cateringCtaPrimaryUrl" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link / Target Section</label>
+                      <input type="text" id="cateringCtaPrimaryUrl" placeholder="#contact" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <!-- Quick Section Chips -->
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick Select:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="cateringCtaPrimaryUrl" data-value="#contact">#contact</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="cateringCtaPrimaryUrl" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="cateringCtaPrimaryUrl" data-value="https://wa.me/">WhatsApp</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Secondary Button (Text + Link) -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Catering Secondary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="cateringCtaSecondary" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="cateringCtaSecondary" placeholder="View Menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="cateringCtaSecondaryUrl" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link / Target Section</label>
+                      <input type="text" id="cateringCtaSecondaryUrl" placeholder="#menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <!-- Quick Section Chips -->
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick Select:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="cateringCtaSecondaryUrl" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="cateringCtaSecondaryUrl" data-value="#contact">#contact</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: OUR MENU SECTION -->
+          <div id="tab-menu" class="section-tab-content space-y-6 hidden">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+              
+              <!-- Section Card Header with Visibility Toggle -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Our Menu Section</h4>
+                    <p class="text-xs text-primary/60">Interactive carousel showcasing categories and bakery items on the homepage</p>
+                  </div>
+                </div>
+
+                <!-- Visibility Toggle Switch -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="menuVisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="menuVisible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="p-6 bg-secondary/40 border border-primary/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                  <h5 class="font-bold uppercase tracking-wider text-sm text-primary mb-1">Categories & Products Management</h5>
+                  <p class="text-xs text-primary/70">To add, edit, or reorder categories and products that appear inside this section, visit their dedicated managers.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <a href="categories.html" class="inline-flex items-center gap-2 bg-primary text-secondary px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm">
+                    <i class="fas fa-layer-group"></i> Manage Categories
+                  </a>
+                  <a href="products.html" class="inline-flex items-center gap-2 bg-white text-primary border border-primary/30 px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-secondary transition-colors shadow-sm">
+                    <i class="fas fa-box-open"></i> Manage Products
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: CONTACT & INQUIRIES -->
+          <div id="tab-contact" class="section-tab-content space-y-6 hidden">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+              
+              <!-- Section Card Header with Visibility Toggle -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-paper-plane"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Contact / Say Hello Section</h4>
+                    <p class="text-xs text-primary/60">Contact form where customers send inquiries and orders</p>
+                  </div>
+                </div>
+
+                <!-- Visibility Toggle Switch -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="contactVisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="contactVisible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="p-6 bg-secondary/40 border border-primary/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                  <h5 class="font-bold uppercase tracking-wider text-sm text-primary mb-1">Customer Messages Inbox</h5>
+                  <p class="text-xs text-primary/70">Submissions made through this contact form are received and managed in the Messages inbox.</p>
+                </div>
+                <a href="messages.html" class="inline-flex items-center gap-2 bg-primary text-secondary px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-sm whitespace-nowrap">
+                  <i class="fas fa-envelope"></i> Open Messages Inbox
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: CUSTOM SECTION 1 -->
+          <div id="tab-section1" class="section-tab-content space-y-6 hidden">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+              
+              <!-- Section Card Header -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-layer-group"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Custom Section 1</h4>
+                    <p class="text-xs text-primary/60">Left-aligned dark section with diagonal line texture &mdash; title, text &amp; two buttons</p>
+                  </div>
+                </div>
+                <!-- Visibility Toggle -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="section1VisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="section1Visible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Background Image -->
+              <div class="mb-6">
+                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Background Image <span class="normal-case font-normal text-primary/50">(Optional &mdash; black if empty)</span></label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <div class="flex-1 relative border-2 border-dashed border-primary/30 p-4 bg-secondary/40 hover:bg-secondary hover:border-black transition-colors flex items-center justify-center gap-3 cursor-pointer min-h-[70px]">
+                    <i class="fas fa-cloud-arrow-up text-2xl text-primary/60"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Upload Image</span>
+                    <input type="file" id="section1BgInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                  </div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <input type="url" id="section1BgUrl" placeholder="https://... or paste image URL" class="flex-1 bg-secondary border border-primary/20 p-3 text-xs focus:outline-none focus:border-accent">
+                    <button type="button" id="section1BgClear" class="text-[11px] font-bold uppercase tracking-wider text-red-600 hover:text-red-800 transition-colors self-start"><i class="fas fa-times mr-1"></i>Clear Image</button>
+                  </div>
+                </div>
+                <div id="section1BgPreviewWrap" class="mt-3 hidden">
+                  <img id="section1BgPreview" src="" alt="Section 1 background" class="w-full h-32 object-cover border border-primary/20">
+                </div>
+              </div>
+
+              <!-- Colors Configuration (Curated & Limited) -->
+              <div class="mb-6 p-4 bg-secondary/30 border border-primary/20">
+                <div class="flex items-center gap-2 mb-3">
+                  <i class="fas fa-palette text-accent text-sm"></i>
+                  <span class="font-bold uppercase tracking-wider text-xs text-primary">Section Styling (Limited Colors)</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- Background Color -->
+                  <div>
+                    <label for="section1BgColor" class="block font-bold uppercase tracking-widest text-[11px] mb-1.5 text-primary/80">Background Color</label>
+                    <select id="section1BgColor" class="w-full bg-white border border-primary/20 p-2.5 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
+                      <option value="#000000" selected>Pure Black (#000000) &mdash; Default</option>
+                      <option value="#171717">Deep Charcoal (#171717)</option>
+                      <option value="#F4F2ED">Warm Cream (#F4F2ED)</option>
+                      <option value="#FFFFFF">Pure White (#FFFFFF)</option>
+                      <option value="#F5F5F5">Light Gray (#F5F5F5)</option>
+                    </select>
+                    <!-- Quick Color Chips -->
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-[10px] text-primary/50 uppercase font-semibold">Presets:</span>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #000000;" data-target="section1BgColor" data-value="#000000" title="Pure Black"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #171717;" data-target="section1BgColor" data-value="#171717" title="Deep Charcoal"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #F4F2ED;" data-target="section1BgColor" data-value="#F4F2ED" title="Warm Cream"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #FFFFFF;" data-target="section1BgColor" data-value="#FFFFFF" title="Pure White"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #F5F5F5;" data-target="section1BgColor" data-value="#F5F5F5" title="Light Gray"></button>
+                    </div>
+                  </div>
+
+                  <!-- Text Color -->
+                  <div>
+                    <label for="section1TextColor" class="block font-bold uppercase tracking-widest text-[11px] mb-1.5 text-primary/80">Text Color</label>
+                    <select id="section1TextColor" class="w-full bg-white border border-primary/20 p-2.5 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
+                      <option value="#FFFFFF" selected>Pure White (#FFFFFF) &mdash; Default</option>
+                      <option value="#E5E5E5">Muted Silver (#E5E5E5)</option>
+                      <option value="#000000">Pure Black (#000000)</option>
+                      <option value="#171717">Deep Charcoal (#171717)</option>
+                    </select>
+                    <!-- Quick Color Chips -->
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-[10px] text-primary/50 uppercase font-semibold">Presets:</span>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #FFFFFF;" data-target="section1TextColor" data-value="#FFFFFF" title="Pure White"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #E5E5E5;" data-target="section1TextColor" data-value="#E5E5E5" title="Muted Silver"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #000000;" data-target="section1TextColor" data-value="#000000" title="Pure Black"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #171717;" data-target="section1TextColor" data-value="#171717" title="Deep Charcoal"></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Mini Preview -->
+                <div class="mt-3 p-3 rounded border border-primary/10 flex items-center justify-between transition-colors" id="section1ColorPreviewBox" style="background-color: #000000; color: #FFFFFF;">
+                  <span class="text-xs font-bold uppercase tracking-wider">Live Preview Sample</span>
+                  <span class="text-[11px] opacity-80">Section Title &amp; Text Color</span>
+                </div>
+              </div>
+
+              <!-- Texts -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="md:col-span-2">
+                  <label for="section1Title" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Main Title</label>
+                  <input type="text" id="section1Title" placeholder="Our Story" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+                <div class="md:col-span-2">
+                  <label for="section1Subtitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Subtitle / Eyebrow</label>
+                  <input type="text" id="section1Subtitle" placeholder="Est. 2020" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+                <div class="md:col-span-2">
+                  <label for="section1Text" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Body Text</label>
+                  <textarea id="section1Text" rows="3" placeholder="Tell your brand story here..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Button 1 -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Primary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="section1Btn1Text" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="section1Btn1Text" placeholder="Get In Touch" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="section1Btn1Url" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link</label>
+                      <input type="text" id="section1Btn1Url" placeholder="#contact" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section1Btn1Url" data-value="#contact">#contact</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section1Btn1Url" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section1Btn1Url" data-value="#cateringSection">#catering</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Button 2 -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Secondary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="section1Btn2Text" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="section1Btn2Text" placeholder="View Menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="section1Btn2Url" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link</label>
+                      <input type="text" id="section1Btn2Url" placeholder="#menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section1Btn2Url" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section1Btn2Url" data-value="#contact">#contact</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 6: CUSTOM SECTION 2 -->
+          <div id="tab-section2" class="section-tab-content space-y-6 hidden">
+            <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
+
+              <!-- Section Card Header -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-secondary flex items-center justify-center font-bold">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-primary">Custom Section 2</h4>
+                    <p class="text-xs text-primary/60">Center-aligned dark section with dot-grid texture &mdash; title, text &amp; two buttons</p>
+                  </div>
+                </div>
+                <!-- Visibility Toggle -->
+                <div class="flex items-center gap-3 bg-secondary/60 p-2.5 border border-primary/20 self-start sm:self-auto">
+                  <span id="section2VisibleBadge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border bg-emerald-100 text-emerald-800 border-emerald-300 flex items-center gap-1.5">
+                    <i class="fas fa-eye"></i> Visible
+                  </span>
+                  <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle section visibility on the website">
+                    <input type="checkbox" id="section2Visible" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Background Image -->
+              <div class="mb-6">
+                <label class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Background Image <span class="normal-case font-normal text-primary/50">(Optional &mdash; black if empty)</span></label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <div class="flex-1 relative border-2 border-dashed border-primary/30 p-4 bg-secondary/40 hover:bg-secondary hover:border-black transition-colors flex items-center justify-center gap-3 cursor-pointer min-h-[70px]">
+                    <i class="fas fa-cloud-arrow-up text-2xl text-primary/60"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Upload Image</span>
+                    <input type="file" id="section2BgInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                  </div>
+                  <div class="flex-1 flex flex-col gap-2">
+                    <input type="url" id="section2BgUrl" placeholder="https://... or paste image URL" class="flex-1 bg-secondary border border-primary/20 p-3 text-xs focus:outline-none focus:border-accent">
+                    <button type="button" id="section2BgClear" class="text-[11px] font-bold uppercase tracking-wider text-red-600 hover:text-red-800 transition-colors self-start"><i class="fas fa-times mr-1"></i>Clear Image</button>
+                  </div>
+                </div>
+                <div id="section2BgPreviewWrap" class="mt-3 hidden">
+                  <img id="section2BgPreview" src="" alt="Section 2 background" class="w-full h-32 object-cover border border-primary/20">
+                </div>
+              </div>
+
+              <!-- Colors Configuration (Curated & Limited) -->
+              <div class="mb-6 p-4 bg-secondary/30 border border-primary/20">
+                <div class="flex items-center gap-2 mb-3">
+                  <i class="fas fa-palette text-accent text-sm"></i>
+                  <span class="font-bold uppercase tracking-wider text-xs text-primary">Section Styling (Limited Colors)</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- Background Color -->
+                  <div>
+                    <label for="section2BgColor" class="block font-bold uppercase tracking-widest text-[11px] mb-1.5 text-primary/80">Background Color</label>
+                    <select id="section2BgColor" class="w-full bg-white border border-primary/20 p-2.5 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
+                      <option value="#000000" selected>Pure Black (#000000) &mdash; Default</option>
+                      <option value="#171717">Deep Charcoal (#171717)</option>
+                      <option value="#F4F2ED">Warm Cream (#F4F2ED)</option>
+                      <option value="#FFFFFF">Pure White (#FFFFFF)</option>
+                      <option value="#F5F5F5">Light Gray (#F5F5F5)</option>
+                    </select>
+                    <!-- Quick Color Chips -->
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-[10px] text-primary/50 uppercase font-semibold">Presets:</span>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #000000;" data-target="section2BgColor" data-value="#000000" title="Pure Black"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #171717;" data-target="section2BgColor" data-value="#171717" title="Deep Charcoal"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #F4F2ED;" data-target="section2BgColor" data-value="#F4F2ED" title="Warm Cream"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #FFFFFF;" data-target="section2BgColor" data-value="#FFFFFF" title="Pure White"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #F5F5F5;" data-target="section2BgColor" data-value="#F5F5F5" title="Light Gray"></button>
+                    </div>
+                  </div>
+
+                  <!-- Text Color -->
+                  <div>
+                    <label for="section2TextColor" class="block font-bold uppercase tracking-widest text-[11px] mb-1.5 text-primary/80">Text Color</label>
+                    <select id="section2TextColor" class="w-full bg-white border border-primary/20 p-2.5 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
+                      <option value="#FFFFFF" selected>Pure White (#FFFFFF) &mdash; Default</option>
+                      <option value="#E5E5E5">Muted Silver (#E5E5E5)</option>
+                      <option value="#000000">Pure Black (#000000)</option>
+                      <option value="#171717">Deep Charcoal (#171717)</option>
+                    </select>
+                    <!-- Quick Color Chips -->
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-[10px] text-primary/50 uppercase font-semibold">Presets:</span>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #FFFFFF;" data-target="section2TextColor" data-value="#FFFFFF" title="Pure White"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #E5E5E5;" data-target="section2TextColor" data-value="#E5E5E5" title="Muted Silver"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #000000;" data-target="section2TextColor" data-value="#000000" title="Pure Black"></button>
+                      <button type="button" class="color-chip w-6 h-6 rounded-full border border-black/20 shadow-sm cursor-pointer hover:scale-110 transition-transform" style="background-color: #171717;" data-target="section2TextColor" data-value="#171717" title="Deep Charcoal"></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Mini Preview -->
+                <div class="mt-3 p-3 rounded border border-primary/10 flex items-center justify-between transition-colors" id="section2ColorPreviewBox" style="background-color: #000000; color: #FFFFFF;">
+                  <span class="text-xs font-bold uppercase tracking-wider">Live Preview Sample</span>
+                  <span class="text-[11px] opacity-80">Section Title &amp; Text Color</span>
+                </div>
+              </div>
+
+              <!-- Texts -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="md:col-span-2">
+                  <label for="section2Title" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Main Title</label>
+                  <input type="text" id="section2Title" placeholder="Why Choose Us" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+                <div class="md:col-span-2">
+                  <label for="section2Subtitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Subtitle / Eyebrow</label>
+                  <input type="text" id="section2Subtitle" placeholder="Quality First" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
+                </div>
+                <div class="md:col-span-2">
+                  <label for="section2Text" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Body Text</label>
+                  <textarea id="section2Text" rows="3" placeholder="Describe what makes you special..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Button 1 -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Primary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="section2Btn1Text" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="section2Btn1Text" placeholder="Place an Order" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="section2Btn1Url" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link</label>
+                      <input type="text" id="section2Btn1Url" placeholder="#contact" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section2Btn1Url" data-value="#contact">#contact</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section2Btn1Url" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section2Btn1Url" data-value="https://wa.me/">WhatsApp</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Button 2 -->
+                <div class="p-4 bg-secondary/40 border border-primary/20">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                    <span class="font-bold uppercase tracking-wider text-xs text-primary">Secondary Button</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="section2Btn2Text" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Text</label>
+                      <input type="text" id="section2Btn2Text" placeholder="View Menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                      <label for="section2Btn2Url" class="block text-[11px] font-bold uppercase tracking-wider text-primary/70 mb-1">Button Link</label>
+                      <input type="text" id="section2Btn2Url" placeholder="#menu" class="w-full bg-white border border-primary/20 p-2.5 text-xs focus:outline-none focus:border-accent">
+                      <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span class="text-[10px] text-primary/50 uppercase font-semibold mr-1">Quick:</span>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section2Btn2Url" data-value="#menu">#menu</button>
+                        <button type="button" class="link-chip text-[10px] font-bold px-2 py-0.5 bg-white border border-primary/30 rounded" data-target="section2Btn2Url" data-value="#contact">#contact</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Save Actions -->
+          <div class="flex items-center justify-between gap-4 pt-4 pb-12">
+            <span class="text-xs text-primary/60">Changes will be immediately visible on the live website.</span>
+            <button type="submit" id="saveSectionsBtn" class="bg-primary text-secondary px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-accent hover:text-primary transition-all shadow-[6px_6px_0_0_#2E2B29] flex items-center gap-2">
+              <i class="fas fa-save"></i> Save All Changes
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div id="mobileSidebarOverlay" class="fixed inset-0 bg-primary/80 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../src/js/supabase-config.js"></script>
+  <script src="../src/js/supabase-client.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-sections.js"></script>
+</body>
+</html>

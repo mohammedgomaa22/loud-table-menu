@@ -341,6 +341,7 @@ async function loadMenuData() {
     new Swiper('.categoriesSwiper', {
       slidesPerView: 1.35,
       spaceBetween: 20,
+      centerInsufficientSlides: true,
       loop: false,
       speed: 650, // Natural, responsive transition duration
       autoplay: false,

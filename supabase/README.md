@@ -20,6 +20,10 @@
 | 11 | `11_hero_content.sql` | نصوص وأزرار الهيرو |
 | 12 | `12_catering_content.sql` | نصوص قسم الكيترينج والطلبات |
 | 13 | `13_hero_slider.sql` | سلايدر صور الهيرو المتحركة وتوقيت التبديل |
+| 14 | `14_categories_banner.sql` | صورة البانر للتصنيفات |
+| 15 | `15_section_links_and_visibility.sql` | روابط أزرار الأقسام وإظهار/إخفاء الأقسام |
+| 16 | `16_custom_sections.sql` | قسمان مخصصان (يحلّان محل About & Delivery) |
+| 17 | `17_custom_sections_colors.sql` | ألوان الخلفية والنصوص للقسمين المخصصين |
 
 ---
 

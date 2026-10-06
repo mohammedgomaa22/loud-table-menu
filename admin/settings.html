@@ -49,6 +49,9 @@
       <a href="products.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-box-open w-5 text-center"></i> Products
       </a>
+      <a href="sections.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
+        <i class="fas fa-shapes w-5 text-center"></i> Sections
+      </a>
       <a href="messages.html" class="flex items-center gap-3 px-4 py-3 text-white/70 font-bold uppercase tracking-widest text-xs hover:bg-white/10 hover:text-white rounded transition-colors">
         <i class="fas fa-envelope w-5 text-center"></i> Messages
       </a>
@@ -94,9 +97,26 @@
       
       <div class="max-w-4xl">
         <!-- Top Action Bar -->
-        <div class="mb-8">
+        <div class="mb-6">
           <h3 class="text-2xl font-bold uppercase tracking-widest text-primary">General Settings</h3>
-          <p class="text-primary/60 text-sm">Update your website's main information</p>
+          <p class="text-primary/60 text-sm">Update your website's identity, branding, contact and social links</p>
+        </div>
+
+        <!-- Banner pointing to Website Sections -->
+        <div class="mb-8 p-5 bg-white border-2 border-primary shadow-[4px_4px_0_0_#2E2B29] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary text-secondary flex items-center justify-center text-lg flex-shrink-0">
+              <i class="fas fa-shapes"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-primary uppercase tracking-wider">Homepage Sections Have Their Own Page!</h4>
+              <p class="text-xs text-primary/60 mt-0.5">Hero Slider, Catering & Orders, and About content are now managed in the dedicated Sections manager.</p>
+            </div>
+          </div>
+          <a href="sections.html" class="inline-flex items-center gap-2 bg-primary text-secondary px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors whitespace-nowrap self-start sm:self-auto shadow-sm">
+            <span>Manage Sections</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
 
         <!-- Settings Form -->
@@ -104,7 +124,7 @@
           
           <!-- Basic Info Section -->
           <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
-            <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Basic Information</h4>
+            <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Site Identity & Contact</h4>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="md:col-span-2">
@@ -112,6 +132,11 @@
                 <input type="text" id="websiteTitle" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
               
+              <div class="md:col-span-2">
+                <label for="metaDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Meta Description <span class="text-primary/40 normal-case font-normal">(SEO — shown in search engines)</span></label>
+                <textarea id="metaDescription" rows="2" maxlength="160" placeholder="Short description of the website for search engines..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
+              </div>
+
               <div>
                 <label for="contactEmail" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Email</label>
                 <input type="email" id="contactEmail" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
@@ -120,162 +145,6 @@
               <div>
                 <label for="contactPhone" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Contact Phone</label>
                 <input type="tel" id="contactPhone" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="metaDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Meta Description <span class="text-primary/40 normal-case font-normal">(SEO — shown in search results)</span></label>
-                <textarea id="metaDescription" rows="2" maxlength="160" placeholder="Short description of the website for search engines..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="aboutText" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">About Text</label>
-                <textarea id="aboutText" rows="3" placeholder="We believe in food that speaks for itself..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="addressText" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Address / Delivery Info</label>
-                <input type="text" id="addressText" placeholder="Based in Riyadh, we deliver..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-            </div>
-          </div>
-
-          <!-- Hero Section Content -->
-          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
-            <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Hero Section</h4>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="md:col-span-2">
-                <label for="heroEyebrow" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Eyebrow Label</label>
-                <input type="text" id="heroEyebrow" placeholder="Premium Bakery &amp; Catering" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="heroTitleLine1" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 1</label>
-                <input type="text" id="heroTitleLine1" placeholder="Quality" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="heroTitleLine2" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 2</label>
-                <input type="text" id="heroTitleLine2" placeholder="That" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="heroTitleAccent" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Accent Line <span class="text-accent normal-case font-normal">(highlighted color)</span></label>
-                <input type="text" id="heroTitleAccent" placeholder="Echoes." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="heroSubtitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Subtitle</label>
-                <textarea id="heroSubtitle" rows="2" placeholder="Authentic ingredients. Bold flavors..." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
-              </div>
-
-              <div>
-                <label for="heroCtaPrimary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Primary Button Text</label>
-                <input type="text" id="heroCtaPrimary" placeholder="Explore Menu" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="heroCtaSecondary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Secondary Button Text</label>
-                <input type="text" id="heroCtaSecondary" placeholder="Get In Touch" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <!-- Hero Slider Section -->
-              <div class="md:col-span-2 border-t border-primary/10 pt-6 mt-2">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                  <div>
-                    <label class="block font-bold uppercase tracking-widest text-xs text-primary">Hero Slider Images (صور سلايدر الهيرو)</label>
-                    <p class="text-[11px] text-primary/60 mt-0.5">Upload or enter multiple images to turn the hero background into an animated cinematic slider.</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <label for="heroSliderInterval" class="text-xs font-bold uppercase tracking-wider text-primary whitespace-nowrap">Interval:</label>
-                    <select id="heroSliderInterval" class="bg-secondary border border-primary/20 p-2 text-xs font-semibold focus:outline-none focus:border-accent cursor-pointer">
-                      <option value="3">3 Seconds</option>
-                      <option value="4">4 Seconds</option>
-                      <option value="5" selected>5 Seconds (Recommended)</option>
-                      <option value="6">6 Seconds</option>
-                      <option value="8">8 Seconds</option>
-                      <option value="10">10 Seconds</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Add Images Actions -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <!-- File Upload (Single or Multiple) -->
-                  <div class="border-2 border-dashed border-primary/30 p-4 bg-secondary/40 hover:bg-secondary hover:border-black transition-colors flex flex-col items-center justify-center text-center relative group min-h-[90px]">
-                    <i class="fas fa-cloud-arrow-up text-2xl text-primary/60 mb-2 group-hover:scale-110 group-hover:text-primary transition-all"></i>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Upload Images (One or Multiple)</span>
-                    <span class="text-[10px] text-primary/50 mt-0.5">PNG, JPG, WebP. High resolution recommended.</span>
-                    <input type="file" id="heroSliderFilesInput" accept="image/*" multiple class="absolute inset-0 opacity-0 cursor-pointer z-10">
-                  </div>
-
-                  <!-- Add by URL -->
-                  <div class="border border-primary/20 p-4 bg-secondary/40 flex flex-col justify-between min-h-[90px]">
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mb-1">Add Image by URL</span>
-                    <div class="flex gap-2 mt-auto">
-                      <input type="url" id="heroAddUrlInput" placeholder="https://example.com/photo.jpg" class="flex-1 bg-white border border-primary/20 p-2 text-xs focus:outline-none focus:border-accent">
-                      <button type="button" id="heroAddUrlBtn" class="bg-primary text-secondary px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors whitespace-nowrap">
-                        <i class="fas fa-plus mr-1"></i> Add
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Images Gallery / List -->
-                <div class="mb-2">
-                  <div class="flex items-center justify-between text-xs text-primary/60 mb-2">
-                    <span class="font-bold uppercase tracking-wider">Current Slides (<span id="heroImagesCount">0</span>)</span>
-                    <span class="text-[10px]">Use arrows to reorder • First slide is the primary hero cover</span>
-                  </div>
-                  <div id="heroImagesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    <!-- Rendered dynamically -->
-                  </div>
-                  <div id="heroImagesEmpty" class="hidden text-center py-8 px-4 border border-dashed border-primary/20 bg-secondary/30 text-xs text-primary/50">
-                    <i class="fas fa-images text-2xl mb-2 opacity-40 block"></i>
-                    No custom slides added yet. The site will display default bakery showcase slides.
-                  </div>
-                </div>
-
-                <!-- Hidden input for backward compatibility -->
-                <input type="hidden" id="heroImageUrl">
-                <img id="heroPreview" class="hidden" src="" alt="Hero Preview">
-              </div>
-            </div>
-          </div>
-
-          <!-- Catering & Orders Section Content -->
-          <div class="bg-white p-6 md:p-8 border-2 border-primary shadow-[6px_6px_0_0_#2E2B29]">
-            <h4 class="text-lg font-bold uppercase tracking-widest text-primary mb-6 border-b border-primary/10 pb-4">Catering & Orders Section</h4>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="md:col-span-2">
-                <label for="cateringEyebrow" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Eyebrow Label</label>
-                <input type="text" id="cateringEyebrow" placeholder="Catering & Orders" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="cateringTitle" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Line 1</label>
-                <input type="text" id="cateringTitle" placeholder="Taste the" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="cateringTitleAccent" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Headline Accent Line</label>
-                <input type="text" id="cateringTitleAccent" placeholder="Difference." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="cateringDescription" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Description / Subtitle</label>
-                <textarea id="cateringDescription" rows="2" placeholder="Elevate your next event with our bold, uncompromising pastries and catering menu." class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"></textarea>
-              </div>
-
-              <div>
-                <label for="cateringCtaPrimary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Primary Button Text</label>
-                <input type="text" id="cateringCtaPrimary" placeholder="Place an Order" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
-              </div>
-
-              <div>
-                <label for="cateringCtaSecondary" class="block font-bold uppercase tracking-widest text-xs mb-2 text-primary">Secondary Button Text</label>
-                <input type="text" id="cateringCtaSecondary" placeholder="View Menu" class="w-full bg-secondary border border-primary/20 p-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors">
               </div>
             </div>
           </div>

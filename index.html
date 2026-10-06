@@ -91,7 +91,7 @@
   <main role="main">
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black group/hero">
+    <section id="heroSection" class="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-black group/hero">
       <!-- Background Slider Container with Gradient Overlay -->
       <div id="heroSliderContainer" class="absolute inset-0 overflow-hidden select-none">
         <div id="heroSliderTrack" class="hero-slider-track">
@@ -248,6 +248,83 @@
       </div>
     </section>
 
+    <!-- CUSTOM SECTION 1 (Dynamic & Configurable from Admin) -->
+    <section id="customSection1" class="py-24 md:py-32 bg-black text-white relative overflow-hidden hidden border-t border-white/10 transition-colors duration-500">
+      <!-- Background Image (Clean without overlay when image is present) -->
+      <div id="customSection1BgWrapper" class="absolute inset-0 hidden">
+        <img id="customSection1Bg" src="" alt="" class="w-full h-full object-cover" />
+      </div>
+      <!-- Diagonal accent lines overlay -->
+      <div id="customSection1Pattern" class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: repeating-linear-gradient(-45deg, #ffffff 0, #ffffff 1px, transparent 1px, transparent 14px);">
+      </div>
+
+      <div class="container relative z-10" data-aos="fade-up">
+        <div class="max-w-3xl">
+          <!-- Subtitle / Eyebrow -->
+          <div id="customSection1SubtitleWrapper" class="flex items-center gap-3 mb-6 hidden">
+            <div id="customSection1SubtitleLine" class="w-8 h-[2px] bg-current opacity-50"></div>
+            <span id="customSection1Subtitle" class="text-xs font-bold uppercase tracking-[0.3em] opacity-80"></span>
+          </div>
+          <!-- Main Title -->
+          <h2 id="customSection1Title" class="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight mb-6 leading-tight hidden"></h2>
+          <!-- Body Text -->
+          <p id="customSection1Text" class="text-lg md:text-xl font-light max-w-2xl mb-10 leading-relaxed opacity-80 hidden"></p>
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4">
+            <a id="customSection1Btn1" href="#contact"
+              class="hidden inline-flex items-center gap-3 bg-white text-black font-bold uppercase tracking-widest px-8 md:px-10 py-4 md:py-5 rounded hover:bg-neutral-200 transition-colors duration-300 group shadow-xl">
+              <span id="customSection1Btn1Text"></span>
+              <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a id="customSection1Btn2" href="#menu"
+              class="hidden inline-flex items-center gap-3 border border-current font-bold uppercase tracking-widest px-8 md:px-10 py-4 md:py-5 rounded transition-all duration-300">
+              <span id="customSection1Btn2Text"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOM SECTION 2 (Dynamic & Configurable from Admin) -->
+    <section id="customSection2" class="py-24 md:py-32 bg-black text-white relative overflow-hidden hidden border-t border-white/10 transition-colors duration-500">
+      <!-- Background Image (Clean without overlay when image is present) -->
+      <div id="customSection2BgWrapper" class="absolute inset-0 hidden">
+        <img id="customSection2Bg" src="" alt="" class="w-full h-full object-cover" />
+      </div>
+      <!-- Dot grid overlay -->
+      <div id="customSection2Pattern" class="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 24px 24px;">
+      </div>
+
+      <div class="container relative z-10" data-aos="zoom-in">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Subtitle / Eyebrow -->
+          <div id="customSection2SubtitleWrapper" class="flex items-center justify-center gap-3 mb-6 hidden">
+            <div id="customSection2SubtitleLine1" class="w-8 h-[2px] bg-current opacity-50"></div>
+            <span id="customSection2Subtitle" class="text-xs font-bold uppercase tracking-[0.3em] opacity-80"></span>
+            <div id="customSection2SubtitleLine2" class="w-8 h-[2px] bg-current opacity-50"></div>
+          </div>
+          <!-- Main Title -->
+          <h2 id="customSection2Title" class="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight mb-6 leading-tight hidden"></h2>
+          <!-- Body Text -->
+          <p id="customSection2Text" class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed opacity-80 hidden"></p>
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a id="customSection2Btn1" href="#contact"
+              class="hidden inline-flex items-center gap-3 bg-white text-black font-bold uppercase tracking-widest px-8 md:px-10 py-4 md:py-5 rounded hover:bg-neutral-200 transition-colors duration-300 group shadow-xl">
+              <span id="customSection2Btn1Text"></span>
+              <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a id="customSection2Btn2" href="#menu"
+              class="hidden inline-flex items-center gap-3 border border-current font-bold uppercase tracking-widest px-8 md:px-10 py-4 md:py-5 rounded transition-all duration-300">
+              <span id="customSection2Btn2Text"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- PARTNERS SECTION -->
     <section id="partnersSection" class="py-20 bg-black border-y border-white/10 overflow-hidden hidden">
       <div class="marquee-container" data-aos="fade-in">
@@ -302,6 +379,7 @@
         </form>
       </div>
     </section>
+
   </main>
   <!-- ===== END MAIN ===== -->
 
